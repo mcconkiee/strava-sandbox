@@ -1,4 +1,4 @@
-import { ApplicationAction } from '../actions/';
+import { ApplicationAction } from '../actions';
 import { AuthState } from '../types/index';
 import {   AUTHENTICATE_ERROR, AUTHENTICATE_SUCCESS, AUTHENTICATE_TOKEN_SUCCESS } from '../constants/index';
 import { AuthenticateWithCode } from 'src/actions/auth';

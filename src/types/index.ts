@@ -1,3 +1,9 @@
+import { Activity } from './activity';
+
+export interface ActivityState {
+    activities:Activity[];
+    error?:Error;
+}
 export interface AuthState {
     userData?:object;
     accessToken?:string;
@@ -15,5 +21,6 @@ export interface HelloState{
 }
 export interface StoreState {
     hello:HelloState;
+    activity:ActivityState;
     auth:AuthState;
 }
