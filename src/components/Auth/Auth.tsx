@@ -1,16 +1,26 @@
 import * as React from 'react';
-import './Aut.css';
-
-export interface Props {  
-  authenticate?: () => void;
-}
+import './Auth.css';
+import { AuthState } from 'src/types';
+const queryString = require('query-string');
 
 
-class Aut extends React.Component<Props, object> {
+
+class Aut extends React.Component<AuthState, object> {
+  componentDidMount(){
+    const {location} = this.props;
+    if(location){
+      const values = queryString.parse(location.search);
+      if(values.code){
+        this.props.authenticateWithCode(values.code);
+      }
+    }
+  }
   render() {
+    console.log(window.location);
+    
     return (
-      <div className="auth">
-        <button onClick={this.props.authenticate}>-</button>        
+      <div className="auth">        
+        Authpage
       </div>
     );
   }

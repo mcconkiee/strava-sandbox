@@ -1,5 +1,5 @@
-export interface Action {
+export interface ApplicationAction {
     type: string;
     payload: any;
 }
-export const defautltAction:Action = {type:"Init",payload:null}
+export const defautltAction:ApplicationAction = {type:"Init",payload:null}
