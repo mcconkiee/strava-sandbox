@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ActivityState } from 'src/types';
 import { ACTIVITIES_ROUTE, REAUTH } from 'src/constants/routes';
 import { Redirect } from 'react-router';
+import List from './List';
 
 
 class Activities extends React.Component<ActivityState, object> {
@@ -16,7 +17,7 @@ class Activities extends React.Component<ActivityState, object> {
     }    
     return (
       <div className={ACTIVITIES_ROUTE}>        
-        activiites
+        <List listItems={this.props.activities}/>
       </div>
     );
   }
