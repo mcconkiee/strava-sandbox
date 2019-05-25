@@ -3,7 +3,8 @@
 /public
 # dependencies
 /node_modules
-
+/data
+/src/config.ts
 # testing
 /coverage
 
