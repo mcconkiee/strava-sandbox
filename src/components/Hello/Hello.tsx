@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './Hello.css';
 import { HelloState } from 'src/types';
-import config from 'src/config';
+import { authURL } from 'src/constants/auth';
 
 class Hello extends React.Component<HelloState, object> {
   
@@ -18,7 +18,7 @@ class Hello extends React.Component<HelloState, object> {
           Hello {languageName + getExclamationMarks(enthusiasmLevel)}
         </div>
         <div>
-          <a href={`https://www.strava.com/oauth/authorize?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}&response_type=code`}>Auth</a>
+          <a href={authURL()}>Auth</a>
         <button onClick={this.props.onDecrement}>-</button>
         <button onClick={this.props.onIncrement}>+</button>
       </div>

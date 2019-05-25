@@ -1,6 +1,6 @@
 import { ApplicationAction } from '../actions';
 import { AuthState } from '../types/index';
-import {   AUTHENTICATE_ERROR, AUTHENTICATE_SUCCESS, AUTHENTICATE_TOKEN_SUCCESS } from '../constants/index';
+import {   AUTHENTICATE_ERROR, AUTHENTICATE_SUCCESS, AUTHENTICATE_TOKEN_SUCCESS } from '../constants/redux';
 import { AuthenticateWithCode } from 'src/actions/auth';
 const initialState:AuthState = {
   authenticateWithCode:AuthenticateWithCode

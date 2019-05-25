@@ -8,13 +8,14 @@ import Hello from './containers/Hello/Hello';
 import './index.css';
 import Auth from './containers/Auth/Auth';
 import Activities from './containers/Activities/Activities';
-import { ACTIVITIES_ROUTE, AUTHCODE_ROUTE } from './constants/routes';
+import { ACTIVITIES_ROUTE, AUTHCODE_ROUTE, ROOT, REAUTH } from './constants/routes';
 
 
 ReactDOM.render(
   <Router>
     <Provider store={store}>
-    <Route path="/" exact component={Hello} />
+    <Route path={ROOT} exact component={Hello} />
+    <Route path={REAUTH} exact component={Hello} />
     <Route path={AUTHCODE_ROUTE} exact component={Auth} />
     <Route path={ACTIVITIES_ROUTE} exact component={Activities} />
   </Provider>

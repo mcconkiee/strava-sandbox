@@ -3,6 +3,7 @@
 export interface ActivityState {
     activities:object[];
     error?:Error;
+    getActivitiesList?:()=>void;
 }
 export interface AuthState {
     userData?:object;
