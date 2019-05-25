@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import Auth from '../../components/Auth/Auth';
+import Activities from '../../components/Activities/Activities';
 import * as DefaultAction from '../../actions/';
-import * as actions from '../../actions/auth';
+
 import {  StoreState } from '../../types/index';
 
 export function mapStateToProps(state: StoreState) {
-  return state.auth;
+  return state.activity;
 }
 export function mapDispatchToProps(dispatch: Dispatch<DefaultAction.ApplicationAction>) {
   return {    
-    authenticateWithCode: (code:string) => dispatch(actions.AuthenticateWithCode(code)),    
+    // authenticateWithCode: (code:string) => dispatch(actions.AuthenticateWithCode(code)),    
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Activities);

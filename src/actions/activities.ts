@@ -20,10 +20,10 @@ export function ActivitiesListGet(): ApplicationAction {
     }
 }
 
-export function ActivitiesListGetSucces(): ApplicationAction {
+export function ActivitiesListGetSuccess(activities:object[]): ApplicationAction {
     return {
         type: constants.ACTIVITY_LIST_SUCCESS,
-        payload: null 
+        payload: activities 
     }
 }
 

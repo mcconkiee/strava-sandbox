@@ -1,7 +1,7 @@
-import { Activity } from './activity';
+
 
 export interface ActivityState {
-    activities:Activity[];
+    activities:object[];
     error?:Error;
 }
 export interface AuthState {

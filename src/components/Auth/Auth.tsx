@@ -1,11 +1,14 @@
 import * as React from 'react';
 import './Auth.css';
 import { AuthState } from 'src/types';
+import { Redirect } from 'react-router';
+import { ACTIVITIES_ROUTE, AUTHCODE_ROUTE } from 'src/constants/routes';
 const queryString = require('query-string');
 
 
 
-class Aut extends React.Component<AuthState, object> {
+class Auth extends React.Component<AuthState, object> {
+  state = {redirect:false}
   componentDidMount(){
     const {location} = this.props;
     if(location){
@@ -15,17 +18,24 @@ class Aut extends React.Component<AuthState, object> {
       }
     }
   }
+  componentDidUpdate(prevProps:AuthState){
+    if(!prevProps.accessToken && this.props.accessToken != null){
+      this.setState({redirect:true})
+    }
+  }
   render() {
-    console.log(window.location);
+    if(this.state.redirect){
+      return <Redirect to={ACTIVITIES_ROUTE} push/>
+    }
     
     return (
-      <div className="auth">        
+      <div className={AUTHCODE_ROUTE}>        
         Authpage
       </div>
     );
   }
 }
 
-export default Aut;
+export default Auth;
 
 
