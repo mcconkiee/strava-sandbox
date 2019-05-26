@@ -1,19 +1,22 @@
 import * as React from "react";
-import Activity from './Activity';
-
+import Activity from "./Activity";
 
 export interface ListProps {
-    listItems: Array<object>;
-}
-const showItems = (listItems: Array<object>) =>{    
-    return listItems.map(item => {
-    return <Activity key={item["id"]} item={item}/>;
-  })
+  listItems: Array<object>;
 }
 
-const List = ({listItems=[]}:ListProps) => {
-  return <div>
-      {showItems(listItems)}
-  </div>;
+const List = ({ listItems = [] }: ListProps) => {
+  return (
+    <table className="uk-table uk-table-small uk-table-divider">
+      <thead>
+        <tr><th>Name</th><th>Date</th></tr>        
+      </thead>
+      <tbody>
+        {listItems.map(item => {
+        return <Activity key={item["id"]} item={item} />;
+      })}
+      </tbody>
+    </table>
+  );
 };
 export default List;

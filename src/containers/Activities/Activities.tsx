@@ -11,8 +11,7 @@ export function mapStateToProps(state: StoreState) {
 }
 export function mapDispatchToProps(dispatch: Dispatch<DefaultAction.ApplicationAction>) {
   return {    
-    getActivitiesList:()=> dispatch(ActivitiesListGet())
-    // authenticateWithCode: (code:string) => dispatch(actions.AuthenticateWithCode(code)),    
+    getActivitiesList:(page:number = 1)=> dispatch(ActivitiesListGet(page)) 
   }
 }
 

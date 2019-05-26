@@ -11,15 +11,19 @@ import Activities from './containers/Activities/Activities';
 import { ACTIVITIES_ROUTE, AUTHCODE_ROUTE, ROOT, REAUTH } from './constants/routes';
 
 
+
+
 ReactDOM.render(
-  <Router>
+  <div className="uk-container">
+    <Router>
     <Provider store={store}>
     <Route path={ROOT} exact component={Hello} />
     <Route path={REAUTH} exact component={Hello} />
     <Route path={AUTHCODE_ROUTE} exact component={Auth} />
     <Route path={ACTIVITIES_ROUTE} exact component={Activities} />
   </Provider>
-  </Router>,
+  </Router>
+  </div>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();

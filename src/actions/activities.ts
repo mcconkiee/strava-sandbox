@@ -13,10 +13,10 @@ export function ActivityError(error:Error): ActivityError {
     }
 }
 
-export function ActivitiesListGet(): ApplicationAction {
+export function ActivitiesListGet(page:number): ApplicationAction {
     return {
         type: constants.ACTIVITY_LIST,
-        payload: null 
+        payload: page
     }
 }
 

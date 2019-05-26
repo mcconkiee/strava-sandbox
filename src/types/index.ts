@@ -2,8 +2,9 @@
 
 export interface ActivityState {
     activities:object[];
-    error?:Error;
-    getActivitiesList?:()=>void;
+    error?:Error;  
+    page:number;  
+    getActivitiesList:(page?:number)=>void;
 }
 export interface AuthState {
     userData?:object;

@@ -1,6 +1,6 @@
 
 import {call,  put, takeLatest } from 'redux-saga/effects'
-import { ACTIVITY_LIST } from '../constants/redux';
+import { ACTIVITY_LIST, ACTIVITY_ERROR } from '../constants/redux';
 import { ApplicationAction } from 'src/actions';
 // import store from '../store';
 import { ActivityError,  ActivitiesListGetSuccess } from 'src/actions/activities';
@@ -10,13 +10,16 @@ const strava = require('strava-v3');
 
 
 
-function* getStravaActivities(){
+function* getStravaActivities(page:number){
     try {
         const access_token = localStorage.getItem(ACCESS_TOKEN)
         return yield new Promise((res,rej)=>{
-            strava.athlete.listActivities({access_token},(err:Error,results:any)=>{
+            strava.athlete.listActivities({access_token,page},(err:Error,results:any)=>{
                 if(err){                    
                     return rej(err);
+                }
+                if(results.errors){
+                    return rej(results);
                 }
                 return res(results);
             })
@@ -28,10 +31,13 @@ function* getStravaActivities(){
 
 function* fetchActivities(action:ApplicationAction) {
    try {       
-    const activities:any = yield call(getStravaActivities);
+    const activities:any = yield call(getStravaActivities,action.payload);
+    // reset the list
+    yield put(ActivitiesListGetSuccess([])); 
+    // add new results
     yield put(ActivitiesListGetSuccess(activities));    
    } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
+      yield put({type: ACTIVITY_ERROR, message: e.message});
    }
 }
 export const activity = [
