@@ -1,17 +1,18 @@
 import * as React from "react";
+import Activity from './Activity';
+
+
 export interface ListProps {
     listItems: Array<object>;
 }
-const showItems = (listItems: Array<object>) =>
-  listItems.map(item => {
-    return <div>{item["name"]}</div>;
-  });
-  
+const showItems = (listItems: Array<object>) =>{    
+    return listItems.map(item => {
+    return <Activity key={item["id"]} item={item}/>;
+  })
+}
+
 const List = ({listItems=[]}:ListProps) => {
-    console.log(listItems);
-    
-    
-  return <div>hola
+  return <div>
       {showItems(listItems)}
   </div>;
 };
