@@ -9,12 +9,16 @@ const List = ({ listItems = [] }: ListProps) => {
   return (
     <table className="uk-table uk-table-small uk-table-divider">
       <thead>
-        <tr><th>Name</th><th>Date</th></tr>        
+        <tr>
+          <th>Name</th>
+          <th>Private</th>
+          <th>Date</th>
+        </tr>
       </thead>
       <tbody>
         {listItems.map(item => {
-        return <Activity key={item["id"]} item={item} />;
-      })}
+          return <Activity key={item["id"]} item={item} />;
+        })}
       </tbody>
     </table>
   );

@@ -2,13 +2,13 @@ import * as constants from '../constants/redux';
 import { ApplicationAction } from '.';
 
 export interface ActivityError {
-    type: constants.AUTHENTICATE_ERROR;
+    type: constants.ACTIVITY_ERROR;
     payload: any;
 }
 
 export function ActivityError(error:Error): ActivityError {
     return {
-        type: constants.AUTHENTICATE_ERROR,
+        type: constants.ACTIVITY_ERROR,
         payload: error
     }
 }
@@ -17,6 +17,20 @@ export function ActivitiesListGet(page:number): ApplicationAction {
     return {
         type: constants.ACTIVITY_LIST,
         payload: page
+    }
+}
+
+export function ActivityUpdate(data:object): ApplicationAction {
+    return {
+        type: constants.ACTIVITY_UPDATE,
+        payload: data
+    }
+}
+
+export function ActivityUpdateSucces(data:object): ApplicationAction {
+    return {
+        type: constants.ACTIVITY_UPDATE_SUCCESS,
+        payload: data
     }
 }
 

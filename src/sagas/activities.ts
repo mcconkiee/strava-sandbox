@@ -1,45 +1,38 @@
 
-import {call,  put, takeLatest } from 'redux-saga/effects'
-import { ACTIVITY_LIST, ACTIVITY_ERROR } from '../constants/redux';
+import { call, put, takeLatest } from 'redux-saga/effects'
+import { ACTIVITY_LIST, ACTIVITY_UPDATE } from '../constants/redux';
 import { ApplicationAction } from 'src/actions';
-// import store from '../store';
-import { ActivityError,  ActivitiesListGetSuccess } from 'src/actions/activities';
-import { ACCESS_TOKEN } from 'src/constants/localStorage';
+import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces } from 'src/actions/activities';
+import api from 'src/lib/api';
 
-const strava = require('strava-v3');
-
-
-
-function* getStravaActivities(page:number){
+function* fetchActivities(action: ApplicationAction) {
     try {
-        const access_token = localStorage.getItem(ACCESS_TOKEN)
-        return yield new Promise((res,rej)=>{
-            strava.athlete.listActivities({access_token,page},(err:Error,results:any)=>{
-                if(err){                    
-                    return rej(err);
-                }
-                if(results.errors){
-                    return rej(results);
-                }
-                return res(results);
-            })
-        })
+        const response = yield call(api.get,`/athlete/activities?page=${action.payload}`);        
+        if(response.errors){
+            throw response.message;
+        }
+        // reset the list
+        yield put(ActivitiesListGetSuccess([]));
+        // add new results
+        yield put(ActivitiesListGetSuccess(response.data));
     } catch (error) {
-        return put(ActivityError(error));
+        yield put(ActivityError(error));
     }
 }
+function* updateActivity(action: ApplicationAction) {
+    try {        
+        const activity = action.payload;
+        const response = yield call(api.put, `/activities/${activity.id}`, action.payload)
+        if(response.errors){
+            throw response.message;
+        }
+        yield put(ActivityUpdateSucces(response.data));
 
-function* fetchActivities(action:ApplicationAction) {
-   try {       
-    const activities:any = yield call(getStravaActivities,action.payload);
-    // reset the list
-    yield put(ActivitiesListGetSuccess([])); 
-    // add new results
-    yield put(ActivitiesListGetSuccess(activities));    
-   } catch (e) {
-      yield put({type: ACTIVITY_ERROR, message: e.message});
-   }
+    } catch (error) {
+        yield put(ActivityError(error));
+    }
 }
 export const activity = [
-  takeLatest(ACTIVITY_LIST, fetchActivities),
+    takeLatest(ACTIVITY_LIST, fetchActivities),
+    takeLatest(ACTIVITY_UPDATE, updateActivity)
 ]

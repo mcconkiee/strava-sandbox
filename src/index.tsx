@@ -11,8 +11,6 @@ import Activities from './containers/Activities/Activities';
 import { ACTIVITIES_ROUTE, AUTHCODE_ROUTE, ROOT, REAUTH } from './constants/routes';
 
 
-
-
 ReactDOM.render(
   <div className="uk-container">
     <Router>
