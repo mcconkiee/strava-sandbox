@@ -1,8 +1,8 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { ACTIVITY_LIST, ACTIVITY_UPDATE } from '../constants/redux';
-import { ApplicationAction } from 'src/actions';
-import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces } from 'src/actions/activities';
+import { ACTIVITY_LIST, ACTIVITY_UPDATE } from '../../constants/redux';
+import { ApplicationAction } from 'src/redux/actions';
+import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces } from 'src/redux/actions/activities';
 import api from 'src/lib/api';
 
 function* fetchActivities(action: ApplicationAction) {

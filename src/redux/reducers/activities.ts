@@ -1,6 +1,6 @@
 import { ApplicationAction } from '../actions';
-import {  ActivityState } from '../types/index';
-import {  ACTIVITY_LIST_SUCCESS, ACTIVITY_ERROR, ACTIVITY_LIST, ACTIVITY_UPDATE_SUCCESS } from '../constants/redux';
+import {  ActivityState } from '../../types/index';
+import {  ACTIVITY_LIST_SUCCESS, ACTIVITY_ERROR, ACTIVITY_LIST, ACTIVITY_UPDATE_SUCCESS } from '../../constants/redux';
 
 const initialState: ActivityState = {
   activities: [],

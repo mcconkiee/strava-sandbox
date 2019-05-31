@@ -1,9 +1,9 @@
 import { ApplicationAction } from '../actions';
-import { AuthState } from '../types/index';
-import {   AUTHENTICATE_ERROR, AUTHENTICATE_SUCCESS, AUTHENTICATE_TOKEN_SUCCESS } from '../constants/redux';
-import { AuthenticateWithCode } from 'src/actions/auth';
+import { AuthState } from '../../types/index';
+import {   AUTHENTICATE_ERROR, AUTHENTICATE_SUCCESS, AUTHENTICATE_TOKEN_SUCCESS } from '../../constants/redux';
+import { AuthenticateWithCode } from 'src/redux/actions/auth';
 const initialState:AuthState = {
-  authenticateWithCode:AuthenticateWithCode
+  authenticateWithCode:AuthenticateWithCode,
 }
 export function auth(state: AuthState = initialState, action: ApplicationAction): AuthState {
   switch (action.type) {

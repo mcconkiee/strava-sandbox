@@ -1,4 +1,4 @@
-import * as constants from '../constants/redux';
+import * as constants from '../../constants/redux';
 import { ApplicationAction } from '.';
 
 export interface ActivityError {

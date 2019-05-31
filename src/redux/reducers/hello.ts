@@ -1,6 +1,6 @@
-import { HelloState } from '../types/index';
-import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from '../constants/redux';
-import { ApplicationAction } from 'src/actions';
+import { HelloState } from '../../types/index';
+import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from '../../constants/redux';
+import { ApplicationAction } from 'src/redux/actions';
 
 export function hello(state: HelloState = {enthusiasmLevel:1,languageName:"XXX"}, action: ApplicationAction): HelloState {
   switch (action.type) {

@@ -12,6 +12,14 @@ export interface AuthState {
     accessToken?:string;
     error?:Error;
     location?:Location;
+    authenticateWithCode:(code:string,dogs:boolean)=>void;    
+}
+
+export interface DogState {
+    userData?:object;
+    accessToken?:string;
+    error?:Error;
+    location?:Location;
     authenticateWithCode:(code:string)=>void;
 }
 
@@ -24,6 +32,7 @@ export interface HelloState{
 }
 export interface StoreState {
     hello:HelloState;
+    dogs:DogState,
     activity:ActivityState;
     auth:AuthState;
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 const moment = require("moment");
-import * as DefaultAction from '../../actions';
-import {ActivityUpdate} from '../../actions/activities';
+import * as DefaultAction from '../../redux/actions';
+import {ActivityUpdate} from '../../redux/actions/activities';
 import { connect } from 'react-redux';
 import { StoreState } from 'src/types';
 export interface Activity {
@@ -22,7 +22,7 @@ const Activity = (props: Activity) => {
               props.updateActivity(props.item);
             }
             
-        }}>Toggle</a>
+        }}>Add to dogs</a>
       </td>
       <td>{moment(props.item["start_date"]).format("MMM DD, YYYY h:mm a")}</td>
     </tr>

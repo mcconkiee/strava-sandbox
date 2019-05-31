@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import Activities from '../../components/Activities/Activities';
-import * as DefaultAction from '../../actions/';
-import {ActivitiesListGet} from '../../actions/activities'
+import * as DefaultAction from '../../redux/actions';
+import {ActivitiesListGet} from '../../redux/actions/activities'
 
 import {  StoreState } from '../../types/index';
 
