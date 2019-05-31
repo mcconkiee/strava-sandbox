@@ -1,7 +1,7 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
-!/public/index.html
 # don't save public
-/public
+public/*
+!public/index.html
 # dependencies
 /node_modules
 /src/config.ts
