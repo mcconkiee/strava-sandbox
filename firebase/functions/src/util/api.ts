@@ -1,23 +1,26 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import config from '../config';
-import { REFRESH_TOKEN, ACCESS_TOKEN, DOG_ACCESS_TOKEN } from 'src/constants/localStorage';
+import config from '../../config';
+
 const tokenEndpoint = "https://www.strava.com/oauth/token";
 
-export const requestConfig = (dogs:boolean = false): AxiosRequestConfig => {
-    const access_token = localStorage.getItem(dogs ? DOG_ACCESS_TOKEN :ACCESS_TOKEN)
+export const requestConfig = (access_token?:string): AxiosRequestConfig => {
     return { baseURL: "https://www.strava.com/api/v3", headers: { "Authorization": `Bearer ${access_token}`, "Content-Type": "application/json" } };
 }
+export interface RequestOptions {
+    access_token:string;
+}
+
 export default {
-    get: (url: string) => {
-        const _config: AxiosRequestConfig = requestConfig();
+    get: (url: string, options?:RequestOptions) => {
+        const _config: AxiosRequestConfig = requestConfig(options ? options.access_token : "xxx");
         return axios.get(url, _config);
     },
-    post: (url: string, data: object, dogs:boolean = false) => {
-        const _config: AxiosRequestConfig = requestConfig(dogs);
+    post: (url: string, data: object, options?:RequestOptions) => {
+        const _config: AxiosRequestConfig = requestConfig(options ? options.access_token : "xxx");
         return axios.post(url, data, _config);
     },
-    put: (url: string, data: object) => {
-        const _config: AxiosRequestConfig = requestConfig();
+    put: (url: string, data: object, options?:RequestOptions) => {
+        const _config: AxiosRequestConfig = requestConfig(options ? options.access_token : "xxx");
         return axios.put(url, data, _config);
     },
     tokenExchange: (code: string) => {
@@ -30,8 +33,7 @@ export default {
 
         return axios.post(tokenEndpoint, data)
     },
-    tokenRefresh: () => {
-        const token = localStorage.getItem(REFRESH_TOKEN);
+    tokenRefresh: (token:string) => {        
         const data = {
             client_id: config.client_id,
             client_secret: config.client_secret,

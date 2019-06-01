@@ -5,6 +5,7 @@ public/*
 # dependencies
 /node_modules
 /src/config.ts
+/firebase/functions/config.ts
 /data/strava_config
 # testing
 /coverage

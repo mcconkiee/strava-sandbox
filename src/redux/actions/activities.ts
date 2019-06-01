@@ -34,6 +34,20 @@ export function ActivityUpdateSucces(data:object): ApplicationAction {
     }
 }
 
+export function ActivityClone(data:object): ApplicationAction {
+    return {
+        type: constants.ACTIVITY_CLONE,
+        payload: data
+    }
+}
+
+export function ActivityCloneSuccess(data:object): ApplicationAction {
+    return {
+        type: constants.ACTIVITY_CLONE_SUCCESS,
+        payload: data
+    }
+}
+
 export function ActivitiesListGetSuccess(activities:object[]): ApplicationAction {
     return {
         type: constants.ACTIVITY_LIST_SUCCESS,

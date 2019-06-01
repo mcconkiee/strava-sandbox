@@ -7,8 +7,8 @@ import api from 'src/lib/api';
 
 function* fetchActivities(action: ApplicationAction) {
     try {
-        const response = yield call(api.get,`/athlete/activities?page=${action.payload}`);        
-        if(response.errors){
+        const response = yield call(api.get, `/athlete/activities?page=${action.payload}`);
+        if (response.errors) {
             throw response.message;
         }
         // reset the list
@@ -20,10 +20,10 @@ function* fetchActivities(action: ApplicationAction) {
     }
 }
 function* updateActivity(action: ApplicationAction) {
-    try {        
+    try {
         const activity = action.payload;
         const response = yield call(api.put, `/activities/${activity.id}`, action.payload)
-        if(response.errors){
+        if (response.errors) {
             throw response.message;
         }
         yield put(ActivityUpdateSucces(response.data));
@@ -32,7 +32,10 @@ function* updateActivity(action: ApplicationAction) {
         yield put(ActivityError(error));
     }
 }
+
+
 export const activity = [
     takeLatest(ACTIVITY_LIST, fetchActivities),
-    takeLatest(ACTIVITY_UPDATE, updateActivity)
+    takeLatest(ACTIVITY_UPDATE, updateActivity),
+
 ]
