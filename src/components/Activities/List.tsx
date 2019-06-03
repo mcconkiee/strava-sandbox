@@ -11,6 +11,7 @@ const List = ({ listItems = [] }: ListProps) => {
       <thead>
         <tr>
           <th>Name</th>
+          <th>Distance</th>
           <th>Private</th>
           <th>Date</th>
         </tr>

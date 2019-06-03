@@ -2,8 +2,7 @@ import * as React from 'react';
 import './Hello.css';
 import { HelloState } from 'src/types';
 import { authURL } from 'src/constants/auth';
-import { Link } from 'react-router-dom';
-import { ACTIVITIES_ROUTE } from 'src/constants/routes';
+
 
 class Hello extends React.Component<HelloState, object> {
   
@@ -24,9 +23,7 @@ class Hello extends React.Component<HelloState, object> {
         <button onClick={this.props.onDecrement}>-</button>
         <button onClick={this.props.onIncrement}>+</button>
       </div>
-      <div>
-        <Link to={ACTIVITIES_ROUTE} title="Activities">Activities</Link>
-      </div>
+      
       </div>
     );
   }

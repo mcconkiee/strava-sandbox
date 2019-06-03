@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Auth.css';
 import { AuthState } from 'src/types';
 import { Redirect } from 'react-router';
-import { ACTIVITIES_ROUTE, AUTHCODE_ROUTE, DOGS } from 'src/constants/routes';
+import { AUTHCODE_ROUTE, DOGS } from 'src/constants/routes';
 const queryString = require('query-string');
 
 
@@ -26,7 +26,7 @@ class Auth extends React.Component<AuthState, object> {
   }
   render() {
     if(this.state.redirect){
-      return <Redirect to={ACTIVITIES_ROUTE} push/>
+      return <Redirect to={DOGS} push/>
     }
     
     return (

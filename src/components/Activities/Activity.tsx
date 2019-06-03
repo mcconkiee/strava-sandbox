@@ -8,18 +8,17 @@ export interface Activity {
   item: object;
   cloneActivity: (data: object) => void;
 }
+const metersToMiles = (meters:number):string => {
+  return Math.max( Math.round((meters * 0.000621371) * 10) / 10, 2.8 ).toFixed(1);  
+}
 const Activity = (props: Activity) => {
   return (
     <tr>
-      <td>{props.item["name"]}</td>
-      <td>
-        {props.item["visibility"] === "everyone" ? "Public" : "Private"}{" "}
+      <td><a href={`https://www.strava.com/activities/${props.item['id']}`}>{props.item["name"]}</a></td>
+      <td>{metersToMiles(props.item["distance"]) } miles</td>
+      <td>        
         <a
           onClick={() => {
-            const ifPrivate = props.item["private"];
-            const isPrivate = ifPrivate ? false : true;
-            props.item["visibility"] = isPrivate ? "only_me" : "everyone";
-            props.item["private"] = isPrivate;
             props.cloneActivity(props.item);
           }}
         >
