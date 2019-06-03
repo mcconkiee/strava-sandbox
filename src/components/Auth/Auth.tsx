@@ -16,6 +16,7 @@ class Auth extends React.Component<AuthState, object> {
       if(values.code){
         const hasDogs = location.pathname.includes(DOGS);
         this.props.authenticateWithCode(values.code,hasDogs);
+        this.setState({redirect:true})
       }
     }
   }

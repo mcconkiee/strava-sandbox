@@ -20,7 +20,9 @@ export interface DogState {
     accessToken?:string;
     error?:Error;
     location?:Location;
+    dogs?:object[];
     authenticateWithCode:(code:string)=>void;
+    getDogs:()=>void;
 }
 
 export interface HelloState{

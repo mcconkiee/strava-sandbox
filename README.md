@@ -26,6 +26,7 @@ npm run start
 ## Firebase
 we use firebase to build the gpx files and upload to strava. From the `functions` directory, 
 ```
+nvm use 8.16.0
 npm i
 ``` 
 #### Dev

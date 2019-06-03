@@ -1,6 +1,6 @@
 import { Response, Request } from 'express';
 import * as FormData from 'form-data';
-import api, { requestConfig, RequestOptions } from './util/api';
+import api, { requestConfig, RequestOptions } from '../util/api';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { GarminBuilder, buildGPX } from 'gpx-builder';
 import { Metadata } from 'gpx-builder/dist/builder/BaseBuilder/models';
@@ -100,12 +100,11 @@ module.exports = (req: Request, res: Response) => {
         return Promise.all([data,uploadToStrava(data, activity, dogAccessToken)]);
     }).then(([fileMade,fromStravaResponse]) => {
         return Promise.all([cleanup(fileMade), fromStravaResponse]);
-    }).then(([clean, fromStravaResponse]) => {        
-        return res.send({ status: "ok" });
+    }).then(([clean, fromStravaResponse]) => {                
+        return res.send(fromStravaResponse.data);
     }).catch((error: Error) => {
         console.log('error on clone', error.message);
         console.log(error.stack);
-
         return res.status(500).send({ message: "There was an error processing the file.", error: error });
     });
 

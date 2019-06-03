@@ -7,13 +7,26 @@ export const requestConfig = (dogs:boolean = false): AxiosRequestConfig => {
     const access_token = localStorage.getItem(dogs ? DOG_ACCESS_TOKEN :ACCESS_TOKEN)
     return { baseURL: "https://www.strava.com/api/v3", headers: { "Authorization": `Bearer ${access_token}`, "Content-Type": "application/json" } };
 }
+
+export const requestConfigAPI = (): AxiosRequestConfig => {    
+    const userToken = localStorage.getItem(ACCESS_TOKEN)
+    return { baseURL: config.apiurl, headers:  {"Content-Type": "application/json" , "Authorization": `Bearer ${userToken}`} };
+}
 export default {
     get: (url: string) => {
         const _config: AxiosRequestConfig = requestConfig();
         return axios.get(url, _config);
     },
+    getApi: (url: string) => {
+        const _config: AxiosRequestConfig = requestConfigAPI();
+        return axios.get(url, _config);
+    },
     post: (url: string, data: object, dogs:boolean = false) => {
-        const _config: AxiosRequestConfig = requestConfig(dogs);
+        const _config: AxiosRequestConfig = requestConfig(dogs);        
+        return axios.post(url, data, _config);
+    },
+    postApi: (url: string, data: object, dogs:boolean = false) => {
+        const _config: AxiosRequestConfig = requestConfigAPI();
         return axios.post(url, data, _config);
     },
     put: (url: string, data: object) => {
