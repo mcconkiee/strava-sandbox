@@ -1,11 +1,29 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { ACTIVITY_LIST, ACTIVITY_UPDATE } from '../../constants/redux';
+import { ACTIVITY_LIST, ACTIVITY_UPDATE, AUTHENTICATE_REFRESH_SUCCESS } from '../../constants/redux';
 import { ApplicationAction } from 'src/redux/actions';
-import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces } from 'src/redux/actions/activities';
+import { AuthRefreshTokenSuccess } from 'src/redux/actions/auth';
+import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces, ActivitiesListGet } from 'src/redux/actions/activities';
 import api from 'src/lib/api';
-
+import store from 'src/store'
+function* refreshAndRetry(action: ApplicationAction){
+    try {
+        const refresh = yield call(api.getApi,'/user/refresh');
+        yield put(AuthRefreshTokenSuccess(refresh.data))
+    } catch (error) {
+        yield put(ActivityError(error));
+    }
+}
+function* refreshActivities(){
+    try {
+        const page = store.getState().activity.page        
+        yield put(ActivitiesListGet(page));
+    } catch (error) {
+       yield put(ActivityError(error)); 
+    }
+}
 function* fetchActivities(action: ApplicationAction) {
+    
     try {
         const response = yield call(api.get, `/athlete/activities?page=${action.payload}`);
         if (response.errors) {
@@ -16,7 +34,9 @@ function* fetchActivities(action: ApplicationAction) {
         // add new results
         yield put(ActivitiesListGetSuccess(response.data));
     } catch (error) {
-        yield put(ActivityError(error));
+     
+        yield call(refreshAndRetry,action);
+        
     }
 }
 function* updateActivity(action: ApplicationAction) {
@@ -37,5 +57,5 @@ function* updateActivity(action: ApplicationAction) {
 export const activity = [
     takeLatest(ACTIVITY_LIST, fetchActivities),
     takeLatest(ACTIVITY_UPDATE, updateActivity),
-
+    takeLatest(AUTHENTICATE_REFRESH_SUCCESS,refreshActivities)
 ]

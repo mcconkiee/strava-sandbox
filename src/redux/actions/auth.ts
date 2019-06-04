@@ -35,6 +35,27 @@ export function AuthTokenSuccess(token:string): ApplicationAction {
     }
 }
 
+export function AuthRefreshToken(): ApplicationAction {
+    return {
+        type: constants.AUTHENTICATE_REFRESHTOKEN,
+        payload: null
+    }
+}
+
+export function AuthRefreshSuccess(): ApplicationAction {
+    return {
+        type: constants.AUTHENTICATE_REFRESH_SUCCESS,
+        payload: null
+    }
+}
+
+export function AuthRefreshTokenSuccess(tokenData:object): ApplicationAction {
+    return {
+        type: constants.AUTHENTICATE_REFRESHTOKEN_SUCCESS,
+        payload: tokenData
+    }
+}
+
 export function AuthenticateSuccess(userData:object): AuthenticateSuccess {
     return {
         type: constants.AUTHENTICATE_SUCCESS,

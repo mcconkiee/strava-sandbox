@@ -6,6 +6,7 @@ export interface ActivityState {
     page:number;  
     updatedActivity?:object;
     getActivitiesList:(page?:number)=>void;
+    getDogs?:()=>void;
 }
 export interface AuthState {
     userData?:object;

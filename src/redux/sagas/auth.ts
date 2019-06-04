@@ -1,8 +1,8 @@
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { AUTHENTICATE_WITH_CODE, AUTHENTICATE_DOG } from 'src/constants/redux';
+import { AUTHENTICATE_WITH_CODE, AUTHENTICATE_DOG, AUTHENTICATE_REFRESHTOKEN_SUCCESS } from 'src/constants/redux';
 import api from '../../lib/api';
 import { ApplicationAction } from 'src/redux/actions';
-import { AuthTokenSuccess, AuthenticateSuccess, AuthenticateError } from 'src/redux/actions/auth';
+import { AuthTokenSuccess, AuthenticateSuccess, AuthenticateError, AuthRefreshSuccess } from 'src/redux/actions/auth';
 import { AuthenticateDogSuccess, AuthenticateDogTokenSuccess } from 'src/redux/actions/dogs';
 import { REFRESH_TOKEN, ACCESS_TOKEN_TIMESTAMP, ACCESS_TOKEN, DOG_REFRESH_TOKEN, DOG_ACCESS_TOKEN } from 'src/constants/localStorage';
 
@@ -51,8 +51,18 @@ function* fetchToken(action: ApplicationAction) {
    }
 }
 
+function* updateTokens(action: ApplicationAction){
+   try {
+      const tokenData = action.payload;
+      localStorage.setItem(ACCESS_TOKEN, tokenData.access_token);
+      yield put(AuthRefreshSuccess());
+   } catch (error) {
+      yield put(AuthenticateError(error));
+   }
+}
 
 export const auth = [
    takeLatest(AUTHENTICATE_WITH_CODE, fetchToken),
-   takeLatest(AUTHENTICATE_DOG, fetchToken)
+   takeLatest(AUTHENTICATE_DOG, fetchToken),
+   takeLatest(AUTHENTICATE_REFRESHTOKEN_SUCCESS,updateTokens)
 ]

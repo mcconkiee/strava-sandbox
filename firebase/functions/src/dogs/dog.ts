@@ -1,0 +1,14 @@
+import { Response, Request } from 'express';
+import { QueryDocumentSnapshot } from '@google-cloud/firestore';
+const tokenFromHeader = require('../user/tokenFromHeader');
+const getDog = require('./getDog')
+module.exports = (req: Request, res: Response) => {
+    const db =  req.app.get('db') as FirebaseFirestore.Firestore;
+    const access_token: string = tokenFromHeader(req)
+    getDog(access_token,req.params.token,db)    
+    .then((dog:QueryDocumentSnapshot) => {
+        res.send({ data: dog  });
+    }).catch((err:Error)=>{
+        res.status(500).send({error:err});
+    })
+}
