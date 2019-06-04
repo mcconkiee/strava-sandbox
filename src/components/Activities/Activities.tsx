@@ -1,7 +1,7 @@
 import * as React from "react";
 
-import { ACTIVITIES_ROUTE, REAUTH } from "src/constants/routes";
-import { Redirect } from "react-router";
+import { ACTIVITIES_ROUTE } from "src/constants/routes";
+
 import List from "./List";
 import Pagination from "./Pagination";
 import { ActivityState } from "src/types";
@@ -27,9 +27,7 @@ class Activities extends React.Component<ActivityState> {
     this.props.getActivitiesList(page - 1);
   }
   render() {
-    if (this.props.error) {
-      return <Redirect to={REAUTH} push />;
-    }
+    
     return (
       <div className={`${ACTIVITIES_ROUTE} uk-overflow-auto`}>
         <Pagination onNext={this.onNextPage} onPrev={this.onPrevPage} />

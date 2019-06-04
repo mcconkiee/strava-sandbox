@@ -19,15 +19,15 @@ function* cloneActivityToDog(action: ApplicationAction) {
             throw response.message;
         }
         
-        yield call(api.postApi,`/user/dogs/${dogToken}/activities/match`,{activity})
+        yield call(api.postApi,`/user/dogs/${dogToken}/activities/match`,{activity})        
         yield put(ActivityCloneSuccess(response.data));
-
+        yield call(getAllDogs);
     } catch (error) {
         yield put(DogsError(error));
     }
 }
 
-function* getAllDogs(action: ApplicationAction) {
+function* getAllDogs() {
     try {
         const dogs = yield call(api.getApi, `/user/dogs`)
         yield put(GetDogsSuccess(dogs.data.accounts))

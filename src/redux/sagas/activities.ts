@@ -1,12 +1,12 @@
 
 import { call, put, takeLatest } from 'redux-saga/effects'
-import { ACTIVITY_LIST, ACTIVITY_UPDATE, AUTHENTICATE_REFRESH_SUCCESS } from '../../constants/redux';
+import { ACTIVITY_LIST, ACTIVITY_UPDATE, AUTHENTICATE_REFRESH_SUCCESS, DOG_ERROR } from '../../constants/redux';
 import { ApplicationAction } from 'src/redux/actions';
 import { AuthRefreshTokenSuccess } from 'src/redux/actions/auth';
 import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces, ActivitiesListGet } from 'src/redux/actions/activities';
 import api from 'src/lib/api';
 import store from 'src/store'
-function* refreshAndRetry(action: ApplicationAction){
+function* refreshAndRetry(){
     try {
         const refresh = yield call(api.getApi,'/user/refresh');
         yield put(AuthRefreshTokenSuccess(refresh.data))
@@ -35,7 +35,7 @@ function* fetchActivities(action: ApplicationAction) {
         yield put(ActivitiesListGetSuccess(response.data));
     } catch (error) {
      
-        yield call(refreshAndRetry,action);
+        yield call(refreshAndRetry);
         
     }
 }
@@ -57,5 +57,6 @@ function* updateActivity(action: ApplicationAction) {
 export const activity = [
     takeLatest(ACTIVITY_LIST, fetchActivities),
     takeLatest(ACTIVITY_UPDATE, updateActivity),
-    takeLatest(AUTHENTICATE_REFRESH_SUCCESS,refreshActivities)
+    takeLatest(AUTHENTICATE_REFRESH_SUCCESS,refreshActivities),
+    takeLatest(DOG_ERROR,refreshAndRetry)
 ]

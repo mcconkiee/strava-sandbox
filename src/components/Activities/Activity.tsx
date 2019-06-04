@@ -26,6 +26,7 @@ const Activity = (props: Activity) => {
         </a>
       </td>
       <td>{moment(props.item["start_date"]).format("MMM DD, YYYY h:mm a")}</td>
+      <td>x</td>
     </tr>
   );
 };

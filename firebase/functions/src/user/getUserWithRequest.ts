@@ -7,7 +7,7 @@ const getUserWithRequest = (req:Request) => {
     const token = tokenFromHeader(req);
     return db.collection('users').where("access_token", '==', token).get()
         .then((users: QuerySnapshot) => {
-            if (users.docs.length > 0) {
+            if (users.docs.length > 0) {                
                 return users.docs[0];
             }
             return null;

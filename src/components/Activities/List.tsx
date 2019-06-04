@@ -14,6 +14,7 @@ const List = ({ listItems = [] }: ListProps) => {
           <th>Distance</th>
           <th>Private</th>
           <th>Date</th>
+          <th>Matched</th>
         </tr>
       </thead>
       <tbody>

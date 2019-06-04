@@ -21,6 +21,9 @@ function* getToken(action: ApplicationAction) {
 
 
       if (type === AUTHENTICATE_DOG) {
+         // FIXME - we only support one connected account for now...probaly need something like
+         // localStorage.setItem(`${DOG_ACCESS_TOKEN}_${dogname}`, access_token); 
+         // and then a localStorage helper to pull all tokens starting with `DOG_ACCESS_TOKEN`
          localStorage.setItem(DOG_ACCESS_TOKEN, access_token);
          yield put(AuthenticateDogTokenSuccess(access_token));
       } else {
@@ -54,7 +57,12 @@ function* fetchToken(action: ApplicationAction) {
 function* updateTokens(action: ApplicationAction){
    try {
       const tokenData = action.payload;
-      localStorage.setItem(ACCESS_TOKEN, tokenData.access_token);
+      localStorage.setItem(ACCESS_TOKEN, tokenData.user.access_token);
+
+      // FIXME - we only support one connected account for now...
+      tokenData.accounts.forEach((account:any) => {
+         localStorage.setItem(DOG_ACCESS_TOKEN, account.access_token);
+      });
       yield put(AuthRefreshSuccess());
    } catch (error) {
       yield put(AuthenticateError(error));

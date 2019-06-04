@@ -15,9 +15,18 @@ module.exports = (req: Request, res: Response) => {
             return Promise.resolve(null);
         })
         .then((dogs:QuerySnapshot) =>{
-            if(dogs){
-                const accounts = dogs.docs.map(doc=>{return doc.data().data});
-                return res.send({accounts:accounts})
+            return Promise.all([dogs,Promise.all(dogs.docs.map(d => d.ref.collection('matches').get()))]);
+        })
+        .then(([dogs,accounts]:[QuerySnapshot,QuerySnapshot[]]) =>{            
+            if(dogs){  
+                let response: any = []              
+                const dogDatas = dogs.docs.map(doc=>{return doc.data().data});
+                dogDatas.forEach( (data,i) =>{
+                    const matches = accounts[i].docs.map( matches => matches.ref.id);                    
+                    data['matches'] = matches;
+                    response[i] = data
+                })
+                return res.send({accounts:response})                
             }
             return res.status(403).send({error:"No user found"})
         })
