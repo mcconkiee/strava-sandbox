@@ -4,26 +4,32 @@ import { ACTIVITIES_ROUTE } from "src/constants/routes";
 
 import List from "./List";
 import Pagination from "./Pagination";
-import { ActivityState } from "src/types";
+import { ActivityState, DogState } from "src/types";
 
-class Activities extends React.Component<ActivityState> {
-  constructor(p: ActivityState) {
+interface ActivityProps{
+  dogs:DogState;
+  activity:ActivityState;
+  getActivitiesList:(page:number)=>void;
+  getDogs:()=>void;
+}
+class Activities extends React.Component<ActivityProps> {
+  constructor(p:ActivityProps) {
     super(p);
     this.onNextPage = this.onNextPage.bind(this);
     this.onPrevPage = this.onPrevPage.bind(this);
   }
   componentDidMount() {
-    this.props.getActivitiesList(this.props.page);
-    if (this.props.getDogs) this.props.getDogs();
+    this.props.getActivitiesList(this.props.activity.page);
+    this.props.getDogs();
   }
 
   onNextPage() {
-    const page: number = this.props.page;
+    const page: number = this.props.activity.page;
     this.props.getActivitiesList(page + 1);
   }
   onPrevPage() {
-    if (this.props.page === 1) return;
-    const page: number = this.props.page;
+    if (this.props.activity.page === 1) return;
+    const page: number = this.props.activity.page;
     this.props.getActivitiesList(page - 1);
   }
   render() {
@@ -31,7 +37,7 @@ class Activities extends React.Component<ActivityState> {
     return (
       <div className={`${ACTIVITIES_ROUTE} uk-overflow-auto`}>
         <Pagination onNext={this.onNextPage} onPrev={this.onPrevPage} />
-        <List listItems={this.props.activities} />
+        <List listItems={this.props.activity.activities} />
         <Pagination onNext={this.onNextPage} onPrev={this.onPrevPage} />
       </div>
     );

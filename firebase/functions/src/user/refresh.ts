@@ -19,12 +19,13 @@ module.exports = (req: Request, res: Response) => {
         })
         .then(([userResponse, dogsResponse, dogsDocs]: [any, any[], QuerySnapshot]) => {
             //update each dog
-            let index = 0;
+            let index = 0;            
             dogsDocs.forEach((d: QueryDocumentSnapshot) => {
-                d.ref.set(dogsResponse[index], { merge: true })
+                d.ref.set(dogsResponse[index].data, { merge: true })
                 index++;
             })
-            res.send({ user: userResponse.data, accounts: dogsResponse.map(dog => dog.data) });
+            const accountsData = dogsResponse.map(dog => dog.data)
+            res.send({ user: userResponse.data, accounts: accountsData });
         })
         .catch((e: Error) => {
             res.status(500).send(e)

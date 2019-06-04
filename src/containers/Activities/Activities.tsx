@@ -1,19 +1,33 @@
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import Activities from '../../components/Activities/Activities';
-import {ActivitiesListGet} from '../../redux/actions/activities'
-import {GetDogs} from '../../redux/actions/dogs'
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { getActivityState } from "src/redux/selectors/activities";
+import { getDogState } from "src/redux/selectors/dogs";
+import Activities from "../../components/Activities/Activities";
+import { ActivitiesListGet } from "../../redux/actions/activities";
+import { GetDogs } from "../../redux/actions/dogs";
+import { StoreState, ActivityState, DogState } from "../../types/index";
 
-import {  StoreState } from '../../types/index';
-
-export function mapStateToProps(state: StoreState) {
-  return state.activity;
-}
-export function mapDispatchToProps(dispatch: Dispatch) {
-  return {    
-    getActivitiesList:(page:number = 1)=> dispatch(ActivitiesListGet(page)),
-    getDogs:()=> dispatch(GetDogs())    
-  }
+interface StateFromProps {
+  activity: ActivityState;
+  dogs: DogState;
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Activities);
+interface DispatchFromProps {
+  getActivitiesList: () => void;
+  getDogs: () => void;
+}
+
+const mapStateToProps = (state: StoreState): StateFromProps => ({
+  activity: getActivityState(state),
+  dogs: getDogState(state)
+});
+
+const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({
+  getActivitiesList: (page: number = 1) => dispatch(ActivitiesListGet(page)),
+  getDogs: () => dispatch(GetDogs())
+});
+
+export default connect<StateFromProps, DispatchFromProps, void>(
+  mapStateToProps,
+  mapDispatchToProps
+)(Activities);

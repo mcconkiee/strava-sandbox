@@ -5,7 +5,6 @@ import {  ACTIVITY_LIST_SUCCESS, ACTIVITY_ERROR, ACTIVITY_LIST, ACTIVITY_UPDATE_
 const initialState: ActivityState = {
   activities: [],
   page:1,  
-  getActivitiesList:()=>{},  
 }
 export function activity(state: ActivityState = initialState, action: ApplicationAction): ActivityState {
   switch (action.type) {    

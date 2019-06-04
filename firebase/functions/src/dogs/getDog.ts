@@ -15,18 +15,18 @@ const getDogWithToken = (userToken: string, dogToken: String, db: FirebaseFirest
             }
             return null
         })
-        .then((dog: QueryDocumentSnapshot) => {
-            if (dog) {
-                return Promise.all([dog, dog.ref.collection('matches').get()])
-            }
-            return [null, null];
-        })
-        .then(([dog, matches]: [QueryDocumentSnapshot, QuerySnapshot]) => {
-            if (matches.docs.length > 0) {
-                const docs = matches.docs.map(d => ({ data: d.data() }));
-                return { dog: dog.data(), matches: docs }
-            }
-            return null
-        })
+        // .then((dog: QueryDocumentSnapshot) => {
+        //     if (dog) {
+        //         return Promise.all([dog, dog.ref.collection('matches').get()])
+        //     }
+        //     return [null, null];
+        // })
+        // .then(([dog, matches]: [QueryDocumentSnapshot, QuerySnapshot]) => {
+        //     if (matches.docs.length > 0) {
+        //         const docs = matches.docs.map(d => ({ data: d.data() }));
+        //         return { dog: dog.data(), matches: docs }
+        //     }
+        //     return null
+        // })
 }
 module.exports = getDogWithToken;

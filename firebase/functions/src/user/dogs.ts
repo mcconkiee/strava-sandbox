@@ -15,7 +15,11 @@ module.exports = (req: Request, res: Response) => {
             return Promise.resolve(null);
         })
         .then((dogs:QuerySnapshot) =>{
-            return Promise.all([dogs,Promise.all(dogs.docs.map(d => d.ref.collection('matches').get()))]);
+            
+            if(dogs && dogs.docs.length > 0){
+                return Promise.all([dogs,Promise.all(dogs.docs.map(d => d.ref.collection('matches').get()))]);
+            }
+            return Promise.all([dogs,[]]);
         })
         .then(([dogs,accounts]:[QuerySnapshot,QuerySnapshot[]]) =>{            
             if(dogs){  
@@ -31,7 +35,7 @@ module.exports = (req: Request, res: Response) => {
             return res.status(403).send({error:"No user found"})
         })
         .catch((err: Error) => {
-            console.log(err.message);
+            console.log(err);
             
             res.status(500).send({ error: err });
         })

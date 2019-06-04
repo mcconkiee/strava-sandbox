@@ -7,7 +7,7 @@ module.exports = (req: Request, res: Response) => {
     const access_token: string = tokenFromHeader(req)
     getDog(access_token,req.params.token,db)    
     .then((dog:QueryDocumentSnapshot) => {
-        res.send({ data: dog  });
+        res.send({ data: dog.data()  });
     }).catch((err:Error)=>{
         res.status(500).send({error:err});
     })

@@ -4,9 +4,7 @@ export interface ActivityState {
     activities:object[];
     error?:Error;  
     page:number;  
-    updatedActivity?:object;
-    getActivitiesList:(page?:number)=>void;
-    getDogs?:()=>void;
+    updatedActivity?:object;    
 }
 export interface AuthState {
     userData?:object;
@@ -17,6 +15,7 @@ export interface AuthState {
 }
 
 export interface DogState {
+    loading:boolean;
     userData?:object;
     accessToken?:string;
     error?:Error;

@@ -4,6 +4,8 @@ import api, { requestConfig, RequestOptions } from '../util/api';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { GarminBuilder, buildGPX } from 'gpx-builder';
 import { Metadata } from 'gpx-builder/dist/builder/BaseBuilder/models';
+import { QueryDocumentSnapshot } from '@google-cloud/firestore';
+import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore';
 
 const fs = require('fs');
 const moment = require('moment');
@@ -86,23 +88,39 @@ const cleanup = (fileMade:FileMade) => {
 const getActivity = (activity: any, token: string) => {
     return api.get(`/activities/${activity.id}/streams/latlng,altitude,time`, { access_token: token })
 }
-
+const getUserWithRequest = require('../user/getUserWithRequest')
 module.exports = (req: Request, res: Response) => {
     const activity = req.body.activity;
     const accessToken: string = req.body.t;
-    const dogAccessToken: string = req.body.d;
-
+    const dogObject: string = req.body.d;
+    
     getActivity(activity, accessToken).then((data: AxiosResponse) => {        
         return serializeData(data.data, activity);
-    }).then((points: object[]) => {
+    })
+    .then((points: object[]) => {
         return buildFile(points, activity);
-    }).then((data: FileMade) => {
-        return Promise.all([data,uploadToStrava(data, activity, dogAccessToken)]);
-    }).then(([fileMade,fromStravaResponse]) => {
+    })
+    .then((data: FileMade) => {
+        return Promise.all([data,getUserWithRequest(req)]);
+    })
+    .then(([data,user]: [FileMade,QueryDocumentSnapshot]) => {
+        return Promise.all([data,user.ref.collection('accounts').doc(`${dogObject}`).get()]);
+    })
+    .then(([data,dog]: [FileMade,DocumentSnapshot]) => {
+        const dogData = dog.data();
+        if(dogData){
+            return Promise.all([data,dog,uploadToStrava(data,activity,dogData.access_token)]);
+        }
+        return Promise.all([data,dog,{}]);
+    })
+    .then(([fileMade,dog,fromStravaResponse]:[FileMade,DocumentSnapshot,any]) => {
+        dog.ref.collection('matches').doc(`${activity.id}`).set(activity)
         return Promise.all([cleanup(fileMade), fromStravaResponse]);
-    }).then(([clean, fromStravaResponse]) => {                
+    })
+    .then(([clean, fromStravaResponse]:[boolean,any]) => {                
         return res.send(fromStravaResponse.data);
-    }).catch((error: Error) => {
+    })
+    .catch((error: Error) => {
         console.log('error on clone', error.message);
         console.log(error.stack);
         return res.status(500).send({ message: "There was an error processing the file.", error: error });
