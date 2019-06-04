@@ -1,12 +1,13 @@
 import * as React from "react";
 const moment = require("moment");
 import * as DefaultAction from "../../redux/actions";
-import {  ActivityClone } from "../../redux/actions/activities";
+import {  ActivityClone ,ActivityRemove} from "../../redux/actions/activities";
 import { connect } from "react-redux";
 import { StoreState } from "src/types";
 export interface Activity {
   item: object;  
   cloneActivity: (data: object) => void;
+  removeActivity: (item:object) => void;
 }
 const metersToMiles = (meters:number):string => {
   return Math.max( Math.round((meters * 0.000621371) * 10) / 10, 2.8 ).toFixed(1);  
@@ -24,9 +25,8 @@ const matchedDogs = (props:any)=>{
     if(dogs.length > 0){
       return dogs.map(d => <div key={d.id}>
         {d.firstname} {' '}
-        <button className="primary" onClick={()=>{
-          console.log(d);
-          
+        <button className="primary" onClick={()=>{        
+          props.removeActivity(props.item);
         }} >Remove</button>
       </div> );      
     }    
@@ -60,7 +60,8 @@ export function mapDispatchToProps(
   dispatch: React.Dispatch<DefaultAction.ApplicationAction>
 ) {
   return {
-    cloneActivity: (data: object) => dispatch(ActivityClone(data))
+    cloneActivity: (data: object) => dispatch(ActivityClone(data)),
+    removeActivity:(activity:any)=> dispatch(ActivityRemove(activity))
   };
 }
 

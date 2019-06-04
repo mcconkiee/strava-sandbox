@@ -34,6 +34,7 @@ app.use(function(req, res, next) {
 // build multiple CRUD interfaces:
 // curl -X POST -H "Content-Type:application/json" -H "X-MyHeader: 123" http://localhost:5000/stravafordogs/us-central1/api/activity/123/clone -d '{"id":"something","t":"xxx"}'
 app.post('/activity/:id/clone', require('./activities/clone'));
+app.post('/activity/:id/remove', require('./activities/remove'));
 app.post('/user', require('./user/create'));
 app.post('/user/connectAccount', require('./user/connectAccount'));
 app.get('/user/dogs', require('./user/dogs'));

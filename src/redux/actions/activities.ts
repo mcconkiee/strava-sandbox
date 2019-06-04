@@ -40,6 +40,12 @@ export function ActivityClone(data:object): ApplicationAction {
         payload: data
     }
 }
+export function ActivityRemove(activity:object): ApplicationAction {
+    return {
+        type: constants.ACTIVITY_REMOVE,
+        payload: activity
+    }
+}
 
 export function ActivityCloneSuccess(data:object): ApplicationAction {
     return {

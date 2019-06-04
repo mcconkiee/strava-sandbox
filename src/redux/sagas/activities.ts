@@ -57,6 +57,6 @@ function* updateActivity(action: ApplicationAction) {
 export const activity = [
     takeLatest(ACTIVITY_LIST, fetchActivities),
     takeLatest(ACTIVITY_UPDATE, updateActivity),
-    takeLatest(AUTHENTICATE_REFRESH_SUCCESS,refreshActivities),
+    takeLatest(AUTHENTICATE_REFRESH_SUCCESS,refreshActivities), 
     takeLatest(DOG_ERROR,refreshAndRetry)
 ]
