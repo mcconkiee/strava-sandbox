@@ -4,7 +4,7 @@ import api, { requestConfig, RequestOptions } from '../util/api';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { GarminBuilder, buildGPX } from 'gpx-builder';
 import { Metadata } from 'gpx-builder/dist/builder/BaseBuilder/models';
-import { QueryDocumentSnapshot } from '@google-cloud/firestore';
+import * as admin from 'firebase-admin';
 import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore';
 
 const fs = require('fs');
@@ -82,7 +82,7 @@ const uploadToStrava = (fileMade: FileMade, activity: any, token: string) => {
 
 // TODO - handle error later...
 const cleanup = (fileMade:FileMade) => {
-    fs.unlink(fileMade.file,()=>{})
+    fs.unlink(fileMade.file)
     return true;
 }
 const getActivity = (activity: any, token: string) => {
@@ -103,7 +103,7 @@ module.exports = (req: Request, res: Response) => {
     .then((data: FileMade) => {
         return Promise.all([data,getUserWithRequest(req)]);
     })
-    .then(([data,user]: [FileMade,QueryDocumentSnapshot]) => {
+    .then(([data,user]: [FileMade,admin.firestore.QueryDocumentSnapshot]) => {
         return Promise.all([data,user.ref.collection('accounts').doc(`${dogObject}`).get()]);
     })
     .then(([data,dog]: [FileMade,DocumentSnapshot]) => {

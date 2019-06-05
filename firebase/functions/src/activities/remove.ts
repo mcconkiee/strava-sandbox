@@ -1,6 +1,6 @@
 import { Response, Request } from 'express';
-import { QueryDocumentSnapshot } from '@google-cloud/firestore';
-import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore';
+import * as admin from 'firebase-admin';
+// import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore';
 
 
 
@@ -10,13 +10,13 @@ module.exports = (req: Request, res: Response) => {
     const activityId = req.params.id;
     const dogId: string = req.body.d;
     getUserWithRequest(req)
-    .then((user:QueryDocumentSnapshot)=>{
+    .then((user:admin.firestore.QueryDocumentSnapshot)=>{
         return user.ref.collection('accounts').doc(`${dogId}`).get()
     })
-    .then((dog:DocumentSnapshot)=>{
+    .then((dog:admin.firestore.DocumentSnapshot)=>{
         return dog.ref.collection('matches').doc(`${activityId}`).get()
     })
-    .then((match:DocumentSnapshot)=>{
+    .then((match:admin.firestore.DocumentSnapshot)=>{
         match.ref.delete()
         return res.send({status:1,message:`${match.ref.path} removed`})          
     })

@@ -1,15 +1,15 @@
-import { QuerySnapshot, QueryDocumentSnapshot } from "@google-cloud/firestore";
+import * as admin from 'firebase-admin';
 
 const getDogs = require('./getDogs');
 
 const getDogWithToken = (userToken: string, dogToken: String, db: FirebaseFirestore.Firestore) => {
     getDogs(userToken, db)
-        .then((dogs: QuerySnapshot) => {
+        .then((dogs: admin.firestore.QuerySnapshot) => {
             return dogs.docs.filter(q => {
                 return q.ref.id === dogToken
             })
         })
-        .then((found: QueryDocumentSnapshot[]) => {
+        .then((found: admin.firestore.QueryDocumentSnapshot[]) => {
             if (found.length > 0) {
                 return found[0]
             }

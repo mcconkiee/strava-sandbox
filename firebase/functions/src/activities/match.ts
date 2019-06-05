@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import { QueryDocumentSnapshot, QuerySnapshot } from '@google-cloud/firestore';
+import * as admin from 'firebase-admin';
 const getUserWithToken = require('../user/getUser');
 const tokenFromHeader = require('../user/tokenFromHeader');
 module.exports = (req: Request, res: Response) => {   
@@ -8,10 +8,10 @@ module.exports = (req: Request, res: Response) => {
     const userAccessToken = tokenFromHeader(req)
     const dogAccessToken = req.params.token;
     getUserWithToken(userAccessToken, db)
-    .then((user:QueryDocumentSnapshot) => {
+    .then((user:admin.firestore.QueryDocumentSnapshot) => {
         return user.ref.collection('accounts').where('access_token','==',dogAccessToken).get()
     })
-    .then((dogsQ:QuerySnapshot) => {
+    .then((dogsQ:admin.firestore.QuerySnapshot) => {
         if(dogsQ.docs.length >0){
             dogsQ.docs[0].ref.collection('matches').doc(`${activity.id}`).set(activity)
         }

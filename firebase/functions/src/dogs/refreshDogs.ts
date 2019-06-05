@@ -1,9 +1,9 @@
-import { QueryDocumentSnapshot, QuerySnapshot } from '@google-cloud/firestore';
+import * as admin from 'firebase-admin';
 import api from '../util/api';
 
-module.exports = (user:QueryDocumentSnapshot) => {   
+module.exports = (user:admin.firestore.QueryDocumentSnapshot) => {   
     return user.ref.collection('accounts').get()
-    .then((dogs:QuerySnapshot)=>{
+    .then((dogs:admin.firestore.QuerySnapshot)=>{
         const promises = dogs.docs.map( dog =>{
             return api.tokenRefresh(dog.data().refresh_token)
         })        

@@ -1,5 +1,5 @@
 import { Response, Request } from 'express';
-import { QueryDocumentSnapshot, WriteResult } from '@google-cloud/firestore';
+import * as admin from 'firebase-admin';
 
 const getUserWithToken = require('./getUser');
 const tokenFromHeader = require('./tokenFromHeader');
@@ -14,7 +14,7 @@ module.exports = (req: Request, res: Response) => {
     const dogAccessToken = req.body.access_token;
     const dogRefreshToken = req.body.refresh_token;
     getUserWithToken(userAccessToken, db)
-        .then((user:QueryDocumentSnapshot) => {
+        .then((user:admin.firestore.QueryDocumentSnapshot) => {
             console.log(dogAccessToken,dogRefreshToken,dog);
             
             if (user) {
@@ -23,11 +23,9 @@ module.exports = (req: Request, res: Response) => {
             }
             return Promise.resolve(null);
         })
-        .then((dog:WriteResult) =>{
-            console.log(dog,'gog');
-            
-            if(dog){
-                return res.send({dog:dog})
+        .then((_dog:admin.firestore.WriteResult) =>{            
+            if(_dog){
+                return res.send({dog:_dog})
             }
             return res.status(403).send({error:"No user found"})
         })
