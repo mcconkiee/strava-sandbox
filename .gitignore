@@ -6,8 +6,8 @@ public/*
 /node_modules
 /src/config.ts
 /firebase/functions/config.ts
-configs/*
-!configs/config/sample.ts
+src/configs/*
+!src/configs/config.sample.ts
 /data/strava_config
 # testing
 /coverage

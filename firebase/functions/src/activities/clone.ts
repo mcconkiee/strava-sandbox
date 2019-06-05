@@ -113,9 +113,11 @@ module.exports = (req: Request, res: Response) => {
         }
         return Promise.all([data,dog,{}]);
     })
-    .then(([fileMade,dog,fromStravaResponse]:[FileMade,DocumentSnapshot,any]) => {
+    .then(([data,dog,fromStravaResponse]:[FileMade,DocumentSnapshot,any]) => {
+        console.log('uploaded');
+        
         dog.ref.collection('matches').doc(`${activity.id}`).set(activity)
-        return Promise.all([cleanup(fileMade), fromStravaResponse]);
+        return Promise.all([cleanup(data), fromStravaResponse]);
     })
     .then(([clean, fromStravaResponse]:[boolean,any]) => {                
         return res.send(fromStravaResponse.data);

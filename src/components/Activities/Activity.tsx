@@ -25,9 +25,10 @@ const matchedDogs = (props:any)=>{
     if(dogs.length > 0){
       return dogs.map(d => <div key={d.id}>
         {d.firstname} {' '}
-        <button className="primary" onClick={()=>{        
+        <a href={`https://www.strava.com/activities/${props.item.id}`} target="_blank">Visit</a>
+        {/* <button className="primary" onClick={()=>{        
           props.removeActivity(props.item);
-        }} >Remove</button>
+        }} >Remove</button> */}
       </div> );      
     }    
   }
