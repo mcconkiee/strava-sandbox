@@ -4,10 +4,10 @@ public/*
 !public/index.html
 # dependencies
 /node_modules
-/src/config.ts
-/firebase/functions/config.ts
-src/configs/*
-!src/configs/config.sample.ts
+functions/src/config.ts
+functions/src/configs/*
+!functions/src/configs/config.sample.ts
+src/globalConfig.ts
 /data/strava_config
 # testing
 /coverage

@@ -2,7 +2,16 @@ just playing with Strava api in typescript to clone activities for my dog's stra
 
 # Setup
 
-* Setup strava for me. Let's call it (`master`)
+## Intro
+main configs are in `functions/src/configs` - copy the sample and add your strava api details
+
+```
+configs.dev.ts -> .gitignore
+configs.prod.ts -> .gitignore
+configs.sample.ts
+```
+
+* Setup strava for you. Let's call it (`master`)
 * Setup another strava account for the dog. Let's call this one (`dog`)
 * Login to `master`
 * setup a new [strava app ](https://www.strava.com/settings/api)
@@ -13,13 +22,8 @@ just playing with Strava api in typescript to clone activities for my dog's stra
 
 Tokens will auto refresh from the activities page there after
 
-# Dev
-## Frontend
-in the root dir
-```
-npm install
-npm run start
-```
+
+you can run the `dev.sh` script to configure config file
 
 ## Firebase
 
@@ -40,6 +44,16 @@ yarn build --watch
 terminal tab 2
 ```
 firebase serve --only functions
+```
+
+# Dev
+## Frontend
+in the root dir
+```
+ln -s /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/src/config.ts ./src/globalConfig.ts
+npm install
+npm run start
+
 ```
 
 # PRODUCTION

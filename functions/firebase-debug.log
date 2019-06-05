@@ -1,0 +1,194 @@
+[debug] [2019-06-05T13:45:39.116Z] ----------------------------------------------------------------------
+[debug] [2019-06-05T13:45:39.118Z] Command:       /Users/ericmcconkie/.nvm/versions/node/v8.16.0/bin/node /Users/ericmcconkie/.nvm/versions/node/v8.16.0/bin/firebase serve --only functions
+[debug] [2019-06-05T13:45:39.119Z] CLI Version:   6.10.0
+[debug] [2019-06-05T13:45:39.119Z] Platform:      darwin
+[debug] [2019-06-05T13:45:39.119Z] Node Version:  v8.16.0
+[debug] [2019-06-05T13:45:39.119Z] Time:          Wed Jun 05 2019 06:45:39 GMT-0700 (PDT)
+[debug] [2019-06-05T13:45:39.119Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-06-05T13:45:39.132Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-06-05T13:45:39.133Z] > authorizing via FIREBASE_TOKEN environment variable
+[debug] [2019-06-05T13:45:39.133Z] [iam] checking project stravafordogsdev for permissions ["firebase.projects.get"]
+[debug] [2019-06-05T13:45:39.134Z] > refreshing access token with scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-06-05T13:45:39.134Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-06-05T13:45:39.329Z] <<< HTTP RESPONSE 200
+[debug] [2019-06-05T13:45:39.331Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/stravafordogsdev:testIamPermissions  
+
+[debug] [2019-06-05T13:45:39.513Z] <<< HTTP RESPONSE 200
+[debug] [2019-06-05T13:45:39.515Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/stravafordogsdev  
+ 
+[debug] [2019-06-05T13:45:39.767Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: Using node@8 from host.
+[debug] [2019-06-05T13:45:39.781Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/499826151490:getServerAppConfig  
+ 
+[debug] [2019-06-05T13:45:40.343Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: Emulator started at http://localhost:5000
+[info] i  functions: Watching "/Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions" for Cloud Functions...
+[debug] [2019-06-05T13:45:40.847Z] Functions runtime initialized.
+[debug] [2019-06-05T13:45:40.848Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-05T13:45:41.698Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[info] i  functions: HTTP trigger initialized at http://localhost:5000/stravafordogsdev/us-central1/api
+[debug] [2019-06-05T13:45:54.417Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/config.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.418Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/config.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.418Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/db.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.418Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/db.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.419Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/index.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.419Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/index.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.419Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.419Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.514Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/clone.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.514Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/clone.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.514Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/match.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.515Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/match.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.515Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/remove.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.515Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/remove.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.515Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.dev.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.516Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.dev.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.516Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.prod.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.516Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.prod.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.516Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.sample.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.516Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.sample.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.517Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/dog.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.517Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/dog.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.517Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDog.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.517Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDog.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.518Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDogs.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.518Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDogs.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.518Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/refreshDogs.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.518Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/refreshDogs.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.518Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/connectAccount.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.519Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/connectAccount.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.519Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/create.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.519Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/create.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.613Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/dogs.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.614Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/dogs.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.614Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUser.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.614Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUser.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.614Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUserWithRequest.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.614Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUserWithRequest.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.614Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/refresh.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.615Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/refresh.js changed, reloading triggers
+[debug] [2019-06-05T13:45:54.615Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/tokenFromHeader.js.map changed, reloading triggers
+[debug] [2019-06-05T13:45:54.615Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/tokenFromHeader.js changed, reloading triggers
+[debug] [2019-06-05T13:45:56.254Z] Functions runtime initialized.
+[debug] [2019-06-05T13:45:56.255Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-05T13:45:57.275Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-05T14:04:39.141Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/src/configs/configs.dev.ts changed, reloading triggers
+[debug] [2019-06-05T14:04:40.463Z] Functions runtime initialized.
+[debug] [2019-06-05T14:04:40.464Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-05T14:04:41.006Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-05T14:04:57.043Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/src/configs/configs.dev.ts changed, reloading triggers
+[debug] [2019-06-05T14:04:58.323Z] Functions runtime initialized.
+[debug] [2019-06-05T14:04:58.324Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-05T14:04:58.831Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-05T14:05:11.696Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/config.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.697Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/config.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.697Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/db.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.697Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/db.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.797Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/index.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.797Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/index.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.797Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.798Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.798Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/clone.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.798Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/clone.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.798Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/match.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.798Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/match.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.798Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/remove.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.798Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/remove.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.dev.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.dev.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.prod.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.prod.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.sample.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.sample.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/dog.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/dog.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDog.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.799Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDog.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.800Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDogs.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.800Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDogs.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.800Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/refreshDogs.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.800Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/refreshDogs.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.800Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/connectAccount.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.800Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/connectAccount.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.800Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/create.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.800Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/create.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.801Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/dogs.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.801Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/dogs.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.801Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUser.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.801Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUser.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.801Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUserWithRequest.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.801Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUserWithRequest.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.801Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/refresh.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.802Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/refresh.js changed, reloading triggers
+[debug] [2019-06-05T14:05:11.802Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/tokenFromHeader.js.map changed, reloading triggers
+[debug] [2019-06-05T14:05:11.802Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/tokenFromHeader.js changed, reloading triggers
+[debug] [2019-06-05T14:05:13.127Z] Functions runtime initialized.
+[debug] [2019-06-05T14:05:13.127Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-05T14:05:13.757Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-05T14:06:06.221Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:06.221Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js changed, reloading triggers
+[debug] [2019-06-05T14:06:07.719Z] Functions runtime initialized.
+[debug] [2019-06-05T14:06:07.720Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-05T14:06:07.757Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/config.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:07.758Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/config.js changed, reloading triggers
+[debug] [2019-06-05T14:06:07.857Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:07.857Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js changed, reloading triggers
+[debug] [2019-06-05T14:06:08.455Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-05T14:06:09.196Z] Functions runtime initialized.
+[debug] [2019-06-05T14:06:09.197Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-05T14:06:09.806Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-05T14:06:30.966Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/config.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.966Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/config.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.966Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/db.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.966Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/db.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.967Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/index.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.967Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/index.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.967Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.967Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/util/api.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.967Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/clone.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.968Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/clone.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.968Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/match.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.968Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/match.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.968Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/remove.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.968Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/activities/remove.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.969Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.dev.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.969Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.dev.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.969Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.prod.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.969Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.prod.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.969Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.sample.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.969Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/configs/configs.sample.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.969Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/dog.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.969Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/dog.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.970Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDog.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.970Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDog.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.970Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDogs.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.970Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/getDogs.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.970Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/refreshDogs.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.970Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/dogs/refreshDogs.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.970Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/connectAccount.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.970Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/connectAccount.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.971Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/create.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.971Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/create.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.971Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/dogs.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.971Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/dogs.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.972Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUser.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.972Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUser.js changed, reloading triggers
+[debug] [2019-06-05T14:06:30.972Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUserWithRequest.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:30.972Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/getUserWithRequest.js changed, reloading triggers
+[debug] [2019-06-05T14:06:31.066Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/refresh.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:31.066Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/refresh.js changed, reloading triggers
+[debug] [2019-06-05T14:06:31.066Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/tokenFromHeader.js.map changed, reloading triggers
+[debug] [2019-06-05T14:06:31.066Z] File /Users/ericmcconkie/Documents/personal/projects/sites/strava-sandbox/functions/lib/user/tokenFromHeader.js changed, reloading triggers
+[debug] [2019-06-05T14:06:32.339Z] Functions runtime initialized.
+[debug] [2019-06-05T14:06:32.339Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-05T14:06:32.869Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
