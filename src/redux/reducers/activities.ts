@@ -1,11 +1,13 @@
 import { ApplicationAction } from '../actions';
 import { ActivityState } from '../../types/index';
-import { ACTIVITY_LIST_SUCCESS, ACTIVITY_ERROR, ACTIVITY_LIST, ACTIVITY_UPDATE_SUCCESS } from '../../constants/redux';
+import { ACTIVITY_LIST_SUCCESS, ACTIVITY_ERROR, ACTIVITY_LIST, ACTIVITY_UPDATE_SUCCESS, ACTIVITY_QUEUE_TO_CLONE, ACTIVITY_QUEUE_TO_CLONE_SUCCESS } from '../../constants/redux';
+
 
 const initialState: ActivityState = {
   activities: [],
   page: 1,
-  loading: false
+  loading: false,
+  queuedToClone: []
 }
 export function activity(state: ActivityState = initialState, action: ApplicationAction): ActivityState {
   switch (action.type) {
@@ -17,6 +19,12 @@ export function activity(state: ActivityState = initialState, action: Applicatio
       return { ...state, error: action.payload };
     case ACTIVITY_UPDATE_SUCCESS:
       return { ...state, updatedActivity: action.payload };
+    case ACTIVITY_QUEUE_TO_CLONE:
+      state.queuedToClone.push(action.payload)
+      return { ...state };
+    case ACTIVITY_QUEUE_TO_CLONE_SUCCESS:
+      const filtrd = state.queuedToClone.filter( activity => activity['id'] !== action.payload.id)
+      return { ...state, queuedToClone:filtrd };
   }
   return state;
 }

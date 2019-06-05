@@ -2,10 +2,11 @@
 
 export interface ActivityState {
     activities:object[];
+    queuedToClone:object[];
     error?:Error;  
     page:number;  
     loading:boolean;
-    updatedActivity?:object; 
+    updatedActivity?:object;     
 }
 export interface AuthState {
     userData?:object;

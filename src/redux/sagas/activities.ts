@@ -1,9 +1,9 @@
 
-import { call, put, takeLatest } from 'redux-saga/effects'
-import { ACTIVITY_LIST, ACTIVITY_UPDATE, AUTHENTICATE_REFRESH_SUCCESS, DOG_ERROR } from '../../constants/redux';
+import { call, put, takeLatest, takeEvery } from 'redux-saga/effects'
+import { ACTIVITY_LIST, ACTIVITY_UPDATE, AUTHENTICATE_REFRESH_SUCCESS, DOG_ERROR, ACTIVITY_CLONE } from '../../constants/redux';
 import { ApplicationAction } from 'src/redux/actions';
 import { AuthRefreshTokenSuccess } from 'src/redux/actions/auth';
-import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces, ActivitiesListGet } from 'src/redux/actions/activities';
+import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces, ActivitiesListGet, ActivityQueueForClone } from 'src/redux/actions/activities';
 import api from 'src/lib/api';
 import store from 'src/store'
 function* refreshAndRetry(){
@@ -52,9 +52,12 @@ function* updateActivity(action: ApplicationAction) {
         yield put(ActivityError(error));
     }
 }
-
+function* addActivityToLoadingQue(action:ApplicationAction){
+    yield put(ActivityQueueForClone(action.payload))
+}
 
 export const activity = [
+    takeEvery(ACTIVITY_CLONE, addActivityToLoadingQue),
     takeLatest(ACTIVITY_LIST, fetchActivities),
     takeLatest(ACTIVITY_UPDATE, updateActivity),
     takeLatest(AUTHENTICATE_REFRESH_SUCCESS,refreshActivities), 

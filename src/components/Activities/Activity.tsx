@@ -3,8 +3,10 @@ const moment = require("moment");
 import * as DefaultAction from "../../redux/actions";
 import { ActivityClone, ActivityRemove } from "../../redux/actions/activities";
 import { connect } from "react-redux";
-import { StoreState } from "src/types";
+import { StoreState, ActivityState, DogState } from "src/types";
 export interface Activity {
+  activity: ActivityState;
+  dogs: DogState;
   item: object;
   cloneActivity: (data: object) => void;
   removeActivity: (item: object) => void;
@@ -12,32 +14,42 @@ export interface Activity {
 const metersToMiles = (meters: number): string => {
   return Math.max(Math.round(meters * 0.000621371 * 10) / 10, 2.8).toFixed(1);
 };
-
-const matchedDogs = (props: any) => {
-  if (props.dogs.loading) {
+const cloning = (queuedObjects: object[], item: object): boolean => {
+  return queuedObjects.filter(obj => obj["id"] === item["id"]).length >= 1;
+};
+const matchedDogs = (props: Activity) => {
+  const {item,dogs,activity} = props;
+  if (dogs.loading) {
     return (
       <span>
         <div uk-spinner={1} />
       </span>
     );
   }
-  if (props.dogs.dogs && props.item) {
-    const dogs: any[] = props.dogs.dogs.filter((dog: any) => {
+  if (dogs.dogs && item) {
+    const _dogs: any[] = dogs.dogs.filter((dog: any) => {
       const matches = dog.matches.filter(
-        (m: string) => m === `${props.item.id}`
+        (m: string) => m === `${item['id']}`
       );
       return matches.length > 0;
     });
-    if (dogs.length > 0) {
-      return dogs.map(d => <div key={d.id}>{d.firstname}</div>);
+    if (_dogs.length > 0) {
+      return _dogs.map(d => (
+        <div key={d.id}>
+          {d.firstname} 
+        </div>
+      ));
     } else {
-      return props.dogs.dogs.map((d: any) => {
+      return dogs.dogs.map((d: any) => {
+        if(cloning(activity.queuedToClone, item)){
+          return <div uk-spinner={1} />
+        }
         return (
           <button
             className="uk-button uk-button-primary"
             onClick={() => {
               // props.removeActivity(props.item);
-              props.cloneActivity(props.item);
+              props.cloneActivity(item);
             }}
           >
             Add to {d.firstname}
@@ -62,17 +74,26 @@ const Activity = (props: Activity) => {
     </tr>
   );
 };
-export function mapStateToProps(state: StoreState) {
+
+interface StateFromProps {
+  activity: ActivityState;
+  dogs: DogState;
+}
+
+interface DispatchFromProps {
+  cloneActivity: (data: object) => void;
+  removeActivity: (activity: any) => void;
+}
+
+export const mapStateToProps = (state: StoreState): StateFromProps => {
   return { activity: state.activity, dogs: state.dogs };
-}
-export function mapDispatchToProps(
+};
+export const mapDispatchToProps = (
   dispatch: React.Dispatch<DefaultAction.ApplicationAction>
-) {
-  return {
-    cloneActivity: (data: object) => dispatch(ActivityClone(data)),
-    removeActivity: (activity: any) => dispatch(ActivityRemove(activity))
-  };
-}
+): DispatchFromProps => ({
+  cloneActivity: (data: object) => dispatch(ActivityClone(data)),
+  removeActivity: (activity: any) => dispatch(ActivityRemove(activity))
+});
 
 export default connect(
   mapStateToProps,
