@@ -6,3 +6,8 @@ export const getAllActivities = createSelector(
   [getActivityState],
   (state:ActivityState) => state.activities
 )
+
+export const getLoading = createSelector(
+  [getActivityState],
+  (state:ActivityState) => state.loading
+)

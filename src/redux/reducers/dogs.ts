@@ -7,7 +7,7 @@ import { GetDogs } from '../actions/dogs';
 const initialState: DogState = {
     authenticateWithCode: AuthenticateWithCode,
     getDogs: GetDogs,
-    loading: false
+    loading: false,
 }
 
 export function dogs(state: DogState = initialState, action: ApplicationAction): DogState {

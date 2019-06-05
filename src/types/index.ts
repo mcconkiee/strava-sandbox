@@ -4,7 +4,8 @@ export interface ActivityState {
     activities:object[];
     error?:Error;  
     page:number;  
-    updatedActivity?:object;    
+    loading:boolean;
+    updatedActivity?:object; 
 }
 export interface AuthState {
     userData?:object;

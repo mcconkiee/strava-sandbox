@@ -1,5 +1,5 @@
 #!/bin/bash
-# Bash Menu Script Example
+
 FUNCTION_CONFIG=functions/src/config.ts
 FRONTEND_CONFIG=src/globalConfig.ts
 
@@ -27,4 +27,10 @@ firebase use $DB
 # copy config
 cp $CONFIG $FUNCTION_CONFIG
 cp $CONFIG $FRONTEND_CONFIG
+
+echo "cloud functions config reads:"
+cat $FUNCTION_CONFIG
+
+echo "frontend config reads:"
+cat $FRONTEND_CONFIG
 

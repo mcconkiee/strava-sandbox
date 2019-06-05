@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { getActivityState } from "src/redux/selectors/activities";
+import { getActivityState, getLoading } from "src/redux/selectors/activities";
 import { getDogState } from "src/redux/selectors/dogs";
 import Activities from "../../components/Activities/Activities";
 import { ActivitiesListGet } from "../../redux/actions/activities";
@@ -10,16 +10,18 @@ import { StoreState, ActivityState, DogState } from "../../types/index";
 interface StateFromProps {
   activity: ActivityState;
   dogs: DogState;
+  loading:boolean;
 }
 
 interface DispatchFromProps {
   getActivitiesList: () => void;
-  getDogs: () => void;
+  getDogs: () => void;  
 }
 
 const mapStateToProps = (state: StoreState): StateFromProps => ({
   activity: getActivityState(state),
-  dogs: getDogState(state)
+  dogs: getDogState(state),
+  loading: getLoading(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({
