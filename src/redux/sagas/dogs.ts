@@ -21,9 +21,6 @@ function* cloneActivityToDog(action: ApplicationAction) {
                     yield put(ActivityQueueForCloneSuccess({activity}));        
                 }
             }
-            // yield all(state.dogs.dogs.map((d:any) => {
-            //     call(axios.post, `${config.apiurl}/activity/${activity.id}/clone`, { activity: activity, t: token, d: d['id'] })                
-            // }))
             yield put(ActivityCloneSuccess({}));
         }
 
@@ -38,7 +35,7 @@ function* removeActivityToDog(action: ApplicationAction) {
     try {
         const activity = action.payload;
 
-        //FIXME - for now, assume we clone all        
+        //FIXME - for now, assume we assume all        
         const state = yield select();
         if (state && state.dogs && state.dogs.dogs) {
             for (const dog of state.dogs.dogs) {

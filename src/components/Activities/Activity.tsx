@@ -64,7 +64,7 @@ const Activity = (props: Activity) => {
   return (
     <tr>
       <td>
-        <a href={`https://www.strava.com/activities/${props.item["id"]}`}>
+        <a target="_blank" href={`https://www.strava.com/activities/${props.item["id"]}`}>
           {props.item["name"]}
         </a>
       </td>
