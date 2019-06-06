@@ -1,4 +1,2 @@
-const configs = require('./globalConfig').default
-console.log("CONFigs!",configs);
-
+import configs from './globalConfig'
 export default configs;

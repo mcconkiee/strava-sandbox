@@ -1,8 +1,18 @@
 
+export interface StravaMap{
+    summary_polyline:string;
+}
 
+export interface StravaActivity{
+    name:string;
+    map:StravaMap;
+    distance:number;
+    startDate:string;
+    id:number;
+}
 export interface ActivityState {
-    activities:object[];
-    queuedToClone:object[];
+    activities:StravaActivity[];
+    queuedToClone:StravaActivity[];
     error?:Error;  
     page:number;  
     loading:boolean;

@@ -1,8 +1,9 @@
 import * as React from "react";
 import Activity from "./Activity";
+import { StravaActivity } from 'src/types';
 
 export interface ListProps {
-  listItems: Array<object>;
+  listItems: Array<StravaActivity>;
 }
 
 const List = ({ listItems = [] }: ListProps) => {
