@@ -1,29 +1,30 @@
-import * as React from 'react';
-import './Hello.css';
-import { HelloState } from 'src/types';
-import { authURL } from 'src/constants/auth';
+import * as React from "react";
+import "./Hello.css";
+import { authURL } from "src/constants/auth";
+import { HelloUIState } from 'src/containers/Hello/Hello';
+import { Redirect } from 'react-router';
+import { DOGS } from 'src/constants/routes';
 
+class Hello extends React.Component<HelloUIState, object> {
+  componentDidMount(){
+    this.props.refreshToken();    
+  }
 
-class Hello extends React.Component<HelloState, object> {
-  
   render() {
-    const { languageName, enthusiasmLevel = 1 } = this.props;
-
-    if (enthusiasmLevel <= 0) {
-      throw new Error('You could be a little more enthusiastic. :D');
+    if(this.props.userData){
+      return <Redirect to={DOGS} />
     }
-
+    
+    let isDev = false;
+    if(process.env.NODE_ENV){
+      isDev = process.env.NODE_ENV.toLowerCase() === "development"
+    }
     return (
       <div className="hello">
-        <div className="greeting">
-          Hello {languageName + getExclamationMarks(enthusiasmLevel)}
-        </div>
         <div>
           <a href={authURL()}>Auth</a>
-        <button onClick={this.props.onDecrement}>-</button>
-        <button onClick={this.props.onIncrement}>+</button>
-      </div>
-      
+        </div>
+        {isDev ? "DEV - ENV" : null}
       </div>
     );
   }
@@ -31,8 +32,3 @@ class Hello extends React.Component<HelloState, object> {
 
 export default Hello;
 
-// helpers
-
-function getExclamationMarks(numChars: number) {
-  return Array(numChars + 1).join('!');
-}

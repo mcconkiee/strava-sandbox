@@ -3,6 +3,10 @@ import config from '../config';
 
 const tokenEndpoint = "https://www.strava.com/oauth/token";
 
+axios.interceptors.request.use(request => {
+  console.log('Starting Request', JSON.stringify(request))
+  return request
+})
 
 export interface RequestOptions {
     access_token: string;
@@ -21,11 +25,11 @@ export default {
         return axios.get(url, _config);
     },
     post: (url: string, data: object, options: RequestOptions) => {
-        const _config: AxiosRequestConfig = requestConfig(options);
+        const _config: AxiosRequestConfig = requestConfig(options);        
         return axios.post(url, data, _config);
     },
     put: (url: string, data: object, options: RequestOptions) => {
-        const _config: AxiosRequestConfig = requestConfig(options);
+        const _config: AxiosRequestConfig = requestConfig(options);        
         return axios.put(url, data, _config);
     },
     tokenExchange: (code: string) => {

@@ -10,6 +10,13 @@ export interface StravaActivity{
     startDate:string;
     id:number;
 }
+
+export interface StravaAccount{
+    firstname:string;
+    lastname:string;        
+    id:number;
+}
+
 export interface ActivityState {
     activities:StravaActivity[];
     queuedToClone:StravaActivity[];
@@ -19,20 +26,19 @@ export interface ActivityState {
     updatedActivity?:object;     
 }
 export interface AuthState {
-    userData?:object;
+    userData?:StravaAccount;
     accessToken?:string;
     error?:Error;
-    location?:Location;
-    authenticateWithCode:(code:string,dogs:boolean)=>void;    
+    location?:Location;    
 }
 
 export interface DogState {
     loading:boolean;
-    userData?:object;
+    userData?:StravaAccount;
     accessToken?:string;
     error?:Error;
     location?:Location;
-    dogs?:object[];
+    dogs?:StravaAccount[];
     authenticateWithCode:(code:string)=>void;
     getDogs:()=>void;
 }

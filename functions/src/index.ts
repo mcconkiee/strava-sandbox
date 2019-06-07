@@ -25,8 +25,7 @@ app.set('db', db);
 // });
 
 app.use(function(req, res, next) {
-   console.log('request:', req.url);
-   
+   console.log('API incomping request:', req.url);   
    next();
 });
 

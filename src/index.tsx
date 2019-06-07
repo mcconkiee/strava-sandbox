@@ -6,11 +6,13 @@ import registerServiceWorker from "./registerServiceWorker";
 import store from "./store";
 import "./index.css";
 import Routes from "./routes";
+import Nav from './components/Nav/Nav';
 
 ReactDOM.render(
   <div className="uk-container">
-    <Router>
+    <Router>      
       <Provider store={store}>
+        <Nav/>
         <div>
           <Routes />
         </div>

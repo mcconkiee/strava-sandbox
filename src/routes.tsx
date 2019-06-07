@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Hello from "./containers/Hello/Hello";
 import "./index.css";
 import Auth from "./containers/Auth/Auth";
+import User from "./containers/User/User";
 import Activities from "./containers/Activities/Activities";
 import {
   ACTIVITIES_ROUTE,
@@ -11,7 +12,8 @@ import {
   REAUTH,
   DOGS,
   DOGS_AUTHCODE_ROUTE,
-  DOGS_AUTH
+  DOGS_AUTH,
+  USER
 } from "./constants/routes";
 import Dogs from "./containers/Dogs/Dogs";
 const Routes = () => {
@@ -24,6 +26,7 @@ const Routes = () => {
       <Route path={DOGS} exact component={Dogs} />
       <Route path={DOGS_AUTH} exact component={Hello} />
       <Route path={DOGS_AUTHCODE_ROUTE} exact component={Auth} />
+      <Route path={USER} exact component={User} />
     </div>
   );
 };

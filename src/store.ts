@@ -5,7 +5,8 @@ import sagas from './redux/sagas'
 import reducers from './redux/reducers'
  // create the saga middleware
 const sagaMiddleware = createSagaMiddleware()
-const store = createStore(reducers, composeWithDevTools(applyMiddleware(sagaMiddleware)));
+const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 });
+const store = createStore(reducers,composeEnhancers(applyMiddleware(sagaMiddleware)));
 // then run the saga
 sagaMiddleware.run(sagas)
 export default store;

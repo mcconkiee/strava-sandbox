@@ -1,92 +1,15 @@
 import { Response, Request } from 'express';
-import * as FormData from 'form-data';
-import api, { requestConfig, RequestOptions } from '../util/api';
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { GarminBuilder, buildGPX } from 'gpx-builder';
-import { Metadata } from 'gpx-builder/dist/builder/BaseBuilder/models';
+import  { AxiosResponse } from 'axios';
 import * as admin from 'firebase-admin';
 import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore';
+import Cloner, {FileMade} from './serialize-strava-activity';
+import api from '../util/api'
 
-const fs = require('fs');
-const moment = require('moment');
-const { Point } = GarminBuilder.MODELS;
-
-interface ActivityStreamTime {
-    data: number[];
-}
-interface ActivityStreamAlt {
-    data: number[];
-}
-interface ActivityStreamLatLng {
-    data: any[];
-}
-
-interface FileMade { file: string; data: string; }
-
-const serializeData = (data: object[], activity: any): Promise<object[]> => {
-    return new Promise((res) => {
-        const time: ActivityStreamTime = data.find((o: any) => o["type"] === "time") as ActivityStreamTime;
-        const altitude: ActivityStreamAlt = data.find((o: any) => o["type"] === "altitude") as ActivityStreamAlt;
-        const latlng: ActivityStreamLatLng = data.find((o: any) => o["type"] === "latlng") as ActivityStreamLatLng;
-
-        const gpxData = time.data.map((item, index: number) => {
-            const _latlng = latlng.data[index];
-            return new Point(_latlng[0], _latlng[1], {
-                ele: altitude.data[index],
-                time: moment(activity.start_date).add(item, 'second').toDate(),
-            })
-        })
-        res(gpxData);
-    })
-}
-
-const buildFile = (points: any[], activity: any): Promise<FileMade> => {
-    const gpxData = new GarminBuilder();
-    gpxData.setSegmentPoints(points);
-    const meta: Metadata = new Metadata({ name: activity.name, })
-    gpxData.setMetadata(meta);
-    const data = buildGPX(gpxData.toObject());
-    return new Promise((res, rej) => {
-        const filepath = `/tmp/${activity.id}.gpx`
-        fs.writeFile(filepath, data, function (err: Error) {
-            if (err) {
-                rej(err)
-                return;
-            }
-            res({ file: filepath, data: data })
-        });
-
-    })
-}
-const uploadToStrava = (fileMade: FileMade, activity: any, token: string) => {
-    
-    // Create form
-    const form = new FormData();
-    form.append('file', fs.createReadStream(fileMade.file,"utf8"));
-    form.append("data_type", "gpx");    
-
-    // use the form header for content type
-    const formHeaders = form.getHeaders();
-    const configOptions: RequestOptions = {
-        access_token: token,
-        contentType: formHeaders['content-type']
-    }
-
-    //setup config
-    const config: AxiosRequestConfig = requestConfig(configOptions);
-    config.url = "/uploads"
-    config.method = "POST";
-    
-    return axios.post('/uploads', form, config);
-}
 
 // TODO - handle error later...
-const cleanup = (fileMade:FileMade) => {
-    fs.unlink(fileMade.file)
-    return true;
-}
+
 const getActivity = (activity: any, token: string) => {
-    return api.get(`/activities/${activity.id}/streams/latlng,altitude,time`, { access_token: token })
+    return api.get(`/activities/${activity.id}/streams/latlng,altitude,time`,{access_token:token})
 }
 const getUserWithRequest = require('../user/getUserWithRequest')
 module.exports = (req: Request, res: Response) => {
@@ -94,30 +17,31 @@ module.exports = (req: Request, res: Response) => {
     const accessToken: string = req.body.t;
     const dogObject: string = req.body.d;
     
-    getActivity(activity, accessToken).then((data: AxiosResponse) => {        
-        return serializeData(data.data, activity);
+    getActivity(activity, accessToken).then((data: AxiosResponse) => {
+        return Cloner.serialize(data.data, activity);
     })
     .then((points: object[]) => {
-        return buildFile(points, activity);
+        return Cloner.build(points, activity);
     })
-    .then((data: FileMade) => {
-        return Promise.all([data,getUserWithRequest(req)]);
+    .then((fileMade: FileMade) => {
+        return Promise.all([fileMade,getUserWithRequest(req)]);
     })
-    .then(([data,user]: [FileMade,admin.firestore.QueryDocumentSnapshot]) => {
-        return Promise.all([data,user.ref.collection('accounts').doc(`${dogObject}`).get()]);
+    .then(([fileMade,user]: [FileMade,admin.firestore.QueryDocumentSnapshot]) => {
+        return Promise.all([fileMade,user.ref.collection('accounts').doc(`${dogObject}`).get()]);
     })
-    .then(([data,dog]: [FileMade,DocumentSnapshot]) => {
+    .then(([fileMade,dog]: [FileMade,DocumentSnapshot]) => {
         const dogData = dog.data();
         if(dogData){
-            return Promise.all([data,dog,uploadToStrava(data,activity,dogData.access_token)]);
+            return Promise.all([fileMade,dog,Cloner.upload(fileMade,activity,dogData.access_token)]);
         }
-        return Promise.all([data,dog,{}]);
+        return Promise.all([fileMade,dog,{}]);
     })
-    .then(([data,dog,fromStravaResponse]:[FileMade,DocumentSnapshot,any]) => {
-        console.log('uploaded');
+    .then(([fileMade,dog,fromStravaResponse]:[FileMade,DocumentSnapshot,any]) => {
         
+        //attach our cloned activity response to our matching activity
+        activity.clone = fromStravaResponse.data;
         dog.ref.collection('matches').doc(`${activity.id}`).set(activity)
-        return Promise.all([cleanup(data), fromStravaResponse]);
+        return Promise.all([Cloner.clean(fileMade), fromStravaResponse]);
     })
     .then(([clean, fromStravaResponse]:[boolean,any]) => {                
         return res.send(fromStravaResponse.data);

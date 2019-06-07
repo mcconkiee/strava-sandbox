@@ -19,7 +19,7 @@ const List = ({ listItems = [] }: ListProps) => {
       </thead>
       <tbody>
         {listItems.map(item => {
-          return <Activity key={item["id"]} item={item} />;
+          return <Activity key={item.id} item={item} />;
         })}
       </tbody>
     </table>

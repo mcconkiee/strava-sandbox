@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { StoreState, ActivityState, DogState, StravaActivity } from "src/types";
+import { StoreState, ActivityState, DogState, StravaActivity, StravaAccount } from "src/types";
 import config from 'src/config';
 import * as DefaultAction from "../../redux/actions";
 import { ActivityClone, ActivityRemove } from "../../redux/actions/activities";
@@ -47,12 +47,12 @@ const matchedDogs = (props: Activity) => {
         </div>
       ));
     } else {
-      return dogs.dogs.map((d: any) => {
+      return dogs.dogs.map((d: StravaAccount) => {
         if(cloning(activity.queuedToClone, item)){
-          return <div uk-spinner={1} />
+          return <div key={d.id} uk-spinner={1} />
         }
         return (
-          <div>
+          <div key={d.id}>
             <div>
               {isRec ? <span className="uk-label uk-label-success">Recomended</span> : null}
             </div>
@@ -82,7 +82,7 @@ const matchedDogs = (props: Activity) => {
 };
 const Activity = (props: Activity) => {
   return (
-    <tr>
+    <tr key={props.item.id} >
       <td>
         <a target="_blank" href={`https://www.strava.com/activities/${props.item.id}`}>
           {props.item.name}

@@ -21,6 +21,18 @@ export function Authenticate(): Authenticate {
     }
 }
 
+export function DeAuthenticate(): ApplicationAction {
+    return {
+        type: constants.DEAUTHENTICATE,payload:null
+    }
+}
+
+export function DeAuthenticateSuccess(): ApplicationAction {
+    return {
+        type: constants.DEAUTHENTICATE_SUCCESS,payload:null
+    }
+}
+
 export function AuthenticateWithCode(code:string): ApplicationAction {
     return {
         type: constants.AUTHENTICATE_WITH_CODE,
@@ -49,6 +61,13 @@ export function AuthRefreshSuccess(): ApplicationAction {
     }
 }
 
+export function AuthRefreshTokenError(error:Error): ApplicationAction {
+    return {
+        type: constants.AUTHENTICATE_REFRESH_ERROR,
+        payload: error
+    }
+}
+
 export function AuthRefreshTokenSuccess(tokenData:object): ApplicationAction {
     return {
         type: constants.AUTHENTICATE_REFRESHTOKEN_SUCCESS,
@@ -69,4 +88,5 @@ export function AuthenticateError(error:Error): AuthenticateError {
         payload: error
     }
 }
+
 

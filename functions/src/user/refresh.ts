@@ -4,6 +4,8 @@ import * as admin from 'firebase-admin';
 const getUserWithReq = require('./getUserWithRequest');
 const refreshDogs = require('../dogs/refreshDogs')
 module.exports = (req: Request, res: Response) => {
+    console.log("req.headers",JSON.stringify(req.headers));
+    
     getUserWithReq(req)
         .then((user: admin.firestore.QueryDocumentSnapshot) => {
             return Promise.all([user,
@@ -13,11 +15,11 @@ module.exports = (req: Request, res: Response) => {
         .then(([user, userResponse, dogsResponse]: [admin.firestore.QueryDocumentSnapshot, any, any[]]) => {
             //update user
             user.ref.set(userResponse.data, { merge: true });
-            return Promise.all([userResponse,
+            return Promise.all([user,userResponse,
                 dogsResponse,
                 user.ref.collection('accounts').get()])
         })
-        .then(([userResponse, dogsResponse, dogsDocs]: [any, any[], admin.firestore.QuerySnapshot]) => {
+        .then(([user,userResponse, dogsResponse, dogsDocs]: [admin.firestore.QueryDocumentSnapshot,any, any[], admin.firestore.QuerySnapshot]) => {
             //update each dog
             let index = 0;            
             dogsDocs.forEach((d: admin.firestore.QueryDocumentSnapshot) => {
@@ -25,7 +27,7 @@ module.exports = (req: Request, res: Response) => {
                 index++;
             })
             const accountsData = dogsResponse.map(dog => dog.data)
-            res.send({ user: userResponse.data, accounts: accountsData });
+            res.send({ user: user.data(), userResponse: userResponse.data, accounts: accountsData });
         })
         .catch((e: Error) => {
             res.status(500).send(e)

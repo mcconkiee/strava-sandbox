@@ -3,13 +3,16 @@ import './Auth.css';
 import { AuthState } from 'src/types';
 import { Redirect } from 'react-router';
 import { AUTHCODE_ROUTE, DOGS } from 'src/constants/routes';
+import { AuthUIState } from 'src/containers/Auth/Auth';
 const queryString = require('query-string');
 
 
 
-class Auth extends React.Component<AuthState, object> {
+class Auth extends React.Component<AuthUIState> {
   state = {redirect:false}
-  componentDidMount(){
+  
+  
+  componentDidMount(){    
     const {location} = this.props;
     if(location){
       const values = queryString.parse(location.search);

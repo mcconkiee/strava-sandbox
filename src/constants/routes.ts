@@ -1,5 +1,7 @@
 export const ROOT = '/';
 
+export const USER = "/user"
+
 // AUTH
 export const REAUTH = '/reauth';
 export const AUTHCODE_ROUTE = '/authcode';

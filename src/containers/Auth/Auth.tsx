@@ -6,13 +6,19 @@ import * as actions from "../../redux/actions/auth";
 import { AuthenticateDogWithCode } from "../../redux/actions/dogs";
 import { StoreState } from "../../types/index";
 
+export interface AuthUIState{
+  location:any;
+  accessToken:string;  
+  authenticateWithCode:(code: string, dogs: boolean)=>void;
+}
+
 export function mapStateToProps(state: StoreState) {
   return state.auth;
 }
 export function mapDispatchToProps(
   dispatch: Dispatch<DefaultAction.ApplicationAction>
 ) {
-  return {
+  return {    
     authenticateWithCode: (code: string, dogs: boolean = false) =>
       dogs ? dispatch(AuthenticateDogWithCode(code)) : dispatch(actions.AuthenticateWithCode(code))
   };
