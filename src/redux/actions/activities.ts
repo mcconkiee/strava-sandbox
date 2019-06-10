@@ -1,5 +1,6 @@
 import * as constants from '../../constants/redux';
 import { ApplicationAction } from '.';
+import { StravaActivity } from 'src/types';
 
 export interface ActivityError {
     type: constants.ACTIVITY_ERROR;
@@ -59,6 +60,20 @@ export function ActivityRemove(activity: object): ApplicationAction {
     return {
         type: constants.ACTIVITY_REMOVE,
         payload: activity
+    }
+}
+
+export function ActivitySelected(activity: StravaActivity): ApplicationAction {
+    return {
+        type: constants.ACTIVITY_SELECTED,
+        payload: activity
+    }
+}
+
+export function ActivityDeSelected(): ApplicationAction {
+    return {
+        type: constants.ACTIVITY_DESELECTED,
+        payload: undefined
     }
 }
 

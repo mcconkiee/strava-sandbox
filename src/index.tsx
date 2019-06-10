@@ -7,6 +7,7 @@ import store from "./store";
 import "./index.css";
 import Routes from "./routes";
 import Nav from './components/Nav/Nav';
+import ModalMap from './containers/Modals/ModalMap';
 
 ReactDOM.render(
   <div className="uk-container">
@@ -16,8 +17,9 @@ ReactDOM.render(
         <div>
           <Routes />
         </div>
+        <ModalMap/>    
       </Provider>
-    </Router>
+    </Router>    
   </div>,
   document.getElementById("root") as HTMLElement
 );

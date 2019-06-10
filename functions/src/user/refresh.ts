@@ -4,7 +4,7 @@ import * as admin from 'firebase-admin';
 const getUserWithReq = require('./getUserWithRequest');
 const refreshDogs = require('../dogs/refreshDogs')
 module.exports = (req: Request, res: Response) => {
-    console.log("req.headers",JSON.stringify(req.headers));
+    
     
     getUserWithReq(req)
         .then((user: admin.firestore.QueryDocumentSnapshot) => {

@@ -7,6 +7,11 @@ export const getAllActivities = createSelector(
   (state:ActivityState) => state.activities
 )
 
+export const getSelectedActivity = createSelector(
+  [getActivityState],
+  (state:ActivityState) => state.selectedActivity
+)
+
 export const getLoading = createSelector(
   [getActivityState],
   (state:ActivityState) => state.loading

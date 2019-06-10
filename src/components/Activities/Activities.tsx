@@ -45,11 +45,12 @@ class Activities extends React.Component<ActivityProps> {
   }
   render() {
     return (
-      <div className={`${ACTIVITIES_ROUTE} uk-overflow-auto`}>
+      <div className={`${ACTIVITIES_ROUTE} uk-overflow-auto`}>        
         <Pagination onNext={this.onNextPage} onPrev={this.onPrevPage} />
         <div>Page: {this.props.activity.page}</div>
         <List listItems={this.props.activity.activities} />
         <Pagination onNext={this.onNextPage} onPrev={this.onPrevPage} />
+        
       </div>
     );
   }

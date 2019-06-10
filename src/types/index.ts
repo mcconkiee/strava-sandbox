@@ -23,7 +23,8 @@ export interface ActivityState {
     error?:Error;  
     page:number;  
     loading:boolean;
-    updatedActivity?:object;     
+    updatedActivity?:object; 
+    selectedActivity?:StravaActivity;     
 }
 export interface AuthState {
     userData?:StravaAccount;
