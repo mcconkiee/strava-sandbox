@@ -1,4 +1,3 @@
-
 export interface StravaMap{
     summary_polyline:string;
 }
@@ -26,13 +25,14 @@ export interface ActivityState {
     page:number;  
     loading:boolean;
     updatedActivity?:object; 
-    selectedActivity?:StravaActivity;     
+    selectedActivity?:StravaActivity
+    needsRefresh:boolean;     
 }
 export interface AuthState {
     userData?:StravaAccount;
     accessToken?:string;
     error?:Error;
-    location?:Location;    
+    location?:Location;
 }
 
 export interface DogState {

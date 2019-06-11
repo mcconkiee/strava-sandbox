@@ -6,6 +6,7 @@ import { AuthTokenSuccess, AuthenticateSuccess, AuthenticateError, AuthRefreshSu
 import { AuthenticateDogSuccess, AuthenticateDogTokenSuccess } from 'src/redux/actions/dogs';
 import { REFRESH_TOKEN, ACCESS_TOKEN_TIMESTAMP, ACCESS_TOKEN, DOG_REFRESH_TOKEN, DOG_ACCESS_TOKEN, USER } from 'src/constants/localStorage';
 
+
 function* getToken(action: ApplicationAction) {
    try {
       const { type, payload } = action;

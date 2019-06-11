@@ -1,11 +1,10 @@
 import * as express from 'express';
 const functions = require('firebase-functions');
-// const express = require('express');
-
 const cors = require('cors');
 const app = express();
-
 const db = require('./db')
+const config = require('./config').default;
+app.set('dev',config.dev || false);
 
 // Automatically allow cross-origin requests
 app.use(cors({ origin: true }));

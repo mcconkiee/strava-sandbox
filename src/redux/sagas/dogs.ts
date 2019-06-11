@@ -3,7 +3,7 @@ import { ActivityCloneSuccess, ActivityQueueForCloneSuccess } from 'src/redux/ac
 import api from 'src/lib/api';
 import { ApplicationAction } from '../actions';
 import { DogsError, GetDogsSuccess } from '../actions/dogs';
-import { ACTIVITY_CLONE, DOGS_GET_ALL, ACTIVITY_REMOVE } from 'src/constants/redux';
+import { ACTIVITY_CLONE, DOGS_GET_ALL, ACTIVITY_REMOVE, AUTHENTICATE_SUCCESS } from 'src/constants/redux';
 import { ACCESS_TOKEN } from 'src/constants/localStorage';
 
 
@@ -61,4 +61,5 @@ export const dogs = [
     takeLatest(ACTIVITY_CLONE, cloneActivityToDog),
     takeLatest(ACTIVITY_REMOVE, removeActivityToDog),
     takeLatest(DOGS_GET_ALL, getAllDogs),
+    takeLatest(AUTHENTICATE_SUCCESS, getAllDogs),
 ]

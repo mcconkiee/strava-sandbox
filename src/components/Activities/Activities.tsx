@@ -9,6 +9,7 @@ interface ActivityProps {
   dogs: DogState;
   activity: ActivityState;
   user?: StravaAccount;
+  needsUpdate: boolean;
   getActivitiesList: (page: number) => void;
   getDogs: () => void;
   getUser: () => void;
@@ -19,14 +20,11 @@ class Activities extends React.Component<ActivityProps> {
     this.onNextPage = this.onNextPage.bind(this);
     this.onPrevPage = this.onPrevPage.bind(this);
   }
-  componentDidUpdate(prevProps: ActivityProps) {
-    if (!prevProps.user && this.props.user) {
-      this.props.getDogs();
-      const values = urlParams(this.props);
-      if (values.page) {
+  componentDidMount(){
+    const values = urlParams(this.props);
+    if (values.page) {
+      if (this.props.activity.page !== parseInt(values.page)) {
         this.goToPage(parseInt(values.page));
-      } else {
-        this.props.getActivitiesList(this.props.activity.page);
       }
     }
   }
@@ -45,12 +43,11 @@ class Activities extends React.Component<ActivityProps> {
   }
   render() {
     return (
-      <div className={`${ACTIVITIES_ROUTE} uk-overflow-auto`}>        
+      <div className={`${ACTIVITIES_ROUTE} uk-overflow-auto`}>
         <Pagination onNext={this.onNextPage} onPrev={this.onPrevPage} />
         <div>Page: {this.props.activity.page}</div>
         <List listItems={this.props.activity.activities} />
         <Pagination onNext={this.onNextPage} onPrev={this.onPrevPage} />
-        
       </div>
     );
   }

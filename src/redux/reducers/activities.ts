@@ -8,6 +8,7 @@ const initialState: ActivityState = {
   page: 1,
   loading: false,
   queuedToClone: [],
+  needsRefresh: false,
 }
 export function activity(state: ActivityState = initialState, action: ApplicationAction): ActivityState {
   switch (action.type) {

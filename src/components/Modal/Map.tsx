@@ -20,7 +20,7 @@ const modalContent = (map: MapState,props: ModalMapUI) => {
     return (
       <div>
         <ReactMapGL
-          width={map.width || 450}
+          width="100%"
           height={map.height || 400}
           latitude={map.latitude}
           longitude={map.longitude}

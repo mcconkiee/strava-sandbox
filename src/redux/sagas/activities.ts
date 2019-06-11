@@ -1,10 +1,11 @@
 
-import { call, put, takeLatest,takeLeading, takeEvery } from 'redux-saga/effects'
-import { ACTIVITY_LIST, ACTIVITY_UPDATE, DOG_ERROR, ACTIVITY_CLONE } from '../../constants/redux';
+import { call, put, select, takeLatest, takeLeading, takeEvery } from 'redux-saga/effects'
+import { ACTIVITY_LIST, ACTIVITY_UPDATE, DOG_ERROR, ACTIVITY_CLONE, AUTHENTICATE_SUCCESS } from '../../constants/redux';
 import { ApplicationAction } from 'src/redux/actions';
 import { AuthRefreshToken } from 'src/redux/actions/auth';
 import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces, ActivityQueueForClone } from 'src/redux/actions/activities';
 import api from 'src/lib/api';
+import { getCurrentPage } from '../selectors/activities';
 
 
 // FIXME - duplicate of refresh in auth sagas - remove to optimize
@@ -15,32 +16,33 @@ function* refreshAndRetry() {
         yield put(ActivityError(error));
     }
 }
-// function* refreshActivities() {
-//     try {
-//         const page = store.getState().activity.page
-//         yield put(ActivitiesListGet(page));
-//     } catch (error) {        
-//         yield put(ActivityError(error));
-//     }
-// }
-function* fetchActivities(action: ApplicationAction) {
 
+
+function* fetchPage(page: number) {
     try {
-        const response = yield call(api.get, `/athlete/activities?page=${action.payload}`);
-        if (response.errors) {
-            yield call(refreshAndRetry);
-            return;
-        }
-        // reset the list
-        yield put(ActivitiesListGetSuccess([]));
-        // add new results
-        yield put(ActivitiesListGetSuccess(response.data));
-    } catch (error) {
-
+        const response = yield call(api.get, `/athlete/activities?page=${page}`);
+    if (response.errors) {
         yield call(refreshAndRetry);
-
+        return;
+    }
+    // reset the list
+    yield put(ActivitiesListGetSuccess([]));
+    // add new results
+    yield put(ActivitiesListGetSuccess(response.data));
+    } catch (error) {
+        yield call(refreshAndRetry);
     }
 }
+
+function* fetchActivitiesOnAuth() {
+    const page = yield select(getCurrentPage)
+    yield call(fetchPage,page);
+}
+
+function* fetchActivities(action: ApplicationAction) {
+    yield call(fetchPage,action.payload);
+}
+
 function* updateActivity(action: ApplicationAction) {
     try {
         const activity = action.payload;
@@ -62,6 +64,6 @@ export const activity = [
     takeEvery(ACTIVITY_CLONE, addActivityToLoadingQue),
     takeLeading(ACTIVITY_LIST, fetchActivities),
     takeLatest(ACTIVITY_UPDATE, updateActivity),
-    // takeLatest(AUTHENTICATE_REFRESH_SUCCESS, refreshActivities),
+    takeLatest(AUTHENTICATE_SUCCESS, fetchActivitiesOnAuth),
     takeLatest(DOG_ERROR, refreshAndRetry)
 ]

@@ -16,3 +16,10 @@ export const getLoading = createSelector(
   [getActivityState],
   (state:ActivityState) => state.loading
 )
+
+export const getCurrentPage = createSelector(
+  [getActivityState],
+  (state:ActivityState) => state.page
+)
+
+export const getNeedsRefresh = createSelector(getActivityState,(state)=>state.needsRefresh);
