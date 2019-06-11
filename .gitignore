@@ -4,6 +4,7 @@ public/*
 !public/index.html
 # dependencies
 /node_modules
+functions/firebase-debug.log
 functions/src/config.ts
 functions/src/configs/*
 !functions/src/configs/config.sample.ts
