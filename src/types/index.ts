@@ -47,11 +47,11 @@ export interface DogState {
 }
 export interface MapState{
     currentActivity?: StravaActivity;
-    width:number;
-    height:number;
+    width?:number;
+    height?:number;
     latitude:number;
     longitude:number;
-    zoom:number;
+    zoom?:number;
     coordinates?:number[],
     bounds?:any;
     mercator?:any;

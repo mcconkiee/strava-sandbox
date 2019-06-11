@@ -10,6 +10,13 @@ export function setMapActivitySuccess(activity:MapState): ApplicationAction {
     }
 }
 
+export function updateMap(activity:MapState): ApplicationAction {
+    return {
+        type: constants.MAP_UPDATE,
+        payload: activity
+    }
+}
+
 export function mapError(error:Error): ApplicationAction {
     return {
         type: constants.MAP_ERROR,

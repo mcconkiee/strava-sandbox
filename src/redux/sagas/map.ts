@@ -27,7 +27,7 @@ function* updateMapStateWithActivity(action: ApplicationAction) {
               offset: [0, 0]
             });
         //create a new mapstate        
-        const newMapState: MapState = { currentActivity: activity, latitude: activity.start_latitude, longitude: activity.start_longitude, zoom: mercator.zoom, coordinates: coordinates, bounds:bounds,mercator:mercator ,width:curstate.width, height: curstate.height}
+        const newMapState: MapState = { currentActivity: activity, latitude: mercator.latitude, longitude: mercator.longitude, zoom: mercator.zoom, coordinates: coordinates, bounds:bounds,mercator:mercator ,width:curstate.width, height: curstate.height}
         yield put(setMapActivitySuccess(newMapState));
     } catch (error) {
         yield put(mapError(error));

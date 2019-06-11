@@ -81,6 +81,10 @@ export type ACTIVITY_CLONE_SUCCESS = typeof ACTIVITY_CLONE_SUCCESS;
 export const MAP_SET_NEW_ACTIVITY = 'MAP_SET_NEW_ACTIVITY';
 export type MAP_SET_NEW_ACTIVITY = typeof MAP_SET_NEW_ACTIVITY;
 
+export const MAP_UPDATE = 'MAP_UPDATE';
+export type MAP_UPDATE = typeof MAP_UPDATE;
+
+
 export const MAP_ERROR = 'MAP_ERROR';
 export type MAP_ERROR = typeof MAP_ERROR;
 

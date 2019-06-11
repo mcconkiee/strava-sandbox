@@ -10,25 +10,26 @@ export interface ModalMapUI {
   selectedActivity?: StravaActivity;
   map: MapState;
   deselectActivity: () => void;
+  updateMap:(state:MapState)=>void;
 }
 const MAPBOX_TOKEN = configs.mapBoxApi || "";
 
-const modalContent = (map: MapState) => {
+const modalContent = (map: MapState,props: ModalMapUI) => {
   const actv = map.currentActivity;
   if (actv) {
     return (
       <div>
         <ReactMapGL
-          width={map.width}
-          height={map.height}
-          latitude={map.mercator.latitude}
-          longitude={map.mercator.longitude}
+          width={map.width || 450}
+          height={map.height || 400}
+          latitude={map.latitude}
+          longitude={map.longitude}
           zoom={map.zoom}
           mapboxApiAccessToken={MAPBOX_TOKEN}
           mapStyle="mapbox://styles/mcconkiee/ciulgcrup006f2irrq2e2xrsu"
           onViewportChange={viewport => {
-            const { latitude, longitude, zoom } = viewport;
-            console.log(zoom, latitude, longitude);
+            const { latitude, longitude } = viewport;
+            props.updateMap({latitude:latitude, longitude:longitude})
           }}
         >
           <PolylineOverlay points={map.coordinates} />
@@ -44,7 +45,7 @@ const ModalMap = (props: ModalMapUI) => {
   return (
     <div id="modal-map" className="uk-flex-top" uk-modal={1}>
       <div className="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-        {modalContent(props.map)}
+        {modalContent(props.map,props)}
       </div>
     </div>
   );

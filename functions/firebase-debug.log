@@ -7577,3 +7577,243 @@
 [info] >  API incomping request: /user/dogs
 [debug] [2019-06-11T13:12:49.770Z] Ephemeral server survived.
 [info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:24:06.400Z] Accepted request GET /stravafordogsdev/us-central1/api/user/refresh --> api
+[debug] [2019-06-11T13:24:06.827Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:24:06.827Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:24:07.377Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:24:07.642Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:24:07.642Z] 
+[debug] [2019-06-11T13:24:07.642Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:24:07.649Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16286.sock"}
+[debug] [2019-06-11T13:24:07.649Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16286.sock"}
+[debug] [2019-06-11T13:24:07.655Z] Ephemeral server used!
+[info] >  API incomping request: /user/refresh
+[debug] [2019-06-11T13:24:07.890Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:24:09.455Z] Accepted request GET /stravafordogsdev/us-central1/api/user/dogs --> api
+[debug] [2019-06-11T13:24:09.699Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:24:09.699Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:24:10.190Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:24:10.390Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:24:10.390Z] 
+[debug] [2019-06-11T13:24:10.390Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:24:10.398Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16293.sock"}
+[debug] [2019-06-11T13:24:10.398Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16293.sock"}
+[debug] [2019-06-11T13:24:10.409Z] Ephemeral server used!
+[info] >  API incomping request: /user/dogs
+[debug] [2019-06-11T13:24:10.576Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:25:07.592Z] Accepted request GET /stravafordogsdev/us-central1/api/user/refresh --> api
+[debug] [2019-06-11T13:25:08.026Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:25:08.027Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:25:08.543Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:25:08.783Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:25:08.783Z] 
+[debug] [2019-06-11T13:25:08.783Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:25:08.790Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16343.sock"}
+[debug] [2019-06-11T13:25:08.790Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16343.sock"}
+[debug] [2019-06-11T13:25:08.799Z] Ephemeral server used!
+[info] >  API incomping request: /user/refresh
+[debug] [2019-06-11T13:25:09.001Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:25:10.199Z] Accepted request GET /stravafordogsdev/us-central1/api/user/dogs --> api
+[debug] [2019-06-11T13:25:10.440Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:25:10.440Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:25:10.992Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:25:11.189Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:25:11.189Z] 
+[debug] [2019-06-11T13:25:11.189Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:25:11.199Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16350.sock"}
+[debug] [2019-06-11T13:25:11.199Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16350.sock"}
+[debug] [2019-06-11T13:25:11.207Z] Ephemeral server used!
+[info] >  API incomping request: /user/dogs
+[debug] [2019-06-11T13:25:11.364Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:26:41.396Z] Accepted request GET /stravafordogsdev/us-central1/api/user/refresh --> api
+[debug] [2019-06-11T13:26:41.810Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:26:41.811Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:26:42.329Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:26:42.566Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:26:42.566Z] 
+[debug] [2019-06-11T13:26:42.566Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:26:42.573Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16437.sock"}
+[debug] [2019-06-11T13:26:42.573Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16437.sock"}
+[debug] [2019-06-11T13:26:42.585Z] Ephemeral server used!
+[info] >  API incomping request: /user/refresh
+[debug] [2019-06-11T13:26:42.794Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:26:44.128Z] Accepted request GET /stravafordogsdev/us-central1/api/user/dogs --> api
+[debug] [2019-06-11T13:26:44.382Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:26:44.383Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:26:44.972Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:26:45.178Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:26:45.178Z] 
+[debug] [2019-06-11T13:26:45.178Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:26:45.185Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16449.sock"}
+[debug] [2019-06-11T13:26:45.186Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16449.sock"}
+[debug] [2019-06-11T13:26:45.194Z] Ephemeral server used!
+[info] >  API incomping request: /user/dogs
+[debug] [2019-06-11T13:26:45.353Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:31:02.162Z] Accepted request GET /stravafordogsdev/us-central1/api/user/refresh --> api
+[debug] [2019-06-11T13:31:02.541Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:31:02.541Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:31:03.068Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:31:03.320Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:31:03.320Z] 
+[debug] [2019-06-11T13:31:03.320Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:31:03.328Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16759.sock"}
+[debug] [2019-06-11T13:31:03.328Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16759.sock"}
+[debug] [2019-06-11T13:31:03.336Z] Ephemeral server used!
+[info] >  API incomping request: /user/refresh
+[debug] [2019-06-11T13:31:03.553Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:31:04.894Z] Accepted request GET /stravafordogsdev/us-central1/api/user/dogs --> api
+[debug] [2019-06-11T13:31:05.145Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:31:05.146Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:31:05.716Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:31:05.904Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:31:05.904Z] 
+[debug] [2019-06-11T13:31:05.904Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:31:05.911Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16771.sock"}
+[debug] [2019-06-11T13:31:05.912Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16771.sock"}
+[debug] [2019-06-11T13:31:05.922Z] Ephemeral server used!
+[info] >  API incomping request: /user/dogs
+[debug] [2019-06-11T13:31:06.093Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:31:10.968Z] Accepted request GET /stravafordogsdev/us-central1/api/user/refresh --> api
+[debug] [2019-06-11T13:31:11.318Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:31:11.318Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:31:11.820Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:31:12.021Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:31:12.021Z] 
+[debug] [2019-06-11T13:31:12.021Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:31:12.031Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16784.sock"}
+[debug] [2019-06-11T13:31:12.031Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16784.sock"}
+[debug] [2019-06-11T13:31:12.044Z] Ephemeral server used!
+[info] >  API incomping request: /user/refresh
+[debug] [2019-06-11T13:31:12.216Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:31:13.552Z] Accepted request GET /stravafordogsdev/us-central1/api/user/dogs --> api
+[debug] [2019-06-11T13:31:13.808Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:31:13.809Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:31:14.334Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:31:14.514Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:31:14.514Z] 
+[debug] [2019-06-11T13:31:14.514Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:31:14.521Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16791.sock"}
+[debug] [2019-06-11T13:31:14.521Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16791.sock"}
+[debug] [2019-06-11T13:31:14.534Z] Ephemeral server used!
+[info] >  API incomping request: /user/dogs
+[debug] [2019-06-11T13:31:14.700Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:32:16.600Z] Accepted request GET /stravafordogsdev/us-central1/api/user/refresh --> api
+[debug] [2019-06-11T13:32:17.027Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:32:17.028Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:32:17.564Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:32:17.822Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:32:17.822Z] 
+[debug] [2019-06-11T13:32:17.823Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:32:17.829Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16854.sock"}
+[debug] [2019-06-11T13:32:17.829Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16854.sock"}
+[debug] [2019-06-11T13:32:17.835Z] Ephemeral server used!
+[info] >  API incomping request: /user/refresh
+[debug] [2019-06-11T13:32:18.053Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:32:19.296Z] Accepted request GET /stravafordogsdev/us-central1/api/user/dogs --> api
+[debug] [2019-06-11T13:32:19.559Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:32:19.559Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:32:20.107Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:32:20.305Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:32:20.305Z] 
+[debug] [2019-06-11T13:32:20.305Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:32:20.312Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16861.sock"}
+[debug] [2019-06-11T13:32:20.312Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16861.sock"}
+[debug] [2019-06-11T13:32:20.322Z] Ephemeral server used!
+[info] >  API incomping request: /user/dogs
+[debug] [2019-06-11T13:32:20.485Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:33:30.742Z] Accepted request GET /stravafordogsdev/us-central1/api/user/refresh --> api
+[debug] [2019-06-11T13:33:31.146Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:33:31.147Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:33:31.670Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:33:31.921Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:33:31.921Z] 
+[debug] [2019-06-11T13:33:31.921Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:33:31.928Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16916.sock"}
+[debug] [2019-06-11T13:33:31.929Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16916.sock"}
+[debug] [2019-06-11T13:33:31.936Z] Ephemeral server used!
+[info] >  API incomping request: /user/refresh
+[debug] [2019-06-11T13:33:32.139Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:33:33.647Z] Accepted request GET /stravafordogsdev/us-central1/api/user/dogs --> api
+[debug] [2019-06-11T13:33:33.905Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:33:33.906Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:33:34.494Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:33:34.691Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:33:34.691Z] 
+[debug] [2019-06-11T13:33:34.691Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:33:34.699Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16924.sock"}
+[debug] [2019-06-11T13:33:34.699Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16924.sock"}
+[debug] [2019-06-11T13:33:34.713Z] Ephemeral server used!
+[info] >  API incomping request: /user/dogs
+[debug] [2019-06-11T13:33:34.893Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:34:54.556Z] Accepted request GET /stravafordogsdev/us-central1/api/user/refresh --> api
+[debug] [2019-06-11T13:34:54.931Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:34:54.932Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:34:55.476Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:34:55.729Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:34:55.729Z] 
+[debug] [2019-06-11T13:34:55.729Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:34:55.736Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16972.sock"}
+[debug] [2019-06-11T13:34:55.737Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16972.sock"}
+[debug] [2019-06-11T13:34:55.742Z] Ephemeral server used!
+[info] >  API incomping request: /user/refresh
+[debug] [2019-06-11T13:34:55.954Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-06-11T13:34:57.247Z] Accepted request GET /stravafordogsdev/us-central1/api/user/dogs --> api
+[debug] [2019-06-11T13:34:57.490Z] Functions runtime initialized.
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-06-11T13:34:57.491Z] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"protect_env":true,"admin_stubs":true}
+[debug] [2019-06-11T13:34:58.002Z] firebase-admin has been stubbed.
+[info] i  Your code has been provided a "firebase-admin" instance.
+[debug] [2019-06-11T13:34:58.174Z] Trigger "api" has been found, beginning invocation!
+[debug] [2019-06-11T13:34:58.174Z] 
+[debug] [2019-06-11T13:34:58.174Z] Running api in mode HTTPS
+[debug] [2019-06-11T13:34:58.182Z] {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16984.sock"}
+[debug] [2019-06-11T13:34:58.182Z] [functions] Runtime ready! Sending request! {"socketPath":"/var/folders/7n/k2h7pms17t35j5c4wbk6xrdh0000gp/T/firebase_emulator_invocation_16984.sock"}
+[debug] [2019-06-11T13:34:58.193Z] Ephemeral server used!
+[info] >  API incomping request: /user/dogs
+[debug] [2019-06-11T13:34:58.354Z] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
