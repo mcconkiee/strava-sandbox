@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mapbox/polyline": "^1.1.0",
     "@types/react-map-gl": "^4.1.2",
     "@types/react-redux": "^7.0.9",
     "@types/uikit": "^2.27.7",
+    "@types/viewport-mercator-project": "^6.1.0",
     "axios": "^0.18.0",
     "gpx-builder": "^2.0.1",
     "moment": "^2.24.0",
@@ -20,7 +22,8 @@
     "redux-saga": "^1.0.2",
     "reselect": "^4.0.0",
     "strava-v3": "^1.14.0",
-    "uikit": "^3.1.5"
+    "uikit": "^3.1.5",
+    "viewport-mercator-project": "^6.1.1"
   },
   "scripts": {
     "start": "REACT_APP_SECRET_CODE=123 react-scripts-ts start",

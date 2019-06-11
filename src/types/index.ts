@@ -8,6 +8,8 @@ export interface StravaActivity{
     map:StravaMap;
     distance:number;
     startDate:string;
+    start_latitude:number;
+    start_longitude:number;
     id:number;
 }
 
@@ -43,7 +45,18 @@ export interface DogState {
     authenticateWithCode:(code:string)=>void;
     getDogs:()=>void;
 }
-
+export interface MapState{
+    currentActivity?: StravaActivity;
+    width:number;
+    height:number;
+    latitude:number;
+    longitude:number;
+    zoom:number;
+    coordinates?:number[],
+    bounds?:any;
+    mercator?:any;
+    error?:Error;
+}
 export interface HelloState{
     languageName: string;
     enthusiasmLevel: number;
@@ -56,4 +69,5 @@ export interface StoreState {
     dogs:DogState,
     activity:ActivityState;
     auth:AuthState;
+    map:MapState;
 }
