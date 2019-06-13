@@ -5,6 +5,7 @@ import { Redirect } from 'react-router';
 import { DOGS } from 'src/constants/routes';
 import {IS_DEV} from 'src/lib/env';
 import "./Hello.css";
+import config from 'src/config';
 
 class Hello extends React.Component<HelloUIState, object> {
   componentDidMount(){
@@ -21,7 +22,11 @@ class Hello extends React.Component<HelloUIState, object> {
         <div>
           <a href={authURL()}>Auth</a>
         </div>
-        {IS_DEV ? "DEV - ENV" : null}
+        <div className="uk-text-small">
+          <span>Build: ({config.build_num})</span>
+          <span>{IS_DEV ? "DEV - ENV" : null}</span>
+        </div>
+        
       </div>
     );
   }

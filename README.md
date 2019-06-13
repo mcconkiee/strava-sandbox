@@ -73,7 +73,7 @@ firebase serve --only functions
 ```
 ### CI
 
-circle ci watches master branch for ci deployment - 
+circle ci watches master branch for ci deployment - the build number for the app is set in the configs
 
 you can test the config locally assuming circleci CLI is installed
 
