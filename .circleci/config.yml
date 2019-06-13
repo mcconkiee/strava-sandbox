@@ -3,14 +3,23 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
-build-frontend:
+jobs:
+  build:
     docker:
       # specify the version you desire here
       - image: circleci/node:chakracore-8
     working_directory: ~/repo
-
     steps:
       - checkout
+      - run: ls -al ~/repo
+      - run:
+          name: Create FRONTEND Configs
+          command: echo "export default {client_id:\"$STRAVA_CLIENT_ID\",client_secret:\"$STRAVA_CLIENT_SECRET\",maxRecomendedDistance:12000,apiurl:\"$CONFIG_FILE_API_HOST\",host:\"$CONFIG_FILE_HOST\",mapBoxApi:\"$MAPBOX_API_KEY\",dev:false}" >> src/globalConfig.ts
+      - run:
+          name: Create BACKEND Configs
+          command: echo "export default {client_id:\"$STRAVA_CLIENT_ID\",client_secret:\"$STRAVA_CLIENT_SECRET\",maxRecomendedDistance:12000,apiurl:\"$CONFIG_FILE_API_HOST\",host:\"$CONFIG_FILE_HOST\",mapBoxApi:\"$MAPBOX_API_KEY\",dev:false}" >> functions/src/config.ts
+      - run: cat src/globalConfig.ts
+      - run: cat functions/src/config.ts
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -23,24 +32,10 @@ build-frontend:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      - run:
-          name: Create FRONTEND Configs
-          command: echo "export default {client_id:\"$STRAVA_CLIENT_ID\",client_secret:\"$STRAVA_CLIENT_SECRET\",maxRecomendedDistance:12000,apiurl:\"CONFIG_FILE_API_HOST\",host:\"$CONFIG_FILE_HOST\",mapBoxApi:\"$MAPBOX_API_KEY\",dev:false}" >> src/globalConfig.ts
-      - run:
-          name: Create BACKEND Configs
-          command: echo "export default {client_id:\"$STRAVA_CLIENT_ID\",client_secret:\"$STRAVA_CLIENT_SECRET\",maxRecomendedDistance:12000,apiurl:\"CONFIG_FILE_API_HOST\",host:\"$CONFIG_FILE_HOST\",mapBoxApi:\"$MAPBOX_API_KEY\",dev:false}" >> functions/src/config.ts
+          key: v1-dependencies-{{ checksum "package.json" }}      
       # run tests!
       - run: yarn build
-deploy-job:
-       docker:
-         - image: circleci/node:chakracore-8
-       working_directory: /tmp/my-project
-       steps:
-         - run:
+      - run:
              name: Deploy Master to Firebase
              command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
-jobs:
-  - build-frontend
-  - deploy-job
   

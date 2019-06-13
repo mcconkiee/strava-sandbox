@@ -71,6 +71,15 @@ firebase deploy --only hosting
 cd ./functions
 firebase serve --only functions
 ```
+### CI
+
+circle ci watches master branch for ci deployment - 
+
+you can test the config locally assuming circleci CLI is installed
+
+``
+circleci local execute -e FIREBASE_DEPLOY_TOKEN=$FIREBASE_TOKEN_STRAVA -e STRAVA_CLIENT_ID=123 -e STRAVA_CLIENT_SECRET=XXX -e CONFIG_FILE_API_HOST=abc -e CONFIG_FILE_HOST=efg -e MAPBOX_API_KEY=hij
+```
 
 ## Todos
 
