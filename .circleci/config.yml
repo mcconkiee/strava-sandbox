@@ -4,38 +4,29 @@
 #
 version: 2
 jobs:
+  branches:
+      only:
+        - circle-ci
   build:
     docker:
       # specify the version you desire here
       - image: circleci/node:chakracore-8
     working_directory: ~/repo
+    
     steps:
+      - run: 
+          name: Token ${FIREBASE_DEPLOY_TOKEN}
+          command: eval echo ${FIREBASE_DEPLOY_TOKEN}
       - checkout
-      - run: ls -al ~/repo
       - run:
           name: Create FRONTEND Configs
           command: echo "export default {client_id:\"$STRAVA_CLIENT_ID\",client_secret:\"$STRAVA_CLIENT_SECRET\",maxRecomendedDistance:12000,apiurl:\"$CONFIG_FILE_API_HOST\",host:\"$CONFIG_FILE_HOST\",mapBoxApi:\"$MAPBOX_API_KEY\",dev:false}" >> src/globalConfig.ts
       - run:
           name: Create BACKEND Configs
           command: echo "export default {client_id:\"$STRAVA_CLIENT_ID\",client_secret:\"$STRAVA_CLIENT_SECRET\",maxRecomendedDistance:12000,apiurl:\"$CONFIG_FILE_API_HOST\",host:\"$CONFIG_FILE_HOST\",mapBoxApi:\"$MAPBOX_API_KEY\",dev:false}" >> functions/src/config.ts
-      - run: cat src/globalConfig.ts
-      - run: cat functions/src/config.ts
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}      
-      # run tests!
-      - run: yarn build
+      - run: yarn install;cd functions;yarn install;
+      - run: npm run build
       - run:
              name: Deploy Master to Firebase
-             command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
+             command: ./node_modules/.bin/firebase deploy --token=${FIREBASE_DEPLOY_TOKEN}
   
