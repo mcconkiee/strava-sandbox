@@ -8,6 +8,7 @@
     "@types/react-map-gl": "^4.1.2",
     "@types/react-redux": "^7.0.9",
     "@types/uikit": "^2.27.7",
+    "@types/uuid": "^3.4.4",
     "@types/viewport-mercator-project": "^6.1.0",
     "axios": "^0.18.0",
     "gpx-builder": "^2.0.1",
@@ -24,6 +25,7 @@
     "reselect": "^4.0.0",
     "strava-v3": "^1.14.0",
     "uikit": "^3.1.5",
+    "uuid": "^3.3.2",
     "viewport-mercator-project": "^6.1.1"
   },
   "scripts": {

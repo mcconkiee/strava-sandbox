@@ -1,15 +1,15 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import config from '../config';
-import { REFRESH_TOKEN, ACCESS_TOKEN, DOG_ACCESS_TOKEN } from 'src/constants/localStorage';
+import {  UUID_DOG, UUID, ACCESS_TOKEN } from 'src/constants/localStorage';
 const tokenEndpoint = "https://www.strava.com/oauth/token";
 
 export const requestConfig = (dogs:boolean = false): AxiosRequestConfig => {
-    const access_token = localStorage.getItem(dogs ? DOG_ACCESS_TOKEN :ACCESS_TOKEN)
+    const access_token = localStorage.getItem(dogs ? UUID_DOG : ACCESS_TOKEN)
     return { baseURL: "https://www.strava.com/api/v3", headers: { "Authorization": `Bearer ${access_token}`, "Content-Type": "application/json" } };
 }
 
 export const requestConfigAPI = (): AxiosRequestConfig => {    
-    const userToken = localStorage.getItem(ACCESS_TOKEN)
+    const userToken = localStorage.getItem(UUID)
     return { baseURL: config.apiurl, headers:  {"Content-Type": "application/json" , "Authorization": `Bearer ${userToken}`} };
 }
 export default {
@@ -39,17 +39,6 @@ export default {
             client_secret: config.client_secret,
             grant_type: "authorization_code",
             code
-        }
-
-        return axios.post(tokenEndpoint, data)
-    },
-    tokenRefresh: () => {
-        const token = localStorage.getItem(REFRESH_TOKEN);
-        const data = {
-            client_id: config.client_id,
-            client_secret: config.client_secret,
-            grant_type: "refresh_token",
-            refresh_token: token
         }
 
         return axios.post(tokenEndpoint, data)

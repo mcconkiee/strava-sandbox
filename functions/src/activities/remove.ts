@@ -5,7 +5,7 @@ import * as admin from 'firebase-admin';
 
 
 
-const getUserWithRequest = require('../user/getUserWithRequest')
+const getUserWithRequest = require('../util/lib/getUserWithRequest')
 module.exports = (req: Request, res: Response) => {
     const activityId = req.params.id;
     const dogId: string = req.body.d;

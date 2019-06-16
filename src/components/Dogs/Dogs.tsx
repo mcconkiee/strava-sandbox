@@ -6,6 +6,8 @@ import "./Dogs.css";
 interface DogUI {
   dogs: DogState;
   auth: AuthState;
+  loading:boolean;
+  refreshing:boolean;
   getDogs: () => void;
 }
 const doglist = (dogState: DogState) => {
@@ -38,6 +40,9 @@ class Dogs extends React.Component<DogUI, object> {
   }
 
   render() {
+    if(this.props.refreshing){
+      return <div uk-spinner={1} />;
+    }
     return (
       <div className="dog">
         <h4>Your Dogs!</h4>

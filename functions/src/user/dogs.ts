@@ -1,8 +1,8 @@
 import { Response, Request } from 'express';
 import * as admin from 'firebase-admin';
 
-const getUserWithToken = require('./getUser');
-const tokenFromHeader = require('./tokenFromHeader');
+const getUserWithToken = require('../util/lib/getUserWithToken');
+const tokenFromHeader = require('../util/lib/tokenFromHeader');
 
 module.exports = (req: Request, res: Response) => {
     const db = req.app.get('db') as FirebaseFirestore.Firestore;

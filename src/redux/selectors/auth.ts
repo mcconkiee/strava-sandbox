@@ -4,3 +4,4 @@ import {   StoreState } from 'src/types';
 export const getAuthState = (state:StoreState) => state.auth;
 
 export const getUser = createSelector(getAuthState,(state)=>state.userData);
+export const getRefreshing = createSelector(getAuthState,(state)=>state.refreshing);

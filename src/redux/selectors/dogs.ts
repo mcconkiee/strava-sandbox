@@ -6,3 +6,8 @@ export const getAllDogs = createSelector(
   [getDogState],
   (dogState:DogState) => dogState.dogs
 )
+
+export const getDogsLoading = createSelector(
+  [getDogState],
+  (dogState:DogState) => dogState.loading
+)

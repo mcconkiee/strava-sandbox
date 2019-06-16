@@ -3,14 +3,16 @@ import { Dispatch } from "redux";
 import Dogs from "../../components/Dogs/Dogs";
 import { StoreState} from "../../types/index";
 import {GetDogs} from "src/redux/actions/dogs"
-import { getDogState } from 'src/redux/selectors/dogs';
-import { getAuthState } from 'src/redux/selectors/auth';
+import { getDogState, getDogsLoading } from 'src/redux/selectors/dogs';
+import { getAuthState, getRefreshing } from 'src/redux/selectors/auth';
 
 
 
 const mapStateToProps = (state: StoreState) => ({
   dogs: getDogState(state),
-  auth: getAuthState(state)
+  auth: getAuthState(state),
+  loading: getDogsLoading(state),
+  refreshing: getRefreshing(state),
 })
 const mapDispatchToProps = (
   dispatch: Dispatch

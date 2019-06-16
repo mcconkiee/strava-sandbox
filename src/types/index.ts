@@ -33,6 +33,7 @@ export interface AuthState {
     accessToken?:string;
     error?:Error;
     location?:Location;
+    refreshing:boolean;
 }
 
 export interface DogState {
