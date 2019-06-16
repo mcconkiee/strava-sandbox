@@ -1,5 +1,5 @@
 import * as admin from 'firebase-admin';
-const getUserWithToken = require('../user/getUser');
+const getUserWithToken = require('../util/lib/getUserWithToken');
 module.exports = (userAccessToken: string,db : FirebaseFirestore.Firestore) => {   
     return getUserWithToken(userAccessToken, db)
     .then((user:admin.firestore.QueryDocumentSnapshot) => {

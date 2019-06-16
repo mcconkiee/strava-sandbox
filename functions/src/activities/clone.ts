@@ -11,7 +11,7 @@ import api from '../util/api'
 const getActivity = (activity: any, token: string) => {
     return api.get(`/activities/${activity.id}/streams/latlng,altitude,time`,{access_token:token})
 }
-const getUserWithRequest = require('../user/getUserWithRequest')
+const getUserWithRequest = require('../util/lib/getUserWithRequest')
 module.exports = (req: Request, res: Response) => {
     const activity = req.body.activity;
     const accessToken: string = req.body.t;

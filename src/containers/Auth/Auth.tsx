@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import Auth from "../../components/Auth/Auth";
-import * as DefaultAction from "../../redux/actions";
 import * as actions from "../../redux/actions/auth";
 import { AuthenticateDogWithCode } from "../../redux/actions/dogs";
 import { StoreState } from "../../types/index";
+import { getAuthState } from 'src/redux/selectors/auth';
 
 export interface AuthUIState{
   location:any;
@@ -12,17 +12,15 @@ export interface AuthUIState{
   authenticateWithCode:(code: string, dogs: boolean)=>void;
 }
 
-export function mapStateToProps(state: StoreState) {
-  return state.auth;
-}
-export function mapDispatchToProps(
-  dispatch: Dispatch<DefaultAction.ApplicationAction>
-) {
-  return {    
-    authenticateWithCode: (code: string, dogs: boolean = false) =>
+const mapStateToProps = (state: StoreState) => ({  
+  auth: getAuthState(state),
+})
+const mapDispatchToProps = (
+  dispatch: Dispatch
+)=> ({
+  authenticateWithCode: (code: string, dogs: boolean = false) =>
       dogs ? dispatch(AuthenticateDogWithCode(code)) : dispatch(actions.AuthenticateWithCode(code))
-  };
-}
+})
 
 export default connect(
   mapStateToProps,

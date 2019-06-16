@@ -1,8 +1,8 @@
 import { Response, Request } from 'express';
 import * as admin from 'firebase-admin';
 
-const getUserWithToken = require('./getUser');
-const tokenFromHeader = require('./tokenFromHeader');
+const getUserWithToken = require('../util/lib/getUserWithToken');
+const tokenFromHeader = require('../util/lib/tokenFromHeader');
 
 module.exports = (req: Request, res: Response) => {
     const db = req.app.get('db') as FirebaseFirestore.Firestore;        
@@ -15,10 +15,7 @@ module.exports = (req: Request, res: Response) => {
     const dogRefreshToken = req.body.refresh_token;
     getUserWithToken(userAccessToken, db)
         .then((user:admin.firestore.QueryDocumentSnapshot) => {
-            console.log(dogAccessToken,dogRefreshToken,dog);
-            
-            if (user) {
-                
+            if (user) {                
                 return user.ref.collection('accounts').doc(`${dog.id}`).set({ data: dog, access_token: dogAccessToken, refresh_token: dogRefreshToken })
             }
             return Promise.resolve(null);
