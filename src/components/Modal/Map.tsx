@@ -1,9 +1,15 @@
 import * as React from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, { NavigationControl, ViewStateChangeInfo } from "react-map-gl";
 import configs from "src/config";
 import { StravaActivity, ActivityState, MapState } from "src/types";
 import PolylineOverlay from "./Polyline";
 
+const navStyle: React.CSSProperties = {
+  position: 'absolute',
+  top: 36,
+  left: 0,
+  padding: '10px'
+};
 
 export interface ModalMapUI {
   activity: ActivityState;
@@ -13,6 +19,7 @@ export interface ModalMapUI {
   updateMap:(state:MapState)=>void;
 }
 const MAPBOX_TOKEN = configs.mapBoxApi || "";
+
 
 const modalContent = (map: MapState,props: ModalMapUI) => {
   const actv = map.currentActivity;
@@ -31,8 +38,15 @@ const modalContent = (map: MapState,props: ModalMapUI) => {
             const { latitude, longitude } = viewport;
             props.updateMap({latitude:latitude, longitude:longitude})
           }}
+         
         >
           <PolylineOverlay points={map.coordinates} />
+          <div className="nav" style={navStyle}>
+          <NavigationControl onViewStateChange={(viewstate:ViewStateChangeInfo)=>{
+            map.zoom = viewstate.viewState.zoom;
+            props.updateMap(map)            
+          }} showCompass={false} />
+        </div>
         </ReactMapGL>
         <div>{actv.name}</div>
       </div>

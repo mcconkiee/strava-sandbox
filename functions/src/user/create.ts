@@ -14,7 +14,7 @@ module.exports = (req: Request, res: Response) => {
     db
     .collection('users').doc(`${user.id}`)    
     // set the user data and tokens
-    .set({data:user,access_token:access_token,refresh_token:refresh_token})    
+    .set({data:user,access_token:access_token,refresh_token:refresh_token},{merge:true})    
     .then(data => {
         //get a fresh copy of user data from db
         return db.collection('users').doc(`${user.id}`).get()            
