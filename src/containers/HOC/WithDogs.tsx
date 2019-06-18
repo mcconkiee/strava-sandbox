@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { StoreState, DogState } from "src/types";
 import { getDogState } from "src/redux/selectors/dogs";
-import { getLoading } from "src/redux/selectors/activities";
+import { getLoadingActivities } from "src/redux/selectors/activities";
 import { Dispatch } from "redux";
 import { GetDogs } from "src/redux/actions/dogs";
 
@@ -22,7 +22,7 @@ interface DispatchFromProps {
 
 const mapStateToProps = (state: StoreState): StateFromProps => ({
   dogs: getDogState(state),  
-  loading: getLoading(state)
+  loading: getLoadingActivities(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({

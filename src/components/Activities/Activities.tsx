@@ -10,6 +10,7 @@ interface ActivityProps {
   activity: ActivityState;
   user?: StravaAccount;
   needsUpdate: boolean;
+  refreshing: boolean;
   getActivitiesList: (page: number) => void;
   getDogs: () => void;
   getUser: () => void;
@@ -20,7 +21,7 @@ class Activities extends React.Component<ActivityProps> {
     this.onNextPage = this.onNextPage.bind(this);
     this.onPrevPage = this.onPrevPage.bind(this);
   }
-  componentDidMount(){
+  componentDidMount() {
     const values = urlParams(this.props);
     if (values.page) {
       if (this.props.activity.page !== parseInt(values.page)) {
@@ -42,6 +43,9 @@ class Activities extends React.Component<ActivityProps> {
     this.goToPage(page - 1);
   }
   render() {
+    if (this.props.refreshing) {
+      return <div uk-spinner={1} />;
+    }
     return (
       <div className={`${ACTIVITIES_ROUTE} uk-overflow-auto`}>
         <Pagination onNext={this.onNextPage} onPrev={this.onPrevPage} />

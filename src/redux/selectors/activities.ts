@@ -12,7 +12,7 @@ export const getSelectedActivity = createSelector(
   (state:ActivityState) => state.selectedActivity
 )
 
-export const getLoading = createSelector(
+export const getLoadingActivities = createSelector(
   [getActivityState],
   (state:ActivityState) => state.loading
 )

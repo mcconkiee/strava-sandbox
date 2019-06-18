@@ -1,50 +1,29 @@
-import * as React from "react";
-import HasUser, { WithUser } from "../HOC/WithUser";
-import { compose } from "redux";
-import { authURL } from "src/constants/auth";
+import HasUser from "../HOC/WithUser";
+import User from 'src/components/User/User';
+import { StoreState, StravaAccount, AuthState } from 'src/types';
+import { ApplicationAction } from 'src/redux/actions';
+import { compose, Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
-class User extends React.Component<WithUser, object> {
-  render() {
-    // error
-    if (this.props.auth.error) {
-      return (
-        <div>
-          <h1>Oh no!</h1>
-          <div>
-            Error authenticating...please{" "}
-            <a href={authURL()}>re-authenticate</a>
-          </div>
-        </div>
-      );
-    }
-    // no user
-    if (!this.props.user) {
-      return (
-        <div>
-          Click{" "}
-          <a
-            onClick={() => {
-              this.props.deAuth();
-            }}
-          >
-            here
-          </a>{" "}
-          to de-authenticate
-        </div>
-      );
-    }
 
-    const { user } = this.props;
-    if (user) {
-      return (
-        <div className="user">
-          <div>{user.firstname}</div>
-        </div>
-      );
-    }
-
-    return null
-  }
+export interface UserUIState {
+  auth:AuthState;
+  user?:StravaAccount;
 }
 
-export default compose(HasUser)(User);
+const mapStateToProps = (state: StoreState) => ({
+  
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<ApplicationAction>) => ({
+  
+});
+
+const enhanced = compose(
+  HasUser,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+);
+export default enhanced(User);

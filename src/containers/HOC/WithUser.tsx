@@ -1,37 +1,38 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { StravaAccount, StoreState, AuthState} from "src/types";
-import { getUser, getAuthState } from "src/redux/selectors/auth";
-import { getLoading } from "src/redux/selectors/activities";
+import { StravaAccount, StoreState, AuthState } from "src/types";
+import { getUser, getAuthState, getRefreshing } from "src/redux/selectors/auth";
+import { getLoadingActivities } from "src/redux/selectors/activities";
 import { Dispatch } from "redux";
 import { Authenticate, DeAuthenticate } from "src/redux/actions/auth";
 
-
 export interface WithUser {
-  auth:AuthState;
-  user?: StravaAccount;  
+  auth?: AuthState;
+  user?: StravaAccount;
   loading: boolean;
   getUser: () => void;
-  deAuth:()=>void;
+  deAuth: () => void;
 }
 interface StateFromProps {
-  auth:AuthState;
-  user?: StravaAccount;  
+  auth: AuthState;
+  refreshingUserState:boolean;
+  user?: StravaAccount;
   loading: boolean;
 }
 
-interface DispatchFromProps {  
+interface DispatchFromProps {
   getUser: () => void;
   deAuth: () => void;
 }
 
-const mapStateToProps = (state: StoreState): StateFromProps => ({  
-  auth:getAuthState(state),
+const mapStateToProps = (state: StoreState): StateFromProps => ({
+  auth: getAuthState(state),
+  refreshingUserState: getRefreshing(state),
   user: getUser(state),
-  loading: getLoading(state)
+  loading: getLoadingActivities(state)
 });
 
-const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({  
+const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({
   getUser: () => dispatch(Authenticate()),
   deAuth: () => dispatch(DeAuthenticate())
 });

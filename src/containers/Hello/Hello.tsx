@@ -1,23 +1,33 @@
-import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
-import {AuthRefreshToken} from 'src/redux/actions/auth'
-import Hello from '../../components/Hello/Hello';
-import { StoreState } from '../../types/index';
-import { ApplicationAction } from 'src/redux/actions';
+import { connect } from "react-redux";
+import { Dispatch, compose } from "redux";
+import Hello from "../../components/Hello/Hello";
+import { StoreState, StravaAccount, AuthState } from "../../types/index";
+import { ApplicationAction } from "src/redux/actions";
+import { getAuthState, getRefreshing, getUser } from "src/redux/selectors/auth";
+import HasUser from "../HOC/WithUser";
 
-export interface HelloUIState{  
-  userData?:object;
-  refreshToken:()=>void;
+export interface HelloUIState {
+  userData?: StravaAccount;
+  auth: AuthState;
+  refreshing: boolean;
 }
 
-export function mapStateToProps(state: StoreState) {
-  return state.auth;
-}
+const mapStateToProps = (state: StoreState) => ({
+  auth: getAuthState(state),
+  userData: getUser(state),
+  refreshing: getRefreshing(state)
+});
 
-export function mapDispatchToProps(dispatch: Dispatch<ApplicationAction>) {
-  return {
-    refreshToken: ()=> dispatch(AuthRefreshToken()),
-  }
-}
+const mapDispatchToProps = (dispatch: Dispatch<ApplicationAction>) => ({
+  
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(Hello);
+const enhanced = compose(
+  HasUser,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+);
+export default enhanced(Hello);
+// export default connect(mapStateToProps, mapDispatchToProps)(Hello);

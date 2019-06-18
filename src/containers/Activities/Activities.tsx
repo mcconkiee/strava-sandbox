@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
-import { getActivityState, getLoading, getNeedsRefresh } from "src/redux/selectors/activities";
+import { Dispatch, compose } from "redux";
+import { getActivityState, getLoadingActivities, getNeedsRefresh } from "src/redux/selectors/activities";
 import { getDogState } from "src/redux/selectors/dogs";
 import Activities from "../../components/Activities/Activities";
 import { ActivitiesListGet } from "../../redux/actions/activities";
@@ -12,7 +12,7 @@ import {
   StravaAccount
 } from "../../types/index";
 import { Authenticate } from "src/redux/actions/auth";
-import { getUser } from "src/redux/selectors/auth";
+import { getUser, getRefreshing } from "src/redux/selectors/auth";
 import HasUser from "../HOC/WithUser";
 
 interface StateFromProps {
@@ -20,6 +20,7 @@ interface StateFromProps {
   dogs: DogState;
   user?: StravaAccount;
   loading: boolean;
+  refreshing:boolean;
   needsUpdate:boolean;
 }
 
@@ -33,7 +34,8 @@ const mapStateToProps = (state: StoreState): StateFromProps => ({
   activity: getActivityState(state),
   dogs: getDogState(state),
   user: getUser(state),
-  loading: getLoading(state),
+  refreshing: getRefreshing(state),
+  loading: getLoadingActivities(state),
   needsUpdate: getNeedsRefresh(state),
 });
 
@@ -42,12 +44,5 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({
   getDogs: () => dispatch(GetDogs()),
   getUser: () => dispatch(Authenticate())
 });
-
-export default connect<StateFromProps, DispatchFromProps, void>(
-  mapStateToProps,
-  mapDispatchToProps,
-  null,
-  {
-    pure: false
-  }
-)(HasUser(Activities));
+const enhanced =  compose(HasUser,connect(mapStateToProps,mapDispatchToProps))
+export default enhanced(Activities);

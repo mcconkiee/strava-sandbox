@@ -1,6 +1,6 @@
 import { ApplicationAction } from '../actions';
 import { AuthState } from '../../types/index';
-import { AUTHENTICATE_ERROR, AUTHENTICATE_SUCCESS, AUTHENTICATE_TOKEN_SUCCESS, AUTHENTICATE_REFRESH_ERROR, DEAUTHENTICATE_SUCCESS, AUTHENTICATE_REFRESHTOKEN } from '../../constants/redux';
+import { AUTHENTICATE_ERROR, AUTHENTICATE_SUCCESS, AUTHENTICATE_TOKEN_SUCCESS, AUTHENTICATE_REFRESH_ERROR, DEAUTHENTICATE_SUCCESS, AUTHENTICATE_REFRESHTOKEN, AUTHENTICATE } from '../../constants/redux';
 
 const initialState: AuthState = {
   refreshing: false
@@ -8,7 +8,8 @@ const initialState: AuthState = {
 export function auth(state: AuthState = initialState, action: ApplicationAction): AuthState {
   state.error = undefined;
   switch (action.type) {
-
+    case AUTHENTICATE:
+      return {...state, refreshing:true}
     case AUTHENTICATE_TOKEN_SUCCESS:
       return { ...state, accessToken: action.payload, refreshing: false };
     case AUTHENTICATE_SUCCESS:

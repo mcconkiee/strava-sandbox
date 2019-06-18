@@ -26,7 +26,7 @@ class Auth extends React.Component<AuthUIState> {
     }
   }
 
-  render() {
+  render() {    
     if (this.state.redirect) {
       return <Redirect to={DOGS} push />;
     }
