@@ -13,9 +13,11 @@ import {
   DOGS,
   DOGS_AUTHCODE_ROUTE,
   DOGS_AUTH,
-  USER
+  USER,
+  HOW_IT_WORKS
 } from "./constants/routes";
 import Dogs from "./containers/Dogs/Dogs";
+import HowItWorks from './components/General/HowItWorks';
 const Routes = () => {
   return (
     <div>
@@ -27,6 +29,7 @@ const Routes = () => {
       <Route path={DOGS_AUTH} exact component={Hello} />
       <Route path={DOGS_AUTHCODE_ROUTE} exact component={Auth} />
       <Route path={USER} exact component={User} />
+      <Route path={HOW_IT_WORKS} exact component={HowItWorks} />
     </div>
   );
 };

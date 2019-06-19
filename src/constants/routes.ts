@@ -1,5 +1,9 @@
 export const ROOT = '/';
 
+// General
+export const HOW_IT_WORKS = "/how-it-works"
+
+// USER
 export const USER = "/user"
 
 // AUTH
