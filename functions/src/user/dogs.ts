@@ -7,13 +7,16 @@ const tokenFromHeader = require('../util/lib/tokenFromHeader');
 module.exports = (req: Request, res: Response) => {
     const db = req.app.get('db') as FirebaseFirestore.Firestore;
     const userAccessToken = tokenFromHeader(req)
+    // get current user
     getUserWithToken(userAccessToken, db)        
+        // get connected accounts (dogs)
         .then((user:admin.firestore.QueryDocumentSnapshot) => {            
             if (user) {
                 return user.ref.collection('accounts').get()
             }
             return Promise.resolve(null);
         })
+        // get each activity that has been `matched` with the current user on each dog
         .then((dogs:admin.firestore.QuerySnapshot) =>{
             
             if(dogs && dogs.docs.length > 0){
@@ -21,10 +24,15 @@ module.exports = (req: Request, res: Response) => {
             }
             return Promise.all([dogs,[]]);
         })
+        // for each dog, add the match id to a `matches` object
         .then(([dogs,accounts]:[admin.firestore.QuerySnapshot,admin.firestore.QuerySnapshot[]]) =>{            
             if(dogs){  
                 const response: any = []              
-                const dogDatas = dogs.docs.map(doc=>{return doc.data().data});
+                const dogDatas = dogs.docs.map(doc=>{
+                    const updatedDogData = doc.data().data;
+                    updatedDogData.id = doc.ref.id;
+                    return updatedDogData
+                });
                 dogDatas.forEach( (data,i) =>{
                     const _matches = accounts[i].docs.map( matches => matches.ref.id);                    
                     data['matches'] = _matches;
@@ -35,7 +43,7 @@ module.exports = (req: Request, res: Response) => {
             return res.status(403).send({error:"No user found"})
         })
         .catch((err: Error) => {
-            console.log(err);
+            console.log('ERROR--',err);
             
             res.status(500).send({ error: err });
         })

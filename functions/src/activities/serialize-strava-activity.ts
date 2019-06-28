@@ -1,7 +1,7 @@
 import { GarminBuilder, buildGPX } from 'gpx-builder';
-import * as FormData from 'form-data';
-import { requestConfig, RequestOptions } from '../util/api';
-import axios, { AxiosRequestConfig } from 'axios';
+// import * as FormData from 'form-data';
+// import { requestConfig, RequestOptions } from '../util/api';
+// import axios, { AxiosRequestConfig } from 'axios';
 import { Metadata } from 'gpx-builder/dist/builder/BaseBuilder/models';
 const { Point } = GarminBuilder.MODELS;
 const moment = require('moment');
@@ -61,26 +61,30 @@ const buildFile = (points: any[], activity: any): Promise<FileMade> => {
 }
 
 const uploadToStrava = (fileMade: FileMade, activity: any, token: string) => {
-    
-    // Create form
-    const form = new FormData();
-    form.append('file', fs.createReadStream(fileMade.file, "utf8"));
-    form.append("data_type", "gpx");
-    form.append("activity_type", activity.type);
+    // TODO - probaably can remove the lines below since strava shut down pets
+    // if they ever bring it back we aan use is
 
-    // use the form header for content type
-    const formHeaders = form.getHeaders();
-    const configOptions: RequestOptions = {
-        access_token: token,
-        contentType: formHeaders['content-type']
-    }
+    return {};
 
-    //setup config
-    const config: AxiosRequestConfig = requestConfig(configOptions);
-    config.url = "/uploads"
-    config.method = "POST";
+    // // Create form
+    // const form = new FormData();
+    // form.append('file', fs.createReadStream(fileMade.file, "utf8"));
+    // form.append("data_type", "gpx");
+    // form.append("activity_type", activity.type);
 
-    return axios.post('/uploads', form, config);
+    // // use the form header for content type
+    // const formHeaders = form.getHeaders();
+    // const configOptions: RequestOptions = {
+    //     access_token: token,
+    //     contentType: formHeaders['content-type']
+    // }
+
+    // //setup config
+    // const config: AxiosRequestConfig = requestConfig(configOptions);
+    // config.url = "/uploads"
+    // config.method = "POST";
+
+    // return axios.post('/uploads', form, config);
 }
 
 const cleanup = (fileMade: FileMade) => {

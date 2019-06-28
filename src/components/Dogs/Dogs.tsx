@@ -1,8 +1,12 @@
-import * as React from "react";
-import { authURL } from "src/constants/auth";
-import HasUser from "src/containers/HOC/WithUser";
-import { DogState, AuthState } from "src/types";
-import "./Dogs.css";
+import './Dogs.css';
+
+import * as React from 'react';
+import HasUser from 'src/containers/HOC/WithUser';
+import ModalDog from 'src/containers/Modals/ModalDog';
+import { AuthState, DogState } from 'src/types';
+
+
+
 interface DogUI {
   dogs: DogState;
   auth: AuthState;
@@ -47,9 +51,12 @@ class Dogs extends React.Component<DogUI, object> {
       <div className="dog">
         <h4>Your Dogs!</h4>
         <div>
-          <a className="uk-button uk-button-primary" href={authURL(true)}>
+          <a className="uk-button uk-button-primary" onClick={()=>{
+            UIkit.modal("#modal-dog").show();
+          }}>
             Add a Dog!
           </a>
+          <ModalDog />
         </div>
         {this.props.dogs.loading ? <div uk-spinner={1}></div> : null}
         <div>{this.listDogs()}</div>

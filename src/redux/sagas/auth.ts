@@ -37,6 +37,7 @@ function* authenticateWithOathCode(action: ApplicationAction) {
          yield put(AuthenticateSuccess(gt.athlete.data));
          yield call(api.postApi, '/user', { user: gt.athlete,refresh_token:gt.refresh_token,access_token:gt.access_token })
       } else {
+         // TODO - remove this once we are complete removing strava pet accounts
          yield put(AuthenticateDogSuccess(gt.athlete));
          yield call(api.postApi, `/user/connectAccount`, { user: gt.athlete,refresh_token:gt.refresh_token,access_token:gt.access_token })
 

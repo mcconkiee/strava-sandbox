@@ -90,6 +90,15 @@ export type MAP_ERROR = typeof MAP_ERROR;
 
 
 // DOGS
+export const ADD_DOG = 'ADD_DOG';
+export type ADD_DOG = typeof ADD_DOG;
+
+export const ADD_DOG_SUCCESS = 'ADD_DOG_SUCCESS';
+export type ADD_DOG_SUCCESS = typeof ADD_DOG_SUCCESS;
+
+export const ADD_DOG_ERROR = 'ADD_DOG_ERROR';
+export type ADD_DOG_ERROR = typeof ADD_DOG_ERROR;
+
 export const AUTHENTICATE_DOG = 'AUTHENTICATE_DOG';
 export type AUTHENTICATE_DOG = typeof AUTHENTICATE_DOG;
 

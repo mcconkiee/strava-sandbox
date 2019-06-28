@@ -11,3 +11,8 @@ export const getDogsLoading = createSelector(
   [getDogState],
   (dogState:DogState) => dogState.loading
 )
+
+export const getDogError = createSelector(
+  [getDogState],
+  (dogState:DogState) => dogState.error
+)

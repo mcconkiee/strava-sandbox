@@ -1,11 +1,30 @@
-import { AUTHENTICATE_DOG, AUTHENTICATE_DOG_SUCCESS, ACTIVITY_CLONE, DOG_ERROR, AUTHENTICATE_DOG_TOKEN_SUCCESS, DOGS_GET_ALL, DOGS_GET_ALL_SUCCESS } from 'src/constants/redux';
+import { AUTHENTICATE_DOG, AUTHENTICATE_DOG_SUCCESS, ACTIVITY_CLONE, DOG_ERROR, AUTHENTICATE_DOG_TOKEN_SUCCESS, DOGS_GET_ALL, DOGS_GET_ALL_SUCCESS, ADD_DOG, ADD_DOG_SUCCESS } from 'src/constants/redux';
 import { ApplicationAction } from '.';
+import { DogObject } from 'src/types';
 
 export interface DogError {
     type: DOG_ERROR;
     payload: any;
 }
 
+export function AddDog(dog: DogObject): ApplicationAction {
+    return {
+        type: ADD_DOG,
+        payload: dog
+    }
+}
+
+// TOOD - strict type params
+export function AddDogSuccess(reponse: any): ApplicationAction {
+    return {
+        type: ADD_DOG_SUCCESS,
+        payload: reponse
+    }
+}
+
+
+
+// TODO - remove this
 export function AuthenticateDogWithCode(code: string): ApplicationAction {
     return {
         type: AUTHENTICATE_DOG,
@@ -13,13 +32,14 @@ export function AuthenticateDogWithCode(code: string): ApplicationAction {
     }
 }
 
-
+// TODO - remove this
 export function AuthenticateDogTokenSuccess(token: string): ApplicationAction {
     return {
         type: AUTHENTICATE_DOG_TOKEN_SUCCESS,
         payload: token
     }
 }
+// TODO - remove this
 export function AuthenticateDogSuccess(userData: object): ApplicationAction {
     return {
         type: AUTHENTICATE_DOG_SUCCESS,

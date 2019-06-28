@@ -36,6 +36,7 @@ app.post('/activity/:id/remove', require('./activities/remove'));
 app.post('/user', require('./user/create'));
 app.post('/user/connectAccount', require('./user/connectAccount'));
 app.get('/user/dogs', require('./user/dogs'));
+app.post('/user/dogs', require('./dogs/createDog'));
 app.post('/user/dogs/:token/activities/match', require('./activities/match'));
 app.get('/user/dogs/:token', require('./dogs/getDog'));
 app.get('/user/refresh', require('./user/refresh'));

@@ -20,7 +20,7 @@ function* refreshAndRetry() {
 
 function* fetchPage(page: number) {
     try {
-        const response = yield call(api.get, `/athlete/activities?page=${page}`);
+        const response = yield call(api.getStrava, `/athlete/activities?page=${page}`);
     if (response.errors) {
         yield call(refreshAndRetry);
         return;
@@ -46,7 +46,7 @@ function* fetchActivities(action: ApplicationAction) {
 function* updateActivity(action: ApplicationAction) {
     try {
         const activity = action.payload;
-        const response = yield call(api.put, `/activities/${activity.id}`, action.payload)
+        const response = yield call(api.putStrava, `/activities/${activity.id}`, action.payload)
         if (response.errors) {
             throw response.message;
         }

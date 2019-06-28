@@ -1,10 +1,11 @@
-import { call, put, select, takeLatest } from 'redux-saga/effects'
-import { ActivityCloneSuccess, ActivityQueueForCloneSuccess } from 'src/redux/actions/activities';
-import api from 'src/lib/api';
-import { ApplicationAction } from '../actions';
-import { DogsError, GetDogsSuccess } from '../actions/dogs';
-import { ACTIVITY_CLONE, DOGS_GET_ALL, ACTIVITY_REMOVE, AUTHENTICATE_SUCCESS } from 'src/constants/redux';
+import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { ACCESS_TOKEN } from 'src/constants/localStorage';
+import { ACTIVITY_CLONE, ACTIVITY_REMOVE, ADD_DOG_SUCCESS, DOGS_GET_ALL, ADD_DOG } from 'src/constants/redux';
+import api from 'src/lib/api';
+import { ActivityCloneSuccess, ActivityQueueForCloneSuccess } from 'src/redux/actions/activities';
+
+import { ApplicationAction } from '../actions';
+import { DogsError, GetDogsSuccess, AddDogSuccess } from '../actions/dogs';
 
 
 function* cloneActivityToDog(action: ApplicationAction) {
@@ -57,9 +58,20 @@ function* getAllDogs() {
     }
 }
 
+function* addNewDog(action:ApplicationAction) {
+    try {
+        const dog = yield call(api.postApi, `/user/dogs`,action.payload)
+        yield put(AddDogSuccess(dog)) 
+    } catch (error) {
+        yield put(DogsError(error));
+    }
+}
+
 export const dogs = [
+    takeLatest(ADD_DOG, addNewDog),
+    takeLatest(ADD_DOG_SUCCESS,getAllDogs),
     takeLatest(ACTIVITY_CLONE, cloneActivityToDog),
     takeLatest(ACTIVITY_REMOVE, removeActivityToDog),
     takeLatest(DOGS_GET_ALL, getAllDogs),
-    takeLatest(AUTHENTICATE_SUCCESS, getAllDogs),
+    takeLatest(ADD_DOG_SUCCESS, getAllDogs),
 ]

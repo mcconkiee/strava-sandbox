@@ -1,9 +1,10 @@
-import { Response, Request } from 'express';
-import  { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+import { Request, Response } from 'express';
 import * as admin from 'firebase-admin';
 import { DocumentSnapshot } from 'firebase-functions/lib/providers/firestore';
-import Cloner, {FileMade} from './serialize-strava-activity';
-import api from '../util/api'
+
+import api from '../util/api';
+import Cloner, { FileMade } from './serialize-strava-activity';
 
 
 // TODO - handle error later...
@@ -17,7 +18,8 @@ module.exports = (req: Request, res: Response) => {
     const accessToken: string = req.body.t;
     const dogObject: string = req.body.d;
     
-    getActivity(activity, accessToken).then((data: AxiosResponse) => {
+    getActivity(activity, accessToken)
+    .then((data: AxiosResponse) => {
         return Cloner.serialize(data.data, activity);
     })
     .then((points: object[]) => {
@@ -27,12 +29,19 @@ module.exports = (req: Request, res: Response) => {
         return Promise.all([fileMade,getUserWithRequest(req)]);
     })
     .then(([fileMade,user]: [FileMade,admin.firestore.QueryDocumentSnapshot]) => {
-        return Promise.all([fileMade,user.ref.collection('accounts').doc(`${dogObject}`).get()]);
+        return Promise.all([
+            fileMade,
+            user.ref.collection('accounts').doc(`${dogObject}`).get()
+        ]);
     })
     .then(([fileMade,dog]: [FileMade,DocumentSnapshot]) => {
         const dogData = dog.data();
         if(dogData){
-            return Promise.all([fileMade,dog,Cloner.upload(fileMade,activity,dogData.access_token)]);
+            return Promise.all([
+                fileMade,
+                dog,
+                Cloner.upload(fileMade,activity,dogData.access_token)
+            ]);
         }
         return Promise.all([fileMade,dog,{}]);
     })
