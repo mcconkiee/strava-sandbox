@@ -1,11 +1,12 @@
-
-import { call, put, select, takeLatest, takeLeading, takeEvery } from 'redux-saga/effects'
-import { ACTIVITY_LIST, ACTIVITY_UPDATE, DOG_ERROR, ACTIVITY_CLONE, AUTHENTICATE_SUCCESS } from '../../constants/redux';
-import { ApplicationAction } from 'src/redux/actions';
-import { AuthRefreshToken } from 'src/redux/actions/auth';
-import { ActivityError, ActivitiesListGetSuccess, ActivityUpdateSucces, ActivityQueueForClone } from 'src/redux/actions/activities';
+import { call, put, select, takeLatest, takeLeading } from 'redux-saga/effects';
 import api from 'src/lib/api';
+import { ApplicationAction } from 'src/redux/actions';
+import { ActivitiesListGetSuccess, ActivityError, ActivityUpdateSucces } from 'src/redux/actions/activities';
+import { AuthRefreshToken } from 'src/redux/actions/auth';
+
+import { ACTIVITY_LIST, ACTIVITY_UPDATE, AUTHENTICATE_SUCCESS, DOG_ERROR } from '../../constants/redux';
 import { getCurrentPage } from '../selectors/activities';
+
 
 
 // FIXME - duplicate of refresh in auth sagas - remove to optimize
@@ -20,7 +21,7 @@ function* refreshAndRetry() {
 
 function* fetchPage(page: number) {
     try {
-        const response = yield call(api.get, `/athlete/activities?page=${page}`);
+        const response = yield call(api.getStrava, `/athlete/activities?page=${page}`);
     if (response.errors) {
         yield call(refreshAndRetry);
         return;
@@ -46,7 +47,7 @@ function* fetchActivities(action: ApplicationAction) {
 function* updateActivity(action: ApplicationAction) {
     try {
         const activity = action.payload;
-        const response = yield call(api.put, `/activities/${activity.id}`, action.payload)
+        const response = yield call(api.putStrava, `/activities/${activity.id}`, action.payload)
         if (response.errors) {
             throw response.message;
         }
@@ -56,12 +57,12 @@ function* updateActivity(action: ApplicationAction) {
         yield put(ActivityError(error));
     }
 }
-function* addActivityToLoadingQue(action: ApplicationAction) {
-    yield put(ActivityQueueForClone(action.payload))
-}
+// function* addActivityToLoadingQue(action: ApplicationAction) {
+//     yield put(ActivityQueueForClone(action.payload))
+// }
 
 export const activity = [
-    takeEvery(ACTIVITY_CLONE, addActivityToLoadingQue),
+    // takeEvery(ACTIVITY_CLONE, addActivityToLoadingQue),
     takeLeading(ACTIVITY_LIST, fetchActivities),
     takeLatest(ACTIVITY_UPDATE, updateActivity),
     takeLatest(AUTHENTICATE_SUCCESS, fetchActivitiesOnAuth),

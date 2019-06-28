@@ -5,7 +5,7 @@ import constants from '../util/lib/constants';
 
 const tokenFromHeader = require('../util/lib/tokenFromHeader');
 module.exports = (req: Request, res: Response) => {
-    const db =  req.app.get('db') as FirebaseFirestore.Firestore;
+    const db =  req.app.get('db') as FirebaseFirestore.Firestore;    
     const user = req.body.user;
     const uuid: string = tokenFromHeader(req)
     const refresh_token: string = req.body.refresh_token;
@@ -35,6 +35,8 @@ module.exports = (req: Request, res: Response) => {
         return res.send({data:result,user:user});
     })
     .catch((err:Error)=>{
+        console.log(err,'error on create');
+        
         res.status(500).send({error:err});
     })
 }

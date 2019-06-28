@@ -1,7 +1,9 @@
 import * as admin from 'firebase-admin';
-
-const functions = require('firebase-functions');
-admin.initializeApp(functions.config().firebase);
+const serviceAccount = require('./serviceAccount')
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: `https://${serviceAccount.project_id}.firebaseio.com`
+  });
 const db = admin.firestore();
 
 module.exports = db;

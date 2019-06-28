@@ -28,6 +28,13 @@ you can run the `dev.sh` script to configure config file
 ## Firebase
 
 ### Functions
+first [set up](https://firebase.google.com/docs/admin/setup?authuser=0#initialize_the_sdk) your admin service account
+
+```
+export GOOGLE_APPLICATION_CREDENTIALS="/home/user/Downloads/service-account-file.json"
+
+```
+
 we use firebase to build the gpx files and upload to strava. From the `functions` directory, 
 ```
 nvm use 8.16.0

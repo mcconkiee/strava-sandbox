@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
+import { Dispatch, compose } from "redux";
 import Dogs from "../../components/Dogs/Dogs";
 import { StoreState} from "../../types/index";
 import {GetDogs} from "src/redux/actions/dogs"
 import { getDogState, getDogsLoading } from 'src/redux/selectors/dogs';
 import { getAuthState, getRefreshing } from 'src/redux/selectors/auth';
+import HasNav from '../HOC/WithNav';
+import HasUser from '../HOC/WithUser';
 
 
 
@@ -20,7 +22,5 @@ const mapDispatchToProps = (
   getDogs:()=>(dispatch(GetDogs()))
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dogs);
+const enhanced =  compose(HasNav,HasUser,connect(mapStateToProps,mapDispatchToProps))
+export default enhanced(Dogs);

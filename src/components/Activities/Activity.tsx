@@ -1,21 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { ActivityState, DogState, StoreState, StravaActivity } from 'src/types';
+
+import { metersToMiles } from '../../lib/conversions';
+import * as DefaultAction from '../../redux/actions';
+import { ActivityClone, ActivityRemove, ActivitySelected } from '../../redux/actions/activities';
+import CloneButton from './CloneButton';
+import Map from './Map';
+const uuid = require('uuid/v4')
 const UIkit = require('uikit');
-import { connect } from "react-redux";
-import {
-  StoreState,
-  ActivityState,
-  DogState,
-  StravaActivity,
-  StravaAccount
-} from "src/types";
-import config from "src/config";
-import * as DefaultAction from "../../redux/actions";
-import {
-  ActivityClone,
-  ActivityRemove,
-  ActivitySelected
-} from "../../redux/actions/activities";
-import Map from "./Map";
 const moment = require("moment");
 export interface Activity {
   activity: ActivityState;
@@ -25,20 +18,11 @@ export interface Activity {
   removeActivity: (item: object) => void;
   selectedActivity: (item: StravaActivity) => void;
 }
-const metersToMiles = (meters: number): string => {
-  return Math.max(Math.round(meters * 0.000621371 * 10) / 10, 2.8).toFixed(1);
-};
-const cloning = (queuedObjects: object[], item: object): boolean => {
-  return queuedObjects.filter(obj => obj["id"] === item["id"]).length >= 1;
-};
-const isRecomended = (distance: number) => {
-  return distance <= config.maxRecomendedDistance;
-};
 
 const matchedDogs = (props: Activity) => {
-  const isRec = isRecomended(props.item.distance);
-  const { item, dogs, activity } = props;
-  if (dogs.loading) {
+
+  const { item, dogs } = props;
+  if (dogs.loading || props.activity.loading) {
     return (
       <span>
         <div uk-spinner={1} />
@@ -46,51 +30,9 @@ const matchedDogs = (props: Activity) => {
     );
   }
   if (dogs.dogs && item) {
-    const _dogs: any[] = dogs.dogs.filter((dog: any) => {
-      const matches = dog.matches.filter((m: string) => m === `${item["id"]}`);
-      return matches.length > 0;
-    });
-    if (_dogs.length > 0) {
-      return _dogs.map(d => <div key={d.id}>{d.firstname} 🏅</div>);
-    } else {
-      return dogs.dogs.map((d: StravaAccount) => {
-        if (cloning(activity.queuedToClone, item)) {
-          return <div key={d.id} uk-spinner={1} />;
-        }
-        return (
-          <div key={d.id}>
-            <div>
-              {isRec ? (
-                <span className="uk-label uk-label-success">Recomended</span>
-              ) : null}
-            </div>
-            <button
-              key={item.id}
-              className={`uk-button ${
-                isRec ? "uk-button-primary" : "uk-button-default"
-              }`}
-              onClick={() => {
-                // props.removeActivity(props.item);
-                if (!isRec) {
-                  const confirm = window.prompt(
-                    `Wow, that's long. Are you sure you want to add this activity to ${
-                      d.firstname
-                    }? Type "YES" to confirm.`
-                  );
-                  if (confirm === "YES") {
-                    props.cloneActivity(item);
-                  }
-                  return;
-                }
-                props.cloneActivity(item);
-              }}
-            >
-              Add to {d.firstname}
-            </button>
-          </div>
-        );
-      });
-    }
+    return dogs.dogs.map(dog => {
+      return <CloneButton busy={props.dogs.loading} key={uuid()} dog={dog} activity={props} />
+    })
   }
   return null;
 };
@@ -99,7 +41,7 @@ const Activity = (props: Activity) => {
     <tr key={props.item.id}>
       <td>
         <a
-          className="uk-button uk-button-default"          
+          className="uk-button uk-button-default"
           target="_blank"
           href={`https://www.strava.com/activities/${props.item.id}`}
         >
@@ -115,6 +57,7 @@ const Activity = (props: Activity) => {
           />
         </div>
       </td>
+
       <td>{metersToMiles(props.item["distance"])} miles</td>
       <td>{moment(props.item["start_date"]).format("MMM DD, YYYY h:mm a")}</td>
       <td>{matchedDogs(props)}</td>

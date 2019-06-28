@@ -1,9 +1,11 @@
-import HasUser from "../HOC/WithUser";
-import User from 'src/components/User/User';
-import { StoreState, StravaAccount, AuthState } from 'src/types';
-import { ApplicationAction } from 'src/redux/actions';
-import { compose, Dispatch } from 'redux';
 import { connect } from 'react-redux';
+import { compose, Dispatch } from 'redux';
+import User from 'src/components/User/User';
+import { ApplicationAction } from 'src/redux/actions';
+import { AuthState, StoreState, StravaAccount } from 'src/types';
+
+import HasNav from '../HOC/WithNav';
+import HasUser from '../HOC/WithUser';
 
 
 export interface UserUIState {
@@ -20,6 +22,7 @@ const mapDispatchToProps = (dispatch: Dispatch<ApplicationAction>) => ({
 });
 
 const enhanced = compose(
+  HasNav,
   HasUser,
   connect(
     mapStateToProps,
