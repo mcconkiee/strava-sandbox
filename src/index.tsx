@@ -1,25 +1,33 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
-import registerServiceWorker from "./registerServiceWorker";
-import store from "./store";
-import "./index.css";
-import Routes from "./routes";
-import Nav from './components/Nav/Nav';
+import './index.css';
+
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+
 import ModalMap from './containers/Modals/ModalMap';
+import registerServiceWorker from './registerServiceWorker';
+import Routes from './routes';
+import PublicRoutes from './routes-public';
+import store from './store';
 
 ReactDOM.render(
   <div className="uk-container">
-    <Router>      
+    <Router>
       <Provider store={store}>
-        <Nav/>
+
         <div>
-          <Routes />
+          <Switch>
+            <PublicRoutes />
+          </Switch>
+          <Switch>
+            <Routes />
+          </Switch>
+          
         </div>
-        <ModalMap/>    
+        <ModalMap />
       </Provider>
-    </Router>    
+    </Router>
   </div>,
   document.getElementById("root") as HTMLElement
 );

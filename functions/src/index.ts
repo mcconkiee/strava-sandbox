@@ -38,7 +38,7 @@ app.post('/user/connectAccount', require('./user/connectAccount'));
 app.get('/user/dogs', require('./user/dogs'));
 app.post('/user/dogs', require('./dogs/createDog'));
 app.post('/user/dogs/:token/activities/match', require('./activities/match'));
-app.get('/user/dogs/:token', require('./dogs/getDog'));
 app.get('/user/refresh', require('./user/refresh'));
+app.get('/users/:userId/accounts/:dogId',require('./dogs/getDog'))
 // Expose Express API as a single Cloud Function:
 exports.api = functions.https.onRequest(app);

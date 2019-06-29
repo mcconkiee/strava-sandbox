@@ -16,6 +16,8 @@ export interface StravaAccount {
     firstname: string;
     lastname: string;
     id: number;
+    path: string;
+
 }
 
 export interface ActivityState {
@@ -36,9 +38,11 @@ export interface AuthState {
     refreshing: boolean;
 }
 export interface DogObject {
-    name?: string;
+    name: string;
     breed?: string;
     birthdate?: number;
+    totalDistance?: number;
+    matches?: StravaActivity[];
 }
 export interface DogState {
     loading: boolean;
@@ -47,6 +51,7 @@ export interface DogState {
     error?: Error;
     location?: Location;
     dogs?: StravaAccount[];
+    currentDog?: DogObject;
     authenticateWithCode: (code: string) => void;
     getDogs: () => void;
 }

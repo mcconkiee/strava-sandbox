@@ -1,32 +1,19 @@
-import * as admin from 'firebase-admin';
+import { Request, Response } from 'express';
 
-const getDogs = require('./getDogs');
-
-const getDogWithToken = (userToken: string, dogToken: String, db: FirebaseFirestore.Firestore) => {
-    getDogs(userToken, db)
-        .then((dogs: admin.firestore.QuerySnapshot) => {
-            return dogs.docs.filter(q => {
-                return q.ref.id === dogToken
-            })
+module.exports = (req: Request, res: Response) => {
+    const db = req.app.get('db') as FirebaseFirestore.Firestore;
+    return db.doc(req.path)
+        .get()
+        .then((dog: FirebaseFirestore.DocumentSnapshot) => {
+            // get the first N matches
+            return Promise.all([dog, dog.ref.collection('matches').limit(5).get()])
         })
-        .then((found: admin.firestore.QueryDocumentSnapshot[]) => {
-            if (found.length > 0) {
-                return found[0]
-            }
-            return null
+        .then(([dog, matches]: [FirebaseFirestore.DocumentSnapshot, FirebaseFirestore.QuerySnapshot]) => {
+            const dogData : any = dog.data();
+            dogData.matches = matches.docs.map(m => m.data());
+            return res.send({ data: dogData });
         })
-        // .then((dog: QueryDocumentSnapshot) => {
-        //     if (dog) {
-        //         return Promise.all([dog, dog.ref.collection('matches').get()])
-        //     }
-        //     return [null, null];
-        // })
-        // .then(([dog, matches]: [QueryDocumentSnapshot, QuerySnapshot]) => {
-        //     if (matches.docs.length > 0) {
-        //         const docs = matches.docs.map(d => ({ data: d.data() }));
-        //         return { dog: dog.data(), matches: docs }
-        //     }
-        //     return null
-        // })
+        .catch((err: Error) => {
+            res.status(500).send({ error: err });
+        })
 }
-module.exports = getDogWithToken;

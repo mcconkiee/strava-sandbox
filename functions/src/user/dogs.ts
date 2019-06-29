@@ -31,6 +31,7 @@ module.exports = (req: Request, res: Response) => {
                 const dogDatas = dogs.docs.map(doc=>{
                     const updatedDogData = doc.data().data;
                     updatedDogData.id = doc.ref.id;
+                    updatedDogData.path = doc.ref.path;
                     return updatedDogData
                 });
                 dogDatas.forEach( (data,i) =>{

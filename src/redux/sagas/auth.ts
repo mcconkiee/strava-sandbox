@@ -1,10 +1,27 @@
-import { call, put, takeLatest } from 'redux-saga/effects'
-import { AUTHENTICATE_WITH_CODE, AUTHENTICATE_DOG, AUTHENTICATE_REFRESHTOKEN_SUCCESS, AUTHENTICATE_REFRESHTOKEN, AUTHENTICATE, DEAUTHENTICATE } from 'src/constants/redux';
-import api from '../../lib/api';
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { ACCESS_TOKEN, ACCESS_TOKEN_TIMESTAMP, USER, UUID, UUID_DOG } from 'src/constants/localStorage';
+import {
+   AUTHENTICATE,
+   AUTHENTICATE_DOG,
+   AUTHENTICATE_REFRESHTOKEN,
+   AUTHENTICATE_REFRESHTOKEN_SUCCESS,
+   AUTHENTICATE_WITH_CODE,
+   DEAUTHENTICATE,
+} from 'src/constants/redux';
 import { ApplicationAction } from 'src/redux/actions';
-import { AuthTokenSuccess, AuthenticateSuccess, AuthenticateError, AuthRefreshSuccess, AuthRefreshTokenSuccess, AuthRefreshTokenError, DeAuthenticateSuccess } from 'src/redux/actions/auth';
+import {
+   AuthenticateError,
+   AuthenticateSuccess,
+   AuthRefreshSuccess,
+   AuthRefreshTokenError,
+   AuthRefreshTokenSuccess,
+   AuthTokenSuccess,
+   DeAuthenticateSuccess,
+} from 'src/redux/actions/auth';
 import { AuthenticateDogSuccess, AuthenticateDogTokenSuccess } from 'src/redux/actions/dogs';
-import { ACCESS_TOKEN_TIMESTAMP, ACCESS_TOKEN, USER, UUID, UUID_DOG } from 'src/constants/localStorage';
+
+import api from '../../lib/api';
+
 const uuidv4 = require('uuid/v4');
 
 function* getToken(action: ApplicationAction) {
@@ -51,12 +68,7 @@ function* updateTokens(action: ApplicationAction){
    try {
       const tokenData = action.payload;
       localStorage.setItem(ACCESS_TOKEN, tokenData.user.access_token);
-      
-      // FIXME - we only support one connected account for now...
-      // tokenData.accounts.forEach((account:any) => {
-      //    localStorage.setItem(DOG_ACCESS_TOKEN, account.access_token);
-      // });
-      yield put(AuthRefreshSuccess());
+      yield put(AuthRefreshSuccess());   
    } catch (error) {
       yield put(AuthenticateError(error));
    }
@@ -75,7 +87,7 @@ function* refreshToken (){
     try {
         const refresh = yield call(api.getApi,'/user/refresh');
         yield put(AuthRefreshTokenSuccess(refresh.data))
-        yield put(AuthenticateSuccess(refresh.data.user.data))
+        yield put(AuthenticateSuccess(refresh.data.user.data))        
     } catch (error) {
         yield put(AuthRefreshTokenError(error));
     }

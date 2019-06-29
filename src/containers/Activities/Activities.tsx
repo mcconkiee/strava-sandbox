@@ -14,6 +14,7 @@ import {
 import { Authenticate } from "src/redux/actions/auth";
 import { getUser, getRefreshing } from "src/redux/selectors/auth";
 import HasUser from "../HOC/WithUser";
+import HasNav from '../HOC/WithNav';
 
 interface StateFromProps {
   activity: ActivityState;
@@ -44,5 +45,5 @@ const mapDispatchToProps = (dispatch: Dispatch): DispatchFromProps => ({
   getDogs: () => dispatch(GetDogs()),
   getUser: () => dispatch(Authenticate())
 });
-const enhanced =  compose(HasUser,connect(mapStateToProps,mapDispatchToProps))
+const enhanced =  compose(HasNav,HasUser,connect(mapStateToProps,mapDispatchToProps))
 export default enhanced(Activities);

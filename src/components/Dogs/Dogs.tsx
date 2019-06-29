@@ -1,7 +1,7 @@
 import './Dogs.css';
 
 import * as React from 'react';
-import HasUser from 'src/containers/HOC/WithUser';
+import { Link } from 'react-router-dom';
 import ModalDog from 'src/containers/Modals/ModalDog';
 import { AuthState, DogState } from 'src/types';
 
@@ -12,7 +12,6 @@ interface DogUI {
   auth: AuthState;
   loading:boolean;
   refreshing:boolean;
-  getDogs: () => void;
 }
 const doglist = (dogState: DogState) => {
   if (dogState.dogs) {
@@ -20,7 +19,9 @@ const doglist = (dogState: DogState) => {
       return null;
     }
     return dogState.dogs.map(dog => {
-      return <div key={dog.id}>{dog.firstname}</div>;
+      return <div key={dog.id}>
+        <Link to={dog.path}>{dog.firstname}</Link>
+      </div>;
     });
   }
   
@@ -31,11 +32,7 @@ class Dogs extends React.Component<DogUI, object> {
     super(p);
     this.state = { fetchedDogs: false };
   }
-  componentDidUpdate(prevProps:DogUI){
-    if(!prevProps.auth.userData && this.props.auth.userData && !this.props.dogs.dogs){
-      this.props.getDogs();
-    }
-  }
+  
   listDogs(): React.ReactNode {
     if (this.props.dogs) {      
       return <div>{doglist(this.props.dogs)}</div>;
@@ -65,4 +62,4 @@ class Dogs extends React.Component<DogUI, object> {
   }
 }
 
-export default HasUser(Dogs);
+export default Dogs;

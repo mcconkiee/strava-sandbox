@@ -2,7 +2,7 @@ import * as admin from 'firebase-admin';
 import { Request } from "express";
 import CONSTANTS from './constants';
 const tokenFromHeader = require('./tokenFromHeader')
-const getUserWithRequest = (req: Request) => {
+const getUserWithRequest  = (req: Request)  => {
     const db = req.app.get('db') as FirebaseFirestore.Firestore;
     const token = tokenFromHeader(req);
     return db.collection('users')

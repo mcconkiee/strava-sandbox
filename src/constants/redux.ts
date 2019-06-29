@@ -96,6 +96,12 @@ export type ADD_DOG = typeof ADD_DOG;
 export const ADD_DOG_SUCCESS = 'ADD_DOG_SUCCESS';
 export type ADD_DOG_SUCCESS = typeof ADD_DOG_SUCCESS;
 
+export const REMOVE_DOG = 'REMOVE_DOG';
+export type REMOVE_DOG = typeof REMOVE_DOG;
+
+export const REMOVE_DOG_SUCCESS = 'REMOVE_DOG_SUCCESS';
+export type REMOVE_DOG_SUCCESS = typeof REMOVE_DOG_SUCCESS;
+
 export const ADD_DOG_ERROR = 'ADD_DOG_ERROR';
 export type ADD_DOG_ERROR = typeof ADD_DOG_ERROR;
 
@@ -111,6 +117,14 @@ export type AUTHENTICATE_DOG_TOKEN_SUCCESS = typeof AUTHENTICATE_DOG_TOKEN_SUCCE
 
 export const DOG_ERROR = 'DOG_ERROR';
 export type DOG_ERROR = typeof DOG_ERROR;
+
+
+export const DOG_GET = 'DOG_GET';
+export type DOG_GET = typeof DOG_GET;
+
+export const DOG_GET_SUCCESS = 'DOG_GET_SUCCESS';
+export type DOG_GET_SUCCESS = typeof DOG_GET_SUCCESS;
+
 
 
 export const DOGS_GET_ALL = 'DOGS_GET_ALL';
