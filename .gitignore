@@ -8,6 +8,7 @@ functions/firebase-debug.log
 functions/src/config.ts
 functions/src/configs/*
 !functions/src/configs/configs.sample.ts
+functions/src/serviceAccount.ts
 src/globalConfig.ts
 /data/strava_config
 # testing
