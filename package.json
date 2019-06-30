@@ -7,6 +7,7 @@
     "@types/express": "^4.17.0",
     "@types/react-map-gl": "^4.1.2",
     "@types/react-redux": "^7.0.9",
+    "@types/styled-components": "^4.1.16",
     "@types/uikit": "^2.27.7",
     "@types/uuid": "^3.4.4",
     "@types/viewport-mercator-project": "^6.1.0",
@@ -24,6 +25,7 @@
     "redux-saga": "^1.0.2",
     "reselect": "^4.0.0",
     "strava-v3": "^1.14.0",
+    "styled-components": "^4.3.2",
     "uikit": "^3.1.5",
     "uuid": "^3.3.2",
     "viewport-mercator-project": "^6.1.1"

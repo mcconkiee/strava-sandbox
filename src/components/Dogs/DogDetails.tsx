@@ -3,6 +3,7 @@ import './Dogs.css';
 import * as React from 'react';
 import { DogObject } from 'src/types';
 import Map from '../Activities/Map';
+import { Title } from './StyledComponents';
 
 interface DogDetailsUI {
     dog: DogObject;
@@ -40,11 +41,9 @@ class DogDetails extends React.Component<DogDetailsUI> {
         if (dog) {
             return (
                 <div className="dog">
+                    <Title> {this.props.dog.name}</Title>
                     <div>
-                    {this.props.dog.name}
-                    </div>
-                    <div>
-                    {this.props.dog.totalDistance}
+                        {this.props.dog.totalDistance}
                     </div>
 
                     <div>
