@@ -1,9 +1,10 @@
-import * as React from "react";
-import { ACTIVITIES_ROUTE } from "src/constants/routes";
-import urlParams from "src/lib/url-params";
-import List from "./List";
-import Pagination from "./Pagination";
-import { ActivityState, DogState, StravaAccount } from "src/types";
+import * as React from 'react';
+import { ACTIVITIES_ROUTE } from 'src/constants/routes';
+import urlParams from 'src/lib/url-params';
+import { ActivityState, DogState, StravaAccount } from 'src/types';
+
+import List from './List';
+import Pagination from './Pagination';
 
 interface ActivityProps {
   dogs: DogState;

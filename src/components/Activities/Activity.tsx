@@ -1,21 +1,13 @@
-import * as React from "react";
+import * as React from 'react';
+import { connect } from 'react-redux';
+import config from 'src/config';
+import { ActivityState, DogState, StoreState, StravaAccount, StravaActivity } from 'src/types';
+
+import * as DefaultAction from '../../redux/actions';
+import { ActivityClone, ActivityRemove, ActivitySelected } from '../../redux/actions/activities';
+import Map from './Map';
+
 const UIkit = require('uikit');
-import { connect } from "react-redux";
-import {
-  StoreState,
-  ActivityState,
-  DogState,
-  StravaActivity,
-  StravaAccount
-} from "src/types";
-import config from "src/config";
-import * as DefaultAction from "../../redux/actions";
-import {
-  ActivityClone,
-  ActivityRemove,
-  ActivitySelected
-} from "../../redux/actions/activities";
-import Map from "./Map";
 const moment = require("moment");
 export interface Activity {
   activity: ActivityState;
