@@ -9,9 +9,9 @@ module.exports = (req: Request, res: Response) => {
             return Promise.all([dog, dog.ref.collection('matches').limit(5).get()])
         })
         .then(([dog, matches]: [FirebaseFirestore.DocumentSnapshot, FirebaseFirestore.QuerySnapshot]) => {
-            const dogData : any = dog.data();
-            dogData.matches = matches.docs.map(m => m.data());
-            return res.send({ data: dogData });
+            const dogData: any = dog.data();
+            // dogData.matches = matches.docs.map(m => m.data());
+            return res.send({ data: dogData, activities: matches.docs.map(m => m.data()) });
         })
         .catch((err: Error) => {
             res.status(500).send({ error: err });

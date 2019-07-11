@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import ModalDog from 'src/containers/Modals/ModalDog';
 import { AuthState, DogState } from 'src/types';
-
+const uuid = require('uuid/v4')
 
 
 interface DogUI {
@@ -19,8 +19,8 @@ const doglist = (dogState: DogState) => {
       return null;
     }
     return dogState.dogs.map(dog => {
-      return <div key={dog.id}>
-        <Link to={dog.path}>{dog.firstname}</Link>
+      return <div key={uuid()}>
+        <Link to={dog.path || '#'}>{dog.name}</Link>
       </div>;
     });
   }

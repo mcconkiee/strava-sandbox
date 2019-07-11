@@ -42,7 +42,8 @@ export interface DogObject {
     breed?: string;
     birthdate?: number;
     totalDistance?: number;
-    matches?: StravaActivity[];
+    matches?: string[];
+    path?: string;
 }
 export interface DogState {
     loading: boolean;
@@ -50,10 +51,9 @@ export interface DogState {
     accessToken?: string;
     error?: Error;
     location?: Location;
-    dogs?: StravaAccount[];
+    dogs?: DogObject[];
     currentDog?: DogObject;
-    authenticateWithCode: (code: string) => void;
-    getDogs: () => void;
+    authenticateWithCode: (code: string) => void;    
 }
 export interface MapState {
     currentActivity?: StravaActivity;

@@ -3,11 +3,10 @@ import { ApplicationAction } from 'src/redux/actions';
 
 import { DogState } from '../../types';
 import { AuthenticateWithCode } from '../actions/auth';
-import { GetDogs } from '../actions/dogs';
+
 
 const initialState: DogState = {
-    authenticateWithCode: AuthenticateWithCode,
-    getDogs: GetDogs,
+    authenticateWithCode: AuthenticateWithCode,    
     loading: false,
 }
 
