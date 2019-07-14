@@ -4,18 +4,19 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import ModalDog from 'src/containers/Modals/ModalDog';
 import { AuthState, DogState } from 'src/types';
+import { authURL } from 'src/constants/auth';
 const uuid = require('uuid/v4')
 
 
 interface DogUI {
   dogs: DogState;
   auth: AuthState;
-  loading:boolean;
-  refreshing:boolean;
+  loading: boolean;
+  refreshing: boolean;
 }
 const doglist = (dogState: DogState) => {
   if (dogState.dogs) {
-    if(dogState.dogs.length === 0){
+    if (dogState.dogs.length === 0) {
       return null;
     }
     return dogState.dogs.map(dog => {
@@ -24,7 +25,7 @@ const doglist = (dogState: DogState) => {
       </div>;
     });
   }
-  
+
   return null;
 };
 class Dogs extends React.Component<DogUI, object> {
@@ -32,27 +33,30 @@ class Dogs extends React.Component<DogUI, object> {
     super(p);
     this.state = { fetchedDogs: false };
   }
-  
+
   listDogs(): React.ReactNode {
-    if (this.props.dogs) {      
+    if (this.props.dogs) {
       return <div>{doglist(this.props.dogs)}</div>;
     }
     return null;
   }
 
   render() {
-    if(this.props.refreshing){
+    if (this.props.refreshing) {
       return <div uk-spinner={1} />;
     }
     return (
       <div className="dog">
         <h4>Your Dogs!</h4>
-        <div>
-          <a className="uk-button uk-button-primary" onClick={()=>{
-            UIkit.modal("#modal-dog").show();
-          }}>
-            Add a Dog!
+        <div uk-margin={1}>          
+          <div>
+            <a className="uk-button uk-button-primary" href={authURL(true)}>Add a Strava Dog</a>
+            <a className="uk-button uk-button-primary" onClick={() => {
+              UIkit.modal("#modal-dog").show();
+            }}>
+              Add a Dog!
           </a>
+          </div>
           <ModalDog />
         </div>
         {this.props.dogs.loading ? <div uk-spinner={1}></div> : null}

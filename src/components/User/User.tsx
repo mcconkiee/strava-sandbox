@@ -18,7 +18,8 @@ const User = (props: UserUIState) => {
   if (user) {
     return (
       <div className="user">
-        <div>{user.firstname}</div>
+        <div>{user.firstname} {user.lastname}</div>
+        <div>{user.id}</div>
       </div>
     );
   }

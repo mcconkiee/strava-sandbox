@@ -5,6 +5,8 @@ export const USER = "/user"
 // AUTH
 export const REAUTH = '/reauth';
 export const AUTHCODE_ROUTE = '/authcode';
+export const AUTHCODE_DOGS_ROUTE = '/dogs/authcode';
+
 
 // ACITIVITES
 export const ACTIVITIES_ROUTE = '/activities';
