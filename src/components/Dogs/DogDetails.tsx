@@ -1,15 +1,18 @@
+import './Dogs.css';
+
 import Qty from 'js-quantities';
 import * as React from 'react';
-import { DogObject, StravaActivity } from 'src/types';
+import Dog from 'src/models/Dog';
+import { StravaActivity } from 'src/types';
+
 import Map from '../Activities/Map';
-import './Dogs.css';
 import { MediaLine, SubTitle, Title } from './StyledComponents';
 
 
 
 
 interface DogDetailsUI {
-    dog: DogObject;
+    dog: Dog;
     activities: StravaActivity[],
     refreshing: boolean;
     getDog: (path: string) => void;

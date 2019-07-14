@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { DogObject } from 'src/types';
+import Dog from 'src/models/Dog';
 
 export interface ModalDogUI {
-  addDog: (dog: DogObject) => void;
+  addDog: (dog: Dog) => void;
   error: Error
 }
 
 interface DogFormState {
-  dog: DogObject
+  dog: Dog
 }
 
 
 class ModalDog extends React.Component<ModalDogUI,DogFormState>{
   constructor(p: ModalDogUI) {
     super(p);
-    this.state ={dog:{name:''}}
+    this.state ={dog:new Dog("")}
     this.handleChange = this.handleChange.bind(this);
   }
   handleChange(data: React.FormEvent<HTMLInputElement>){    

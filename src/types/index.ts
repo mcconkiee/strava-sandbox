@@ -1,3 +1,5 @@
+import Dog from 'src/models/Dog';
+
 export interface StravaMap {
     summary_polyline: string;
 }
@@ -51,9 +53,9 @@ export interface DogState {
     accessToken?: string;
     error?: Error;
     location?: Location;
-    dogs?: DogObject[];
-    currentDog?: DogObject;
-    authenticateWithCode: (code: string) => void;    
+    dogs?: Dog[];
+    currentDog?: Dog;
+    authenticateWithCode: (code: string) => void;
 }
 export interface MapState {
     currentActivity?: StravaActivity;

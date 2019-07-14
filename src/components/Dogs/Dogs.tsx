@@ -20,7 +20,7 @@ const doglist = (dogState: DogState) => {
     }
     return dogState.dogs.map(dog => {
       return <div key={uuid()}>
-        <Link to={dog.path || '#'}>{dog.name}</Link>
+        <Link to={dog.path || '#'}>{dog.firstname}</Link>
       </div>;
     });
   }

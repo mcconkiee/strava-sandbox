@@ -1,8 +1,8 @@
 import * as React from 'react';
 import config from 'src/config';
-import { DogObject } from 'src/types';
 
 import { Activity } from './Activity';
+import Dog from 'src/models/Dog';
 
 const uuid = require('uuid/v4')
 
@@ -66,7 +66,7 @@ const cloneButton = (props: CloneButtonUI) => {
 }
 interface CloneButtonUI {
     activity: Activity;
-    dog: DogObject;
+    dog: Dog;
     busy: boolean;
 }
 const CloneButton = (props: CloneButtonUI) => {

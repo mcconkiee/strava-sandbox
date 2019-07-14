@@ -1,12 +1,27 @@
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { ACCESS_TOKEN } from 'src/constants/localStorage';
-import { ACTIVITY_CLONE, ACTIVITY_REMOVE, ADD_DOG_SUCCESS, DOGS_GET_ALL, ADD_DOG, AUTHENTICATE_REFRESHTOKEN_SUCCESS, DOG_GET, ACTIVITY_CLONE_SUCCESS } from 'src/constants/redux';
+import {
+    ACTIVITY_CLONE,
+    ACTIVITY_CLONE_SUCCESS,
+    ACTIVITY_REMOVE,
+    ADD_DOG,
+    ADD_DOG_SUCCESS,
+    AUTHENTICATE_REFRESHTOKEN_SUCCESS,
+    DOG_GET,
+    DOGS_GET_ALL,
+} from 'src/constants/redux';
 import api from 'src/lib/api';
-import { ActivityCloneSuccess, ActivityQueueForCloneSuccess, ActivitiesListGetSuccess, ActivityQueueForClone } from 'src/redux/actions/activities';
+import Dog from 'src/models/Dog';
+import {
+    ActivitiesListGetSuccess,
+    ActivityCloneSuccess,
+    ActivityQueueForClone,
+    ActivityQueueForCloneSuccess,
+} from 'src/redux/actions/activities';
+import { StravaActivity } from 'src/types';
 
 import { ApplicationAction } from '../actions';
-import { DogsError, GetDogsSuccess, AddDogSuccess, GetDogSuccess, GetDogs } from '../actions/dogs';
-import { DogObject, StravaActivity } from 'src/types';
+import { AddDogSuccess, DogsError, GetDogs, GetDogsSuccess, GetDogSuccess } from '../actions/dogs';
 
 
 function* cloneActivityToDog(action: ApplicationAction) {
@@ -19,9 +34,6 @@ function* cloneActivityToDog(action: ApplicationAction) {
             yield put(ActivityQueueForCloneSuccess(activity));
             yield put(ActivityCloneSuccess({}));
         }
-        
-
-
         yield call(getAllDogs);
     } catch (error) {
         yield put(DogsError(error));
@@ -48,7 +60,10 @@ function* removeActivityToDog(action: ApplicationAction) {
 function* getAllDogs() {
     try {
         const dogs = yield call(api.getApi, `/user/dogs`)
-        yield put(GetDogsSuccess(dogs.data.accounts))
+        const alldogs = dogs.data.accounts.map((dta:any)=>{
+            return new Dog(dta)
+        })
+        yield put(GetDogsSuccess(alldogs))
     } catch (error) {
         yield put(DogsError(error));
     }
@@ -68,18 +83,22 @@ function* getDog(action: ApplicationAction) {
         const rawpath: string = action.payload;
         // const path = rawpath.split("/")[2];// FIXME  - not safe, but works for now
         const dog = yield call(api.getApi, rawpath)
-        const dogObject: DogObject = {
-            name: dog.data.data.data.firstname,
-            matches: dog.data.activities.map((m: StravaActivity) => m.id),
-            totalDistance: dog.data.data.totalDistance || 0
-        }
+        // const dogObject: DogObject = {
+        //     name: dog.data.data.data.firstname,
+        //     matches: dog.data.activities.map((m: StravaActivity) => m.id),
+        //     totalDistance: dog.data.data.totalDistance || 0
+        // }
+        const dogObject = new Dog(dog.data.data.data.firstname);
+        dogObject.matches = dog.data.activities.map((m: StravaActivity) => m.id)
+        dogObject.totalDistance = dog.data.data.totalDistance || 0
+
         yield put(ActivitiesListGetSuccess(dog.data.activities))
         yield put(GetDogSuccess(dogObject))
     } catch (error) {
         yield put(DogsError(error));
     }
 }
-function* fetchDogsList(action: ApplicationAction){
+function* fetchDogsList(action: ApplicationAction) {
     try {
         yield put(GetDogs())
     } catch (error) {
@@ -92,7 +111,7 @@ export const dogs = [
     takeLatest(DOG_GET, getDog),
     takeLatest(ACTIVITY_CLONE, cloneActivityToDog),
     takeLatest(ACTIVITY_REMOVE, removeActivityToDog),
-    takeLatest(DOGS_GET_ALL, getAllDogs),    
+    takeLatest(DOGS_GET_ALL, getAllDogs),
     takeLatest(ACTIVITY_CLONE_SUCCESS, fetchDogsList),
     takeLatest(ADD_DOG_SUCCESS, fetchDogsList),
     takeLatest(AUTHENTICATE_REFRESHTOKEN_SUCCESS, fetchDogsList),
