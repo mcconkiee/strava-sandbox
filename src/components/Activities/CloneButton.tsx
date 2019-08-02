@@ -19,10 +19,10 @@ const spinner = () => <div key={uuid()} uk-spinner={1} />
 // show a clone button, or an indicator that the dog already has been matched to this event
 const cloneButton = (props: CloneButtonUI) => {
     const { dog, activity } = props;
-
+    const {matches} = dog.initialData
     // check if this dog has already been matched to this activity
-    if (dog.matches) {
-        const count = dog.matches.filter(actId => {
+    if (matches) {
+        const count = matches.filter((actId:string) => {
             return actId === activity.item.id.toString();
         }).length
         if (count > 0) {
@@ -53,14 +53,14 @@ const cloneButton = (props: CloneButtonUI) => {
                         }? Type "YES" to confirm.`
                     );
                     if (confirm === "YES") {
-                        props.activity.cloneActivity({activity:activity.item,dog:dog});
+                        props.activity.cloneActivity(activity.item,dog);
                     }
                     return;
                 }
-                props.activity.cloneActivity({activity:activity.item,dog:dog});
+                props.activity.cloneActivity(activity.item,dog)
             }}
         >
-            Add to {dog.name}
+            Add to {dog.name} ({dog.id})
         </button>
     </div>
 }

@@ -1,6 +1,7 @@
 import * as constants from '../../constants/redux';
 import { ApplicationAction } from '.';
 import { StravaActivity } from 'src/types';
+import Dog from 'src/models/Dog';
 
 export interface ActivityError {
     type: constants.ACTIVITY_ERROR;
@@ -35,10 +36,10 @@ export function ActivityUpdateSucces(data: object): ApplicationAction {
     }
 }
 
-export function ActivityClone(data: object): ApplicationAction {
+export function ActivityClone(activity: object, dog: Dog): ApplicationAction {
     return {
         type: constants.ACTIVITY_CLONE,
-        payload: data
+        payload: {activity:activity, dog:dog}
     }
 }
 

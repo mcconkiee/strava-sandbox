@@ -7,6 +7,7 @@ import * as DefaultAction from '../../redux/actions';
 import { ActivityClone, ActivityRemove, ActivitySelected } from '../../redux/actions/activities';
 import CloneButton from './CloneButton';
 import Map from './Map';
+import Dog from 'src/models/Dog';
 const uuid = require('uuid/v4')
 const UIkit = require('uikit');
 const moment = require("moment");
@@ -14,7 +15,7 @@ export interface Activity {
   activity: ActivityState;
   dogs: DogState;
   item: StravaActivity;
-  cloneActivity: (data: object) => void;
+  cloneActivity: (data: object,dog:Dog) => void;
   removeActivity: (item: object) => void;
   selectedActivity: (item: StravaActivity) => void;
 }
@@ -45,7 +46,7 @@ const Activity = (props: Activity) => {
           target="_blank"
           href={`https://www.strava.com/activities/${props.item.id}`}
         >
-          {props.item.name}
+          {props.item.name} ({props.item.id})
         </a>
         <div>
           <Map
@@ -71,7 +72,7 @@ interface StateFromProps {
 }
 
 interface DispatchFromProps {
-  cloneActivity: (data: object) => void;
+  cloneActivity: (data: object, dog: Dog) => void;
   removeActivity: (activity: any) => void;
   selectedActivity: (activity: StravaActivity) => void;
 }
@@ -82,7 +83,7 @@ export const mapStateToProps = (state: StoreState): StateFromProps => {
 export const mapDispatchToProps = (
   dispatch: React.Dispatch<DefaultAction.ApplicationAction>
 ): DispatchFromProps => ({
-  cloneActivity: (data: object) => dispatch(ActivityClone(data)),
+  cloneActivity: (data: object, dog:Dog) => dispatch(ActivityClone(data,dog)),
   removeActivity: (activity: any) => dispatch(ActivityRemove(activity)),
   selectedActivity: (activity: StravaActivity) =>
     dispatch(ActivitySelected(activity))
