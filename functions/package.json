@@ -22,7 +22,7 @@
     "firebase-functions": "^2.3.0",
     "form-data": "^2.3.3",
     "gpx-builder": "^2.0.1",
-    "moment": "^2.24.0"
+    "moment": "^2.29.2"
   },
   "devDependencies": {
     "firebase-functions-test": "^0.1.6",
